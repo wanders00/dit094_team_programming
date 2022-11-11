@@ -8,9 +8,9 @@
             "type": "java",
             "name": "Launch Main",
             "request": "launch",
-            "mainClass": "test.Main",
-            "projectName": "test_7f3e6772",
-            "vmArgs": "--module-path lib/javafx-sdk-19/lib --add-modules javafx.controls,javafx.fxml",
+            "mainClass": "Main",
+            "projectName": "Snake_66c15240",
+            "vmArgs": "--module-path lib/javafx-sdk-19/lib --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
