@@ -9,6 +9,14 @@
             "name": "Launch Main",
             "request": "launch",
             "mainClass": "Main",
+            "projectName": "dit094-group-2_536ae1f4",
+            "vmArgs": "--module-path lib/javafx-sdk-19/lib --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Main",
             "projectName": "Snake_66c15240",
             "vmArgs": "--module-path lib/javafx-sdk-19/lib --add-modules javafx.controls,javafx.fxml"
         },
