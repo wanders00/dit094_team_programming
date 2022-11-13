@@ -1,3 +1,5 @@
+import javax.swing.plaf.synth.SynthEditorPaneUI;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -40,11 +42,12 @@ public class Main extends Application
         primaryStage.setScene(scene);
         primaryStage.show();
         int f=0;
-        long framedelay = 1000000000;
+        long framedelay = 400000000;
         //framedelay*=10;
         new AnimationTimer() 
         {
             boolean f=true;
+            long lastpress;
             public void handle(long now)
             {
                 gc.clearRect(0,0,gridsize,gridsize);
@@ -76,15 +79,20 @@ public class Main extends Application
                 
                 scene.setOnKeyPressed(e -> 
                     {
-                     if (e.getCode() == KeyCode.W)f=game.update(0);
-                     else if (e.getCode() == KeyCode.D)f=game.update(1);
-                     else if (e.getCode() == KeyCode.S)f=game.update(2);
-                     else if (e.getCode() == KeyCode.A)f=game.update(3);
-                     else f=game.update(4);
+                        lastpress = System.nanoTime();
+                        if (e.getCode() == KeyCode.W)f=game.update(0);
+                        else if (e.getCode() == KeyCode.D)f=game.update(1);
+                        else if (e.getCode() == KeyCode.S)f=game.update(2);
+                        else if (e.getCode() == KeyCode.A)f=game.update(3);
+                        else f=game.update(4);
                     });
                 if(!f)primaryStage.close();
+                if(System.nanoTime()-lastpress>framedelay)
+                {
+                    lastpress = System.nanoTime();
+                    game.update(4);
+                }
                 
-                //while(System.nanoTime()-framestart<framedelay);
 
             }
         }.start();
