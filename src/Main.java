@@ -74,6 +74,11 @@ public class Main extends Application
                             gc.setFill(Color.rgb(255,0,0));
                             gc.fillRect(cellsize*j,cellsize*i,cellsize,cellsize);
                         }
+                        if(grid[i][j]==-2)
+                        {
+                            gc.setFill(Color.rgb(100,100,100));
+                            gc.fillRect(cellsize*j,cellsize*i,cellsize,cellsize);
+                        }
                     }
                 }
                 

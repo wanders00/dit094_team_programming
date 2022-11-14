@@ -18,20 +18,72 @@ public class Game
         width = w;
         height = h;
         rand = new Random();
-        grid = new int[h][w];
-        for(int i=0;i<height;i++)
-        {
-            for(int j=0;j<width;j++)
-            {
-                grid[i][j]=0;
-            }
-        }
+        grid = generateMap(h,w,3);
         orientation = 0;
         length = 3;
         grid[h/2][w/2] = 1;//distance from head
         grid[h/2][w/2+1] = 2;
         grid[h/2][w/2+2] = 3;
-        grid[3][5] = -1;
+    }
+    private int[][] generateMap(int height,int width,int layout)
+    {
+        int[][]grid = new int[height][width];
+        if(layout==0)
+        {
+            for(int i=0;i<height;i++)
+            {
+                for(int j=0;j<width;j++)
+                {
+                    grid[i][j]=0;
+                }
+            }
+        }
+        if(layout==1)
+        {
+            for(int i=0;i<height;i++)
+            {
+                for(int j=0;j<width;j++)
+                {
+                    if(i==0||j==0||i==height-1||j==width-1)grid[i][j]=-2;
+                    else grid[i][j]=0;
+                }
+            }
+        }
+        if(layout==2)
+        {
+            int gaph = width/4;
+            int gapv = height/4;
+            for(int i=0;i<height;i++)
+            {
+                for(int j=0;j<width;j++)
+                {
+                    if((i+gapv<height-1&&i-gapv>0)||(j+gaph<width-1&&j-gaph>0)) grid[i][j]=0;
+                    else grid[i][j]=-2;
+                }
+            }
+        }
+        if(layout==3)
+        {
+            int gaph = width/4;
+            int gapv = height/4;
+            for(int i=0;i<height;i++)
+            {
+                for(int j=0;j<width;j++)
+                {
+                    if((i+gapv<height-1&&i-gapv>0)||(j+gaph<width-1&&j-gaph>0)||!((i==0||j==0||i==height-1||j==width-1))) grid[i][j]=0;
+                    else grid[i][j]=-2;
+                }
+            }
+        }
+        int ypos = rand.nextInt(height);
+        int xpos = rand.nextInt(width);
+        while(grid[ypos][xpos]!=0)
+        {
+            ypos = rand.nextInt(height);
+            xpos = rand.nextInt(width);
+        }
+        grid[ypos][xpos]=-1;
+        return grid;
     }
 
     public boolean update(int o)
@@ -54,25 +106,27 @@ public class Game
         if(orientation==0)
         {
             ypos--;
-            if(ypos<0)return false;
+            if(ypos<0)ypos=height-1;
         }
         else if(orientation==1)
         {
             xpos++;
-            if(xpos>=width)return false;
+            if(xpos>=width)xpos=0;
         }
         else if(orientation==2)
         {
             ypos++;
-            if(ypos>=height)return false;
+            if(ypos>=height)ypos=0;
         }
         else if(orientation==3)
         {
             xpos--;
-            if(xpos<0)return false;
+            if(xpos<0)xpos=width-1;
         }
         
-        if(grid[ypos][xpos]>0)return false;
+        System.out.println("xpos: "+xpos+" ypos: "+ypos);
+
+        if(grid[ypos][xpos]>0||grid[ypos][xpos]==-2)return false;
 
         if(grid[ypos][xpos]!=-1)
         {
@@ -85,7 +139,7 @@ public class Game
                 }
             }
             grid[ypos][xpos]=1;
-            for(int i=0;i<height;i++)
+            /*for(int i=0;i<height;i++)
             {
                 for(int j=0;j<width;j++)
                 {
@@ -93,7 +147,7 @@ public class Game
                 }
                 System.out.println();
             }
-            System.out.println();
+            System.out.println();*/
         }
         else
         {
@@ -107,11 +161,11 @@ public class Game
         length++;
         grid[ypos][xpos]=1;
 
-            while(grid[ypos][xpos]!=0)
-            {
-                ypos = rand.nextInt(height);
-                xpos = rand.nextInt(width);
-            }
+        while(grid[ypos][xpos]!=0)
+        {
+            ypos = rand.nextInt(height);
+            xpos = rand.nextInt(width);
+        }
         grid[ypos][xpos]=-1;
 
         }
