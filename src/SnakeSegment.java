@@ -1,3 +1,3 @@
-public class SnakeSegment {
+public class SnakeSegment extends GameObject {
     
 }

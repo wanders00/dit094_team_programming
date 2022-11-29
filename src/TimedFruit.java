@@ -1,4 +1,4 @@
-public class TimedFruit extends Food {
+public class TimedFruit extends FruitObject {
     //do later, extra feature
-    //same as powerup i guess
+    //same as powerup? or do something else for the different ones
 }
