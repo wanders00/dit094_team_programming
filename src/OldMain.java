@@ -13,13 +13,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.input.KeyCode;
 
-public class Main extends Application
+public class OldMain extends Application
 {
-    public static void main(String[] args) 
+    /*public static void main(String[] args) 
     {
         launch(args);
     }
-
+    Commented out so it doesnt use this as main function*/
     
 
     @Override
@@ -32,7 +32,7 @@ public class Main extends Application
         int cellcount = 20;
         int cellsize = 40;
         int gridsize = cellcount*cellsize;
-        Game game = new Game(cellcount,cellcount,0);
+        OldGame game = new OldGame(cellcount,cellcount,0);
         Canvas canvas= new Canvas(gridsize,gridsize);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         //gc.translate(gridsize / 2, gridsize / 2);

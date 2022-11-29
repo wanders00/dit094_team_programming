@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Game 
+public class OldGame 
 {
     int width;
     int height;
@@ -13,7 +13,7 @@ public class Game
     //3 - west
     int[][] grid;
 
-    public Game(int h,int w,int seed)
+    public OldGame(int h,int w,int seed)
     {
         width = w;
         height = h;
