@@ -90,6 +90,20 @@ public class Main extends Application {
         long framedelay = 400000000;
         new AnimationTimer() {
             public void handle(long now) {
+                for (int i = 0; i < cellcount; i++) {
+                    for (int j = 0; j < cellcount; j++) {
+                        GameObject currentGameObject;
+                        if (game.grid[i][j] instanceof EmptyGameObject) {
+                            currentGameObject = new EmptyGameObject();
+                            gc.setFill(Color.rgb(
+                                    currentGameObject.getRed(),
+                                    currentGameObject.getGreen(),
+                                    currentGameObject.getBlue()));
+                            gc.fillRect(cellsize * j, cellsize * i, cellsize, cellsize);
+                        }
+                    }
+                }
+
                 gameScene.setOnKeyPressed(e -> {
                     if (Direction.fromKeypress(e.getCode()) != null) {
                         Direction newDirection = Direction.fromKeypress(e.getCode());

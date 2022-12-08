@@ -1,4 +1,7 @@
 public class TimedFruit extends FruitObject {
+
+    TimedFruit(int red, int blue, int green) {
+        super(red, blue, green);
+    }
     //do later, extra feature
-    //same as powerup? or do something else for the different ones
 }
