@@ -1,7 +1,7 @@
 public enum Difficulty {
-    Easy(1, 1),
-    Medium(1, 1),
-    Hard(1, 1);
+    EASY(1, 1),
+    NORMAL(1, 1),
+    HARD(1, 1);
     // random numbers, change me later :)
 
     private final double scoreMultiplier;

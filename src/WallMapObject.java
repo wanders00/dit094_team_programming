@@ -1,3 +1,3 @@
-public abstract class WallMapObject extends MapObject {
+public abstract class WallMapObject extends GameObject {
     
 }

@@ -15,7 +15,8 @@ public class Main extends Application {
     public static int WIDTH = 800;
     public static int HEIGHT = 800;
     public static Stage PRIMARY_STAGE;
-    // Add such that height and width is received from local file. (Settings)
+    public static Difficulty selectedDifficulty = Difficulty.NORMAL;
+    // Add such that these variables are dependant on local file.
 
     public static void main(String[] args) {
         launch(args);
@@ -79,7 +80,7 @@ public class Main extends Application {
         int cellcount = 20;
         int cellsize = 40;
         int gridsize = cellcount * cellsize;
-        Game game = new Game(cellcount, cellsize, gridsize, null); // Fix difficulty later
+        Game game = new Game(cellcount, cellsize, gridsize, selectedDifficulty); // Fix difficulty later
         Canvas canvas = new Canvas(gridsize, gridsize);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         StackPane root = new StackPane(canvas);
