@@ -41,7 +41,6 @@ public class OldMain extends Application
         Scene scene = new Scene(root,gridsize,gridsize);
         primaryStage.setScene(scene);
         primaryStage.show();
-        int f=0;
         long framedelay = 400000000;
         //framedelay*=10;
         new AnimationTimer() 
