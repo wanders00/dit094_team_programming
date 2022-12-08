@@ -4,6 +4,8 @@ public class Game {
         NORMAL;
     }
 
+    Layout currentLayout = Layout.NORMAL;
+
     Snake snake;
     int seed;
     int width;
@@ -15,7 +17,7 @@ public class Game {
 
     Game(int seed, int width, int height, Difficulty difficulty) {
         this.snake = new Snake();
-        this.grid = new GameObject[width][height]; // this.grid = generateMap(width, height, seed);
+        this.grid = generateMap(height, width, currentLayout);
         this.width = width;
         this.height = height;
         this.difficulty = difficulty;
@@ -42,5 +44,9 @@ public class Game {
             }
         }
         return normalGameGrid;
+    }
+
+    public GameObject[][] getState() {
+        return this.grid;
     }
 }

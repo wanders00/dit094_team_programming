@@ -13,7 +13,7 @@ public enum Direction {
         this.keybind = keybind;
     }
 
-    public KeyCode getKeyind() {
+    public KeyCode getKeybind() {
         return this.keybind;
     }
 
@@ -23,7 +23,7 @@ public enum Direction {
 
     public static Direction fromKeypress(KeyCode input) {
         for (Direction direction : Direction.values()) {
-            if (direction.getKeyind().equals(input)) {
+            if (direction.getKeybind().equals(input)) {
                 return direction;
             }
         }

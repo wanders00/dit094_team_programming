@@ -4,12 +4,11 @@ public class Color {
     private int blue;
 
     Color(int red, int green, int blue) { // 0-255
-       this.red = red;
-       this.green = green;
-       this.blue = blue; 
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
     }
 
-    // Either specific methods like this, or we can make one that returns an array of the 3 color codes.
     public int getRedColorCode() {
         return this.red;
     }
@@ -21,4 +20,10 @@ public class Color {
     public int getBlueColorCode() {
         return this.blue;
     }
+
+    public int[] getRGB() {
+        int[] rgb = new int[] {this.red, this.blue, this.green };
+        return rgb;
+    }
+
 }
