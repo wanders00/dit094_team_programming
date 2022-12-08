@@ -13,7 +13,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.input.KeyCode;
 
-public class OldMain extends Application
+public class OLDMAIN extends Application
 {
     /*public static void main(String[] args) 
     {
@@ -32,7 +32,7 @@ public class OldMain extends Application
         int cellcount = 20;
         int cellsize = 40;
         int gridsize = cellcount*cellsize;
-        OldGame game = new OldGame(cellcount,cellcount,0);
+        OLDGAME game = new OLDGAME(cellcount,cellcount,0);
         Canvas canvas= new Canvas(gridsize,gridsize);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         //gc.translate(gridsize / 2, gridsize / 2);
@@ -41,7 +41,6 @@ public class OldMain extends Application
         Scene scene = new Scene(root,gridsize,gridsize);
         primaryStage.setScene(scene);
         primaryStage.show();
-        int f=0;
         long framedelay = 400000000;
         //framedelay*=10;
         new AnimationTimer() 
