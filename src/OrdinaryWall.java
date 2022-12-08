@@ -1,3 +1,3 @@
-public class OrdinaryWall extends WallMapObject {
+public class OrdinaryWall extends GameObject {
 
 }

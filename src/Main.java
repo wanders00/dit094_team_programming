@@ -15,7 +15,8 @@ public class Main extends Application {
     public static int WIDTH = 800;
     public static int HEIGHT = 800;
     public static Stage PRIMARY_STAGE;
-    // Add such that height and width is received from local file. (Settings)
+    public static Difficulty selectedDifficulty = Difficulty.NORMAL;
+    // Add such that these variables are dependant on local file.
 
     public static void main(String[] args) {
         launch(args);
@@ -79,25 +80,47 @@ public class Main extends Application {
         int cellcount = 20;
         int cellsize = 40;
         int gridsize = cellcount * cellsize;
-        Game game = new Game(cellcount, cellsize, gridsize, null); // Fix difficulty later
+        Game game = new Game(cellcount, cellsize, gridsize, selectedDifficulty); // Fix difficulty later
         Canvas canvas = new Canvas(gridsize, gridsize);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         StackPane root = new StackPane(canvas);
-        Scene gameScene = new Scene(root,gridsize,gridsize);
+        Scene gameScene = new Scene(root, gridsize, gridsize);
         PRIMARY_STAGE.setScene(gameScene);
 
         long framedelay = 400000000;
         new AnimationTimer() {
-            boolean f=true;
-            long lastpress;
             public void handle(long now) {
-                
+                gameScene.setOnKeyPressed(e -> {
+                    if (Direction.fromKeypress(e.getCode()) != null) {
+                        Direction newDirection = Direction.fromKeypress(e.getCode());
+                        switch (newDirection) {
+                            case DOWN:
+                                game.snake.updateDirection(Direction.DOWN);
+                                System.out.println("DOWN");
+                                break;
+                            case LEFT:
+                                game.snake.updateDirection(Direction.LEFT);
+                                System.out.println("LEFT");
+                                break;
+                            case RIGHT:
+                                game.snake.updateDirection(Direction.RIGHT);
+                                System.out.println("RIGHT");
+                                break;
+                            case UP:
+                                game.snake.updateDirection(Direction.UP);
+                                System.out.println("UP");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
             }
         }.start();
     }
 
     public Button createButton(String text, int XPos, int YPos) {
-        int buttonWidth = WIDTH / 3;
+        int buttonWidth = WIDTH / 3; // Can make resolution be enums, then have this based on that.
         int buttonHeight = HEIGHT / 10;
         Button button = new Button(text);
         button.setTranslateX(XPos - buttonWidth / 2);

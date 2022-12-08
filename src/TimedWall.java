@@ -1,3 +1,3 @@
-public class TimedWall extends WallMapObject {
+public class TimedWall extends GameObject {
 
 }
