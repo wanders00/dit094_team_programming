@@ -13,4 +13,12 @@ public class Snake {
         this.currentDirection = Direction.Up;
     }
 
+    public Direction getDirection() {
+        return this.currentDirection;
+    }
+
+    public void updateDirection(Direction newDirection) {
+        this.currentDirection = newDirection;
+    }
+
 }
