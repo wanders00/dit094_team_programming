@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneController">
+   <children>
+      <Slider layoutX="155.0" layoutY="84.0" prefHeight="17.0" prefWidth="312.0" snapToTicks="true" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="173.0" AnchorPane.topAnchor="84.0">
+         <effect>
+            <Shadow blurType="ONE_PASS_BOX" height="0.0" radius="4.75">
+               <color>
+                  <Color red="0.3955930173397064" green="0.6499999761581421" blue="0.29899999499320984" />
+               </color>
+            </Shadow>
+         </effect>
+      </Slider>
+      <CheckBox layoutX="154.0" layoutY="64.0" mnemonicParsing="false" text="Sound Effects" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="363.6666666666667">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </CheckBox>
+      <CheckBox layoutX="154.0" layoutY="148.0" mnemonicParsing="false" text="Music" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="363.6666666666667">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </CheckBox>
+      <CheckBox layoutX="155.0" layoutY="302.0" mnemonicParsing="false" text="Manual Difficulty" AnchorPane.bottomAnchor="186.66666666666666" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="363.6666666666667" AnchorPane.topAnchor="302.0">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </CheckBox>
+      <Text layoutX="104.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed" AnchorPane.bottomAnchor="167.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="502.84765625" AnchorPane.topAnchor="322.0">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="56.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Music volume" AnchorPane.bottomAnchor="319.98828125" AnchorPane.leftAnchor="60.33463541666667" AnchorPane.rightAnchor="502.33203125" AnchorPane.topAnchor="170.05078125">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="56.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effects volume" AnchorPane.bottomAnchor="405.98828125" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="502.33203125" AnchorPane.topAnchor="84.05078125">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="283.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Audio" AnchorPane.leftAnchor="283.0" AnchorPane.rightAnchor="317.4814453125">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="261.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Settings" AnchorPane.bottomAnchor="245.486328125" AnchorPane.leftAnchor="261.0" AnchorPane.rightAnchor="283.6591796875" AnchorPane.topAnchor="241.892578125">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Slider layoutX="155.0" layoutY="169.0" prefHeight="17.0" prefWidth="312.0" snapToTicks="true" AnchorPane.bottomAnchor="317.0" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="173.0" AnchorPane.topAnchor="169.0">
+         <effect>
+            <Shadow blurType="ONE_PASS_BOX" height="0.0" radius="4.75">
+               <color>
+                  <Color red="0.3955930173397064" green="0.6499999761581421" blue="0.29899999499320984" />
+               </color>
+            </Shadow>
+         </effect>
+      </Slider>
+      <Slider layoutX="153.0" layoutY="322.0" prefHeight="17.0" prefWidth="312.0" snapToTicks="true" AnchorPane.bottomAnchor="167.98828125" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="322.0">
+         <effect>
+            <Shadow blurType="ONE_PASS_BOX" height="0.0" radius="4.75">
+               <color>
+                  <Color red="0.3955930173397064" green="0.6499999761581421" blue="0.29899999499320984" />
+               </color>
+            </Shadow>
+         </effect>
+      </Slider>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>
