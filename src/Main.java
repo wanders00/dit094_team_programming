@@ -1,3 +1,6 @@
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -87,7 +90,48 @@ public class Main extends Application {
         Scene gameScene = new Scene(root, gridsize, gridsize);
         PRIMARY_STAGE.setScene(gameScene);
 
-        long framedelay = 400000000;
+        gameScene.setOnKeyPressed(e -> {
+            if (Direction.fromKeypress(e.getCode()) != null) {
+                Direction newDirection = Direction.fromKeypress(e.getCode());
+                switch (newDirection) {
+                    case DOWN:
+                        if (game.snake.getDirection() != Direction.UP) {
+                            game.snake.updateDirection(Direction.DOWN);
+                            System.out.println("DOWN");
+                        }
+                        break;
+                    case LEFT:
+                        if (game.snake.getDirection() != Direction.RIGHT) {
+                            game.snake.updateDirection(Direction.LEFT);
+                            System.out.println("LEFT");
+                        }
+                        break;
+                    case RIGHT:
+                        if (game.snake.getDirection() != Direction.LEFT) {
+                            game.snake.updateDirection(Direction.RIGHT);
+                            System.out.println("RIGHT");
+                        }
+                        break;
+                    case UP:
+                        if (game.snake.getDirection() != Direction.DOWN) {
+                            game.snake.updateDirection(Direction.UP);
+                            System.out.println("UP");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("Hello World");
+            }
+        }, 0, 5000);
+
         new AnimationTimer() {
             public void handle(long now) {
                 for (int i = 0; i < cellcount; i++) {
@@ -103,32 +147,6 @@ public class Main extends Application {
                         }
                     }
                 }
-
-                gameScene.setOnKeyPressed(e -> {
-                    if (Direction.fromKeypress(e.getCode()) != null) {
-                        Direction newDirection = Direction.fromKeypress(e.getCode());
-                        switch (newDirection) {
-                            case DOWN:
-                                game.snake.updateDirection(Direction.DOWN);
-                                System.out.println("DOWN");
-                                break;
-                            case LEFT:
-                                game.snake.updateDirection(Direction.LEFT);
-                                System.out.println("LEFT");
-                                break;
-                            case RIGHT:
-                                game.snake.updateDirection(Direction.RIGHT);
-                                System.out.println("RIGHT");
-                                break;
-                            case UP:
-                                game.snake.updateDirection(Direction.UP);
-                                System.out.println("UP");
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                });
             }
         }.start();
     }
