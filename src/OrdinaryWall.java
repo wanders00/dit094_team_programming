@@ -1,7 +1,11 @@
 public class OrdinaryWall extends GameObject {
 
-    OrdinaryWall(int red, int blue, int green) {
-        super(red, blue, green);
+    private final static int RED = 255;
+    private final static int GREEN = 0;
+    private final static int BLUE = 0;
+
+    OrdinaryWall() {
+        super(RED, GREEN, BLUE);
     }
 
 }

@@ -4,14 +4,14 @@ public class Game {
         NORMAL;
     }
 
-    Layout currentLayout = Layout.NORMAL;
+    Layout currentLayout = Layout.NORMAL; // Should be local file
 
-    Snake snake;
-    int seed;
-    int width;
-    int height;
-    GameObject[][] grid;
-    Difficulty difficulty;
+    private Snake snake;
+    private int seed;
+    private int width;
+    private int height;
+    private GameObject[][] grid;
+    private Difficulty difficulty;
     // Sound sound;
     // Resolution resolution;
 
@@ -40,13 +40,29 @@ public class Game {
         GameObject[][] normalGameGrid = new GameObject[height][width];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                normalGameGrid[i][j] = new EmptyGameObject();
+                if (i == 0 || i == height - 1 || j == 00 || j == width - 1) {
+                    normalGameGrid[i][j] = new OrdinaryWall();
+                } else {
+                    normalGameGrid[i][j] = new EmptyGameObject();
+                }
             }
         }
         return normalGameGrid;
     }
 
+    public void update() {
+        // will update the grid with timer
+    }
+
     public GameObject[][] getState() {
         return this.grid;
+    }
+
+    public Snake getSnake() {
+        return this.snake;
+    }
+
+    public Difficulty getDifficulty() {
+        return this.difficulty;
     }
 }

@@ -1,5 +1,10 @@
 public class EmptyGameObject extends GameObject {
+
+    private final static int RED = 0;
+    private final static int GREEN = 0;
+    private final static int BLUE = 255;
+
     EmptyGameObject() {
-        super(0, 255, 0);
+        super(RED, GREEN, BLUE);
     }
 }
