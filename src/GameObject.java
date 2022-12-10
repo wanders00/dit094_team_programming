@@ -1,19 +1,14 @@
+import javafx.scene.paint.Color;
+
 public abstract class GameObject {
     Color color;
 
     GameObject(int red, int green, int blue) {
-        color = new Color(red, green, blue);
+        this.color = Color.rgb(red, green, blue);
     }
 
-    public int getRed() {
-        return this.color.getRedColorCode();
+    public Color getColor() {
+        return this.color;
     }
 
-    public int getBlue() {
-        return this.color.getBlueColorCode();
-    }
-
-    public int getGreen() {
-        return this.color.getGreenColorCode();
-    }
 }

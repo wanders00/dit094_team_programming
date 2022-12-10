@@ -145,17 +145,13 @@ public class Main extends Application {
                         if (game.getState()[i][j] instanceof OrdinaryWall) {
                             currentGameObject = new OrdinaryWall();
                         }
-                        gc.setFill(getGameObjectRGB(currentGameObject));
+                        gc.setFill(currentGameObject.getColor());
                         gc.fillRect(cellsize * j, cellsize * i, cellsize, cellsize);
                     }
                 }
                 game.update();
             }
         }, 0, (int) (1000 * game.getDifficulty().getSpeedMultiplier()));
-    }
-
-    public Color getGameObjectRGB(GameObject gameObject) {
-        return Color.rgb(gameObject.getRed(), gameObject.getGreen(), gameObject.getBlue());
     }
 
     public Button createButton(String text, int XPos, int YPos) {
