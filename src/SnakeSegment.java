@@ -1,7 +1,11 @@
 public class SnakeSegment extends GameObject {
 
-    SnakeSegment(int red, int blue, int green) {
-        super(red, blue, green);
+    private final static int RED = 0;
+    private final static int GREEN = 255;
+    private final static int BLUE = 0;
+
+    SnakeSegment() {
+        super(RED, GREEN, BLUE);
     }
-    
+
 }

@@ -16,7 +16,7 @@ public class Game {
     // Resolution resolution;
 
     Game(int seed, int width, int height, Difficulty difficulty) {
-        this.snake = new Snake();
+        this.snake = new Snake(width / 2, height / 2);
         this.grid = generateMap(height, width, currentLayout);
         this.width = width;
         this.height = height;
@@ -33,6 +33,7 @@ public class Game {
                 gameGrid = null;
                 break;
         }
+        gameGrid[height / 2][width / 2] = new SnakeSegment();
         return gameGrid;
     }
 
@@ -50,8 +51,50 @@ public class Game {
         return normalGameGrid;
     }
 
-    public void update() {
-        // will update the grid with timer
+    public boolean update() {
+        switch (this.snake.getDirection()) {
+            case DOWN:
+                if (this.grid[this.snake.getRowCoordinate() + 1][this.snake
+                        .getColumnCoordinate()] instanceof WallMapObject) {
+                    return false;
+                } else {
+                    this.grid[this.snake.getRowCoordinate() + 1][this.snake.getColumnCoordinate()] = new SnakeSegment();
+                    this.grid[this.snake.getRowCoordinate()][this.snake.getColumnCoordinate()] = new EmptyGameObject();
+                    this.snake.setRowCoordinate(this.snake.getRowCoordinate() + 1);
+                }
+                break;
+            case LEFT:
+                if (this.grid[this.snake.getColumnCoordinate() - 1][this.snake
+                        .getColumnCoordinate()] instanceof WallMapObject) {
+                    return false;
+                } else {
+                    this.grid[this.snake.getRowCoordinate()][this.snake.getColumnCoordinate() - 1] = new SnakeSegment();
+                    this.grid[this.snake.getRowCoordinate()][this.snake.getColumnCoordinate()] = new EmptyGameObject();
+                    this.snake.setColumnCoordinate(this.snake.getColumnCoordinate() - 1);
+                }
+                break;
+            case RIGHT:
+                if (this.grid[this.snake.getColumnCoordinate() + 1][this.snake
+                        .getColumnCoordinate()] instanceof WallMapObject) {
+                    return false;
+                } else {
+                    this.grid[this.snake.getRowCoordinate()][this.snake.getColumnCoordinate() + 1] = new SnakeSegment();
+                    this.grid[this.snake.getRowCoordinate()][this.snake.getColumnCoordinate()] = new EmptyGameObject();
+                    this.snake.setColumnCoordinate(this.snake.getColumnCoordinate() + 1);
+                }
+                break;
+            case UP:
+                if (this.grid[this.snake.getRowCoordinate() - 1][this.snake
+                        .getColumnCoordinate()] instanceof WallMapObject) {
+                    return false;
+                } else {
+                    this.grid[this.snake.getRowCoordinate() - 1][this.snake.getColumnCoordinate()] = new SnakeSegment();
+                    this.grid[this.snake.getRowCoordinate()][this.snake.getColumnCoordinate()] = new EmptyGameObject();
+                    this.snake.setRowCoordinate(this.snake.getRowCoordinate() - 1);
+                }
+                break;
+        }
+        return true;
     }
 
     public GameObject[][] getState() {

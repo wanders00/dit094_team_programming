@@ -98,25 +98,25 @@ public class Main extends Application {
                 switch (newDirection) {
                     case DOWN:
                         if (game.getSnake().getDirection() != Direction.UP) {
-                            game.getSnake().updateDirection(Direction.DOWN);
+                            game.getSnake().setDirection(Direction.DOWN);
                             System.out.println("DOWN");
                         }
                         break;
                     case LEFT:
                         if (game.getSnake().getDirection() != Direction.RIGHT) {
-                            game.getSnake().updateDirection(Direction.LEFT);
+                            game.getSnake().setDirection(Direction.LEFT);
                             System.out.println("LEFT");
                         }
                         break;
                     case RIGHT:
                         if (game.getSnake().getDirection() != Direction.LEFT) {
-                            game.getSnake().updateDirection(Direction.RIGHT);
+                            game.getSnake().setDirection(Direction.RIGHT);
                             System.out.println("RIGHT");
                         }
                         break;
                     case UP:
                         if (game.getSnake().getDirection() != Direction.DOWN) {
-                            game.getSnake().updateDirection(Direction.UP);
+                            game.getSnake().setDirection(Direction.UP);
                             System.out.println("UP");
                         }
                         break;
@@ -138,20 +138,16 @@ public class Main extends Application {
                 gc.fillRect(0, 0, gridsize, gridsize);
                 for (int i = 0; i < cellcount; i++) {
                     for (int j = 0; j < cellcount; j++) {
-                        GameObject currentGameObject = null;
-                        if (game.getState()[i][j] instanceof EmptyGameObject) {
-                            currentGameObject = new EmptyGameObject();
-                        }
-                        if (game.getState()[i][j] instanceof OrdinaryWall) {
-                            currentGameObject = new OrdinaryWall();
-                        }
+                        GameObject currentGameObject = game.getState()[i][j];
                         gc.setFill(currentGameObject.getColor());
                         gc.fillRect(cellsize * j, cellsize * i, cellsize, cellsize);
                     }
                 }
-                game.update();
+                if(!game.update()) {
+                    timer.cancel();
+                }
             }
-        }, 0, (int) (1000 * game.getDifficulty().getSpeedMultiplier()));
+        }, 0, (int) (250 * game.getDifficulty().getSpeedMultiplier()));
     }
 
     public Button createButton(String text, int XPos, int YPos) {

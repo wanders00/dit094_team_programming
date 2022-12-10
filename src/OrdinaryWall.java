@@ -1,4 +1,4 @@
-public class OrdinaryWall extends GameObject {
+public class OrdinaryWall extends WallMapObject {
 
     private final static int RED = 255;
     private final static int GREEN = 0;
