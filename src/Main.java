@@ -138,28 +138,24 @@ public class Main extends Application {
                 gc.fillRect(0, 0, gridsize, gridsize);
                 for (int i = 0; i < cellcount; i++) {
                     for (int j = 0; j < cellcount; j++) {
-                        GameObject currentGameObject;
+                        GameObject currentGameObject = null;
                         if (game.getState()[i][j] instanceof EmptyGameObject) {
                             currentGameObject = new EmptyGameObject();
-                            gc.setFill(Color.rgb(
-                                    currentGameObject.getRed(),
-                                    currentGameObject.getGreen(),
-                                    currentGameObject.getBlue()));
-                            gc.fillRect(cellsize * j, cellsize * i, cellsize, cellsize);
                         }
                         if (game.getState()[i][j] instanceof OrdinaryWall) {
                             currentGameObject = new OrdinaryWall();
-                            gc.setFill(Color.rgb(
-                                    currentGameObject.getRed(),
-                                    currentGameObject.getGreen(),
-                                    currentGameObject.getBlue()));
-                            gc.fillRect(cellsize * j, cellsize * i, cellsize, cellsize);
                         }
+                        gc.setFill(getGameObjectRGB(currentGameObject));
+                        gc.fillRect(cellsize * j, cellsize * i, cellsize, cellsize);
                     }
                 }
                 game.update();
             }
         }, 0, (int) (1000 * game.getDifficulty().getSpeedMultiplier()));
+    }
+
+    public Color getGameObjectRGB(GameObject gameObject) {
+        return Color.rgb(gameObject.getRed(), gameObject.getGreen(), gameObject.getBlue());
     }
 
     public Button createButton(String text, int XPos, int YPos) {
