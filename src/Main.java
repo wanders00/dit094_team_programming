@@ -74,7 +74,18 @@ public class Main extends Application {
     }
 
     public void showHighScoreScene() { // ADD FUNCTIONALITY
-        Group root = new Group(mainSceneButton(), quitButton());
+
+    Text text = new Text();      
+      //need to add functionality for the high scores list.
+      
+      text.setText("High Scores"); // Just the basic text and placement, will work on the actual display of highscores 
+      int xPOS=225; 
+      int yPOS=75; 
+      text.setX(xPOS); 
+      text.setY(yPOS); 
+      text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
+
+        Group root = new Group(mainSceneButton(), quitButton(), text);
         Scene highScoreScene = new Scene(root, Color.YELLOW);
         PRIMARY_STAGE.setScene(highScoreScene);
     }
