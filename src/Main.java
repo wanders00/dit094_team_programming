@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 
 public class Main extends Application {
 
+
     public static int WIDTH = 800;
     public static int HEIGHT = 800;
     public static Stage PRIMARY_STAGE;
