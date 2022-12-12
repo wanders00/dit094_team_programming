@@ -1,10 +1,13 @@
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -44,7 +47,11 @@ public class Main extends Application {
 
         Button settingsButton = createButton("Settings", WIDTH / 2, (int) (HEIGHT * 0.5));
         settingsButton.setOnAction(event -> {
-            showSettingsScene();
+            try {
+                showSettingsScene();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         Button highScoreButton = createButton("High Score List", WIDTH / 2, (int) (HEIGHT * 0.7));
@@ -67,9 +74,9 @@ public class Main extends Application {
         PRIMARY_STAGE.setScene(startGameScene);
     }
 
-    public void showSettingsScene() { // ADD FUNCTIONALITY
-        Group root = new Group(mainSceneButton(), quitButton());
-        Scene settingsScene = new Scene(root, Color.BLUE);
+    public void showSettingsScene() throws IOException { // ADD FUNCTIONALITY
+        Parent root = FXMLLoader.load(getClass().getResource("SettingsScene.fxml"));
+        Scene settingsScene = new Scene(root);
         PRIMARY_STAGE.setScene(settingsScene);
     }
 
