@@ -3,6 +3,10 @@ import java.util.TimerTask;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -12,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
+
 
 public class Main extends Application {
 
@@ -76,15 +81,14 @@ public class Main extends Application {
 
     public void showHighScoreScene() { // ADD FUNCTIONALITY
 
-    Text text = new Text();      
-      //need to add functionality for the high scores list.
-      
-      text.setText("High Scores"); // Just the basic text and placement, will work on the actual display of highscores 
-      int xPOS=225; 
-      int yPOS=75; 
-      text.setX(xPOS); 
-      text.setY(yPOS); 
-      text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
+    Text text = new Text();
+    text.setText("High Scores");
+
+        int xPOS=225;
+        int yPOS=75;
+        text.setX(xPOS);
+        text.setY(yPOS);
+        text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
 
         Group root = new Group(mainSceneButton(), quitButton(), text);
         Scene highScoreScene = new Scene(root, Color.YELLOW);
