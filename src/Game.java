@@ -1,13 +1,13 @@
 public class Game {
 
+    private static Layout currentLayout = Layout.NORMAL; // Should be local file
+
     public enum Layout {
         NORMAL;
     }
 
-    Layout currentLayout = Layout.NORMAL; // Should be local file
-
     private Snake snake;
-    private int seed;
+    private Layout layout;
     private int width;
     private int height;
     private GameObject[][] grid;
@@ -17,15 +17,16 @@ public class Game {
 
     Game(int seed, int width, int height, Difficulty difficulty) {
         this.snake = new Snake(width / 2, height / 2);
-        this.grid = generateMap(height, width, currentLayout);
+        this.layout = currentLayout; //do something with seed argument
         this.width = width;
         this.height = height;
         this.difficulty = difficulty;
+        this.grid = generateMap(height, width);
     }
 
-    public GameObject[][] generateMap(int height, int width, Layout layout) {
+    public GameObject[][] generateMap(int height, int width) {
         GameObject[][] gameGrid;
-        switch (layout) {
+        switch (this.layout) {
             case NORMAL:
                 gameGrid = generateNormalMap(height, width);
                 break;
