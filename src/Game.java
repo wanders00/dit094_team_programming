@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Game {
 
     private static Layout currentLayout = Layout.NORMAL; // Should be local file
@@ -15,20 +17,21 @@ public class Game {
     // Sound sound;
     // Resolution resolution;
 
-    Game(int seed, int width, int height, Difficulty difficulty) {
+    Game(int width, int height, Difficulty difficulty) {
         this.snake = new Snake(width / 2, height / 2);
-        this.layout = currentLayout; //do something with seed argument
+        this.layout = currentLayout; // do something with seed argument
         this.width = width;
         this.height = height;
         this.difficulty = difficulty;
         this.grid = generateMap(height, width);
+        generateFruit();
     }
 
     public GameObject[][] generateMap(int height, int width) {
         GameObject[][] gameGrid;
         switch (this.layout) {
             case NORMAL:
-                gameGrid = generateNormalMap(height, width);
+                gameGrid = generateNormalMap();
                 break;
             default:
                 gameGrid = null;
@@ -38,12 +41,12 @@ public class Game {
         return gameGrid;
     }
 
-    private GameObject[][] generateNormalMap(int height, int width) {
-        GameObject[][] normalGameGrid = new GameObject[height][width];
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
+    private GameObject[][] generateNormalMap() {
+        GameObject[][] normalGameGrid = new GameObject[this.height][this.width];
+        for (int i = 0; i < this.height; i++) {
+            for (int j = 0; j < this.width; j++) {
                 if (i == 0 || i == height - 1 || j == 00 || j == width - 1) {
-                    normalGameGrid[i][j] = new OrdinaryWall();
+                    normalGameGrid[i][j] = new WallGameObject();
                 } else {
                     normalGameGrid[i][j] = new EmptyGameObject();
                 }
@@ -53,49 +56,88 @@ public class Game {
     }
 
     public boolean update() {
+        boolean shouldGrowSnake = false;
+        int newRow, newColumn, originalRow, originalColumn;
+        originalRow = newRow = this.snake.getRow(0);
+        originalColumn = newColumn = this.snake.getColumn(0);
+        if (predictMovement() instanceof WallGameObject || predictMovement() instanceof SnakeSegment) {
+            return false;
+        } else if (predictMovement() instanceof FruitGameObject) {
+            shouldGrowSnake = true;
+            generateFruit();
+        }
         switch (this.snake.getDirection()) {
             case DOWN:
-                if (this.grid[this.snake.getRowCoordinate() + 1][this.snake
-                        .getColumnCoordinate()] instanceof WallMapObject) {
-                    return false;
-                } else {
-                    this.grid[this.snake.getRowCoordinate() + 1][this.snake.getColumnCoordinate()] = new SnakeSegment();
-                    this.grid[this.snake.getRowCoordinate()][this.snake.getColumnCoordinate()] = new EmptyGameObject();
-                    this.snake.setRowCoordinate(this.snake.getRowCoordinate() + 1);
-                }
+                newRow++;
                 break;
             case LEFT:
-                if (this.grid[this.snake.getColumnCoordinate() - 1][this.snake
-                        .getColumnCoordinate()] instanceof WallMapObject) {
-                    return false;
-                } else {
-                    this.grid[this.snake.getRowCoordinate()][this.snake.getColumnCoordinate() - 1] = new SnakeSegment();
-                    this.grid[this.snake.getRowCoordinate()][this.snake.getColumnCoordinate()] = new EmptyGameObject();
-                    this.snake.setColumnCoordinate(this.snake.getColumnCoordinate() - 1);
-                }
+                newColumn--;
                 break;
             case RIGHT:
-                if (this.grid[this.snake.getColumnCoordinate() + 1][this.snake
-                        .getColumnCoordinate()] instanceof WallMapObject) {
-                    return false;
-                } else {
-                    this.grid[this.snake.getRowCoordinate()][this.snake.getColumnCoordinate() + 1] = new SnakeSegment();
-                    this.grid[this.snake.getRowCoordinate()][this.snake.getColumnCoordinate()] = new EmptyGameObject();
-                    this.snake.setColumnCoordinate(this.snake.getColumnCoordinate() + 1);
-                }
+                newColumn++;
                 break;
             case UP:
-                if (this.grid[this.snake.getRowCoordinate() - 1][this.snake
-                        .getColumnCoordinate()] instanceof WallMapObject) {
-                    return false;
-                } else {
-                    this.grid[this.snake.getRowCoordinate() - 1][this.snake.getColumnCoordinate()] = new SnakeSegment();
-                    this.grid[this.snake.getRowCoordinate()][this.snake.getColumnCoordinate()] = new EmptyGameObject();
-                    this.snake.setRowCoordinate(this.snake.getRowCoordinate() - 1);
-                }
+                newRow--;
                 break;
         }
+        this.grid[newRow][newColumn] = new SnakeSegment();
+
+        for (int i = 0; i < this.snake.getBody().size(); i++) {
+            originalColumn = this.snake.getColumn(i);
+            originalRow = this.snake.getRow(i);
+            this.grid[newRow][newColumn] = new SnakeSegment();
+            this.snake.setColumn(i, newColumn);
+            this.snake.setRow(i, newRow);
+            newRow = originalRow;
+            newColumn = originalColumn;
+        }
+
+        if (shouldGrowSnake) {
+            this.snake.growSnake(originalRow, originalColumn);
+        } else {
+            this.grid[originalRow][originalColumn] = new EmptyGameObject();
+        }
         return true;
+    }
+
+    public void generateFruit() {
+        boolean createdFruit = true;
+        while (createdFruit) {
+            int row = (int) (Math.random() * height);
+            int column = (int) (Math.random() * width);
+            System.out.println(row + " " + column); // delete me later
+            if (this.grid[row][column] instanceof EmptyGameObject) {
+                this.grid[row][column] = new FruitGameObject();
+                createdFruit = false;
+            }
+        }
+    }
+
+    public GameObject predictMovement() {
+        return this.grid[predictRow()][predictColumn()];
+    }
+
+    public int[] predictCoordinates() {
+        switch (this.snake.getDirection()) {
+            case DOWN:
+                return new int[] { this.snake.getRow(0) + 1, this.snake.getColumn(0) };
+            case LEFT:
+                return new int[] { this.snake.getRow(0), this.snake.getColumn(0) - 1 };
+            case RIGHT:
+                return new int[] { this.snake.getRow(0), this.snake.getColumn(0) + 1 };
+            case UP:
+                return new int[] { this.snake.getRow(0) - 1, this.snake.getColumn(0) };
+            default:
+                return null;
+        }
+    }
+
+    public int predictRow() {
+        return predictCoordinates()[0];
+    }
+
+    public int predictColumn() {
+        return predictCoordinates()[1];
     }
 
     public GameObject[][] getState() {
