@@ -80,8 +80,6 @@ public class Game {
                 newRow--;
                 break;
         }
-        this.grid[newRow][newColumn] = new SnakeSegment();
-
         for (int i = 0; i < this.snake.getBody().size(); i++) {
             originalColumn = this.snake.getColumn(i);
             originalRow = this.snake.getRow(i);
@@ -91,7 +89,6 @@ public class Game {
             newRow = originalRow;
             newColumn = originalColumn;
         }
-
         if (shouldGrowSnake) {
             this.snake.growSnake(originalRow, originalColumn);
         } else {
