@@ -100,11 +100,10 @@ public class Main extends Application {
     }
 
     public void showGameScene() {
-        int seed = 0;
         int cellcount = 20;
         int cellsize = 40;
         int gridsize = cellcount * cellsize;
-        Game game = new Game(seed, cellcount, cellcount, selectedDifficulty); // Fix difficulty later
+        Game game = new Game(cellcount, cellcount, selectedDifficulty); // Fix difficulty later
         Canvas canvas = new Canvas(gridsize, gridsize);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         StackPane root = new StackPane();

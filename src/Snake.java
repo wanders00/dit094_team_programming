@@ -1,12 +1,13 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Snake {
 
-    private int rowCoordinate;
-    private int columnCoordinate;
+    private ArrayList<ArrayList<Integer>> body = new ArrayList<ArrayList<Integer>>();
     private Direction currentDirection;
 
     Snake(int x, int y) {
-        this.rowCoordinate = x;
-        this.columnCoordinate = y;
+        this.growSnake(x, y);
         this.currentDirection = Direction.UP;
     }
 
@@ -18,19 +19,27 @@ public class Snake {
         this.currentDirection = newDirection;
     }
 
-    public void setRowCoordinate(int x) {
-        this.rowCoordinate = x;
+    public void growSnake(int row, int column) {
+        this.body.add(new ArrayList<>(Arrays.asList(row, column)));
     }
 
-    public void setColumnCoordinate(int y) {
-        this.columnCoordinate = y;
+    public void setRow(int x, int y) {
+        this.body.get(x).set(0, y);
     }
 
-    public int getRowCoordinate() {
-        return this.rowCoordinate;
+    public void setColumn(int x, int y) {
+        this.body.get(x).set(1, y);
     }
 
-    public int getColumnCoordinate() {
-        return this.columnCoordinate;
+    public int getRow(int x) {
+        return this.body.get(x).get(0);
+    }
+
+    public int getColumn(int x) {
+        return this.body.get(x).get(1);
+    }
+
+    public ArrayList<ArrayList<Integer>> getBody() {
+        return this.body;
     }
 }
