@@ -39,6 +39,12 @@ public class Main extends Application {
         PRIMARY_STAGE.show();
     }
 
+    public void showMainScene() throws IOException { // ADD FUNCTIONALITY
+        Parent root = FXMLLoader.load(getClass().getResource("mainMenuScene.fxml"));
+        Scene mainScene = new Scene(root);
+        PRIMARY_STAGE.setScene(mainScene);
+    }
+/*
     public void showMainScene() {
         Button startGameButton = createButton("Start Game", WIDTH / 2, (int) (HEIGHT * 0.3));
         startGameButton.setOnAction(event -> {
@@ -73,7 +79,7 @@ public class Main extends Application {
         Scene startGameScene = new Scene(root, Color.GREEN);
         PRIMARY_STAGE.setScene(startGameScene);
     }
-
+*/
     public void showSettingsScene() throws IOException { // ADD FUNCTIONALITY
         Parent root = FXMLLoader.load(getClass().getResource("SettingsScene.fxml"));
         Scene settingsScene = new Scene(root);
@@ -172,7 +178,12 @@ public class Main extends Application {
     public Button mainSceneButton() {
         Button mainSceneButton = createButton("Go back to main scene", WIDTH / 6, HEIGHT - HEIGHT / 10);
         mainSceneButton.setOnAction(event -> {
-            showMainScene();
+            try {
+                showMainScene();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         });
         return mainSceneButton;
     }
