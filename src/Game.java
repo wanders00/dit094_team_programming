@@ -1,9 +1,11 @@
-import java.util.ArrayList;
-
 public class Game {
 
     private static Layout currentLayout = Layout.NORMAL; // Should be local file
 
+
+
+
+    public Boolean pausedGame = false;
     public enum Layout {
         NORMAL;
     }
@@ -55,46 +57,52 @@ public class Game {
         return normalGameGrid;
     }
 
-    public boolean update() {
-        boolean shouldGrowSnake = false;
-        int newRow, newColumn, originalRow, originalColumn;
-        originalRow = newRow = this.snake.getRow(0);
-        originalColumn = newColumn = this.snake.getColumn(0);
-        if (predictMovement() instanceof WallGameObject || predictMovement() instanceof SnakeSegment) {
+    public boolean update() {//I want to pause this method when CASE PAUSE
+
+        if(!pausedGame){
+            boolean shouldGrowSnake = false;
+            int newRow, newColumn, originalRow, originalColumn;
+            originalRow = newRow = this.snake.getRow(0);
+            originalColumn = newColumn = this.snake.getColumn(0);
+            if (predictMovement() instanceof WallGameObject || predictMovement() instanceof SnakeSegment) {
+                return false;
+            } else if (predictMovement() instanceof FruitGameObject) {
+                shouldGrowSnake = true;
+                generateFruit();
+            }
+            switch (this.snake.getDirection()) {
+                case DOWN:
+                    newRow++;
+                    break;
+                case LEFT:
+                    newColumn--;
+                    break;
+                case RIGHT:
+                    newColumn++;
+                    break;
+                case UP:
+                    newRow--;
+                    break;
+            }
+            for (int i = 0; i < this.snake.getBody().size(); i++) {
+                originalColumn = this.snake.getColumn(i);
+                originalRow = this.snake.getRow(i);
+                this.grid[newRow][newColumn] = new SnakeSegment();
+                this.snake.setColumn(i, newColumn);
+                this.snake.setRow(i, newRow);
+                newRow = originalRow;
+                newColumn = originalColumn;
+            }
+            if (shouldGrowSnake) {
+                this.snake.growSnake(originalRow, originalColumn);
+            } else {
+                this.grid[originalRow][originalColumn] = new EmptyGameObject();
+            }
+            return true;
+        }else {
             return false;
-        } else if (predictMovement() instanceof FruitGameObject) {
-            shouldGrowSnake = true;
-            generateFruit();
         }
-        switch (this.snake.getDirection()) {
-            case DOWN:
-                newRow++;
-                break;
-            case LEFT:
-                newColumn--;
-                break;
-            case RIGHT:
-                newColumn++;
-                break;
-            case UP:
-                newRow--;
-                break;
-        }
-        for (int i = 0; i < this.snake.getBody().size(); i++) {
-            originalColumn = this.snake.getColumn(i);
-            originalRow = this.snake.getRow(i);
-            this.grid[newRow][newColumn] = new SnakeSegment();
-            this.snake.setColumn(i, newColumn);
-            this.snake.setRow(i, newRow);
-            newRow = originalRow;
-            newColumn = originalColumn;
-        }
-        if (shouldGrowSnake) {
-            this.snake.growSnake(originalRow, originalColumn);
-        } else {
-            this.grid[originalRow][originalColumn] = new EmptyGameObject();
-        }
-        return true;
+
     }
 
     public void generateFruit() {
@@ -109,7 +117,15 @@ public class Game {
             }
         }
     }
-
+    public void setPausedGame(Boolean pausedGame) {
+        this.pausedGame = pausedGame;
+    }
+    public Boolean getPausedGame() {
+        return pausedGame;
+    }
+    public void pauseToggle(){ //meaning is to be able to unpause here but right now it does not work
+        setPausedGame(!pausedGame);
+    }
     public GameObject predictMovement() {
         return this.grid[predictRow()][predictColumn()];
     }
