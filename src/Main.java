@@ -140,7 +140,7 @@ public class Main extends Application {
                         }
                         break;
                     case PAUSE:
-                            game.pauseToggle();
+                            game.pauseToggle(); //calls method in class "game" which controlls the update method
                         System.out.println("Pause");
                         break;
                     default:

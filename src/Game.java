@@ -1,15 +1,10 @@
 public class Game {
 
     private static Layout currentLayout = Layout.NORMAL; // Should be local file
-
-
-
-
-    public Boolean pausedGame = false;
+    public Boolean pausedGame = false; //prob should initialise this somewhere else, controls the update method
     public enum Layout {
         NORMAL;
     }
-
     private Snake snake;
     private Layout layout;
     private int width;
@@ -57,8 +52,8 @@ public class Game {
         return normalGameGrid;
     }
 
-    public boolean update() {//I want to pause this method when CASE PAUSE
-        if(!pausedGame){
+    public boolean update() {
+        if(!pausedGame){ //if the pausedGame=true the game will continue to update, when its false nothing happens and it freezez
             boolean shouldGrowSnake = false;
             int newRow, newColumn, originalRow, originalColumn;
             originalRow = newRow = this.snake.getRow(0);
@@ -99,7 +94,7 @@ public class Game {
             }
             return true;
         }else {
-            if(pausedGame){ // this is a weird fix to get the run method to NOT return false just bc the game is paused, need to change this but it works, feels like it will give bugs for bigger games
+            if(pausedGame){ // this is a weird fix to get the run method to NOT return false just bc the game is paused, need to change this but it works, feels like it will give bugs for bigger games. I would probably make this method return void and use an bolean insted. I dont want this metod to return false when it's paused, thats why i used this if/else statement
                 return true;
             }else {
                 return false;
@@ -120,10 +115,10 @@ public class Game {
             }
         }
     }
-    public void setPausedGame(Boolean pausedGame) {
+    public void setPausedGame(Boolean pausedGame) { //setter for bolean 
         this.pausedGame = pausedGame;
     }
-    public void pauseToggle(){ //meaning is to be able to unpause here but right now it does not work
+    public void pauseToggle(){ //changes the value to the oposite everytime the pause-key is pressed, making the game able to                               pause and play
         setPausedGame(!pausedGame);
     }
     public GameObject predictMovement() {
