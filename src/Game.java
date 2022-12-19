@@ -58,7 +58,6 @@ public class Game {
     }
 
     public boolean update() {//I want to pause this method when CASE PAUSE
-
         if(!pausedGame){
             boolean shouldGrowSnake = false;
             int newRow, newColumn, originalRow, originalColumn;
@@ -100,7 +99,11 @@ public class Game {
             }
             return true;
         }else {
-            return false;
+            if(pausedGame){ // this is a weird fix to get the run method to NOT return false just bc the game is paused, need to change this but it works, feels like it will give bugs for bigger games
+                return true;
+            }else {
+                return false;
+            }
         }
 
     }
@@ -119,9 +122,6 @@ public class Game {
     }
     public void setPausedGame(Boolean pausedGame) {
         this.pausedGame = pausedGame;
-    }
-    public Boolean getPausedGame() {
-        return pausedGame;
     }
     public void pauseToggle(){ //meaning is to be able to unpause here but right now it does not work
         setPausedGame(!pausedGame);

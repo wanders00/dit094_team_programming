@@ -95,8 +95,8 @@ public class Main extends Application {
         text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
 
         Group root = new Group(mainSceneButton(), quitButton(), text);
-        Scene highScoreScene = new Scene(root, Color.YELLOW);
-        PRIMARY_STAGE.setScene(highScoreScene);
+        //Scene highScoreScene = new Scene(vBox, Color.YELLOW);
+        PRIMARY_STAGE.setScene(new Scene(root,800,800));
     }
 
     public void showGameScene() {
