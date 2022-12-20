@@ -33,7 +33,7 @@ public class SceneController extends Main {
     }
 
     public void switchGameScene(ActionEvent event) throws IOException {
-        showStartGameScene();
+        showGameScene();
         //stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         //scene = new Scene(root);
         //stage.setScene(scene);

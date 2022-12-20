@@ -89,13 +89,13 @@ public class Main extends Application {
         Scene startGameScene = new Scene(root, Color.GREEN);
         PRIMARY_STAGE.setScene(startGameScene);
     }
-*/
+
     public void showSettingsScene() throws IOException { // ADD FUNCTIONALITY
         Parent root = FXMLLoader.load(getClass().getResource("SettingsScene.fxml"));
         Scene settingsScene = new Scene(root);
         PRIMARY_STAGE.setScene(settingsScene);
     }
-
+*/
     public void showHighScoreScene() { // ADD FUNCTIONALITY
 
     Text text = new Text();

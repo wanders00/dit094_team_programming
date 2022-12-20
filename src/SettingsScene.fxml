@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.effect.Shadow?>
@@ -13,7 +14,7 @@
    <children>
       <Slider layoutX="141.0" layoutY="578.0" majorTickUnit="10.0" minorTickCount="0" prefHeight="24.0" prefWidth="511.0" showTickMarks="true" snapToTicks="true">
          <effect>
-            <Shadow blurType="ONE_PASS_BOX" height="0.0" radius="4.75">
+            <Shadow blurType="ONE_PASS_BOX" height="0.0" radius="0.0" width="0.0">
                <color>
                   <Color red="0.3955930173397064" green="0.6499999761581421" blue="0.29899999499320984" />
                </color>
@@ -57,7 +58,7 @@
       </Text>
       <Slider layoutX="141.0" layoutY="185.0" prefHeight="17.0" prefWidth="511.0" snapToTicks="true">
          <effect>
-            <Shadow blurType="ONE_PASS_BOX" height="0.0" radius="4.75">
+            <Shadow blurType="ONE_PASS_BOX" height="0.0" radius="0.0" width="0.0">
                <color>
                   <Color red="0.3955930173397064" green="0.6499999761581421" blue="0.29899999499320984" />
                </color>
@@ -66,7 +67,7 @@
       </Slider>
       <Slider layoutX="141.0" layoutY="300.0" prefHeight="17.0" prefWidth="511.0" snapToTicks="true">
          <effect>
-            <Shadow blurType="ONE_PASS_BOX" height="0.0" radius="4.75">
+            <Shadow blurType="ONE_PASS_BOX" height="0.0" radius="0.0" width="0.0">
                <color>
                   <Color red="0.3955930173397064" green="0.6499999761581421" blue="0.29899999499320984" />
                </color>
@@ -88,6 +89,11 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Text>
+      <Button layoutX="22.0" layoutY="18.0" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="24.0" prefWidth="137.0" text="Back" textFill="RED">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
    </children>
    <opaqueInsets>
       <Insets />
