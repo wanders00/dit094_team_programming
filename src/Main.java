@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,7 +13,9 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -46,6 +49,12 @@ public class Main extends Application {
         PRIMARY_STAGE.show();
     }
 
+    public void showMainScene() throws IOException { // ADD FUNCTIONALITY
+        Parent root = FXMLLoader.load(getClass().getResource("mainMenuScene.fxml"));
+        Scene mainScene = new Scene(root);
+        PRIMARY_STAGE.setScene(mainScene);
+    }
+/*
     public void showMainScene() {
         Button startGameButton = createButton("Start Game", WIDTH / 2, (int) (HEIGHT * 0.3));
         startGameButton.setOnAction(event -> {
@@ -54,7 +63,11 @@ public class Main extends Application {
 
         Button settingsButton = createButton("Settings", WIDTH / 2, (int) (HEIGHT * 0.5));
         settingsButton.setOnAction(event -> {
-            showSettingsScene();
+            try {
+                showSettingsScene();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         Button highScoreButton = createButton("High Score List", WIDTH / 2, (int) (HEIGHT * 0.7));
@@ -76,10 +89,10 @@ public class Main extends Application {
         Scene startGameScene = new Scene(root, Color.GREEN);
         PRIMARY_STAGE.setScene(startGameScene);
     }
-
-    public void showSettingsScene() { // ADD FUNCTIONALITY
-        Group root = new Group(mainSceneButton(), quitButton());
-        Scene settingsScene = new Scene(root, Color.BLUE);
+*/
+    public void showSettingsScene() throws IOException { // ADD FUNCTIONALITY
+        Parent root = FXMLLoader.load(getClass().getResource("SettingsScene.fxml"));
+        Scene settingsScene = new Scene(root);
         PRIMARY_STAGE.setScene(settingsScene);
     }
 
@@ -184,7 +197,12 @@ public class Main extends Application {
     public Button mainSceneButton() {
         Button mainSceneButton = createButton("Go back to main scene", WIDTH / 6, HEIGHT - HEIGHT / 10);
         mainSceneButton.setOnAction(event -> {
-            showMainScene();
+            try {
+                showMainScene();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         });
         return mainSceneButton;
     }
