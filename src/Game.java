@@ -3,8 +3,10 @@ public class Game {
     private static Layout currentLayout = Layout.NORMAL; // Should be local file
     public Boolean pausedGame = false; //prob should initialise this somewhere else, controls the update method
     public enum Layout {
-        NORMAL;
+        NORMAL, 
+        PLUS
     }
+    
     private Snake snake;
     private Layout layout;
     private int width;
@@ -30,6 +32,9 @@ public class Game {
             case NORMAL:
                 gameGrid = generateNormalMap();
                 break;
+            case PLUS:
+                gameGrid = generatePlusMap();
+                break;
             default:
                 gameGrid = null;
                 break;
@@ -50,6 +55,34 @@ public class Game {
             }
         }
         return normalGameGrid;
+    }
+    
+    private GameObject[][] generatePlusMap() {
+        GameObject[][] plusGameGrid = new GameObject[this.height][this.width];
+        int widthGap = this.width/4;
+        int heightGap = this.height/4;
+        // could link this to the difficulty setting; the harder the difficulty the bigger the square walls
+    
+        for(int i=0;i<this.height;i++)
+        {
+            for(int j=0;j<this.width;j++)
+            {
+                if ((i+heightGap<this.height-1 && i-heightGap>0) || (j+widthGap<this.width-1 && j-widthGap>0)) {
+                    plusGameGrid[i][j]=new EmptyGameObject();
+                } else {
+                    plusGameGrid[i][j]=new WallGameObject();
+                }
+            }
+        }
+
+        for (int i = 0; i < this.height; i++) {
+            for (int j = 0; j < this.width; j++) {
+                if (i == 0 || i == this.height - 1 || j == 00 || j == this.width - 1) {
+                    plusGameGrid[i][j] = new WallGameObject();
+                }
+            }
+        }
+        return plusGameGrid;
     }
 
     public boolean update() {
