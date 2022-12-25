@@ -1,7 +1,7 @@
 import javafx.scene.paint.Color;
 
 public abstract class GameObject {
-    Color color;
+    private Color color;
 
     GameObject(int red, int green, int blue) {
         this.color = Color.rgb(red, green, blue);
