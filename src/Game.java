@@ -1,18 +1,20 @@
 public class Game {
 
-    private static Layout currentLayout = Layout.NORMAL; // Should be local file
-    public Boolean pausedGame = false; //prob should initialise this somewhere else, controls the update method
+    private static Layout currentLayout = Layout.NORMAL; 
+    // Should be local file // prob should initialise this somewhere else, controls the update method
+
     public enum Layout {
-        NORMAL, 
+        NORMAL,
         PLUS
     }
-    
+
     private Snake snake;
     private Layout layout;
     private int width;
     private int height;
     private GameObject[][] grid;
     private Difficulty difficulty;
+    private Boolean pausedGame = false;
     // Sound sound;
     // Resolution resolution;
 
@@ -56,21 +58,21 @@ public class Game {
         }
         return normalGameGrid;
     }
-    
+
     private GameObject[][] generatePlusMap() {
         GameObject[][] plusGameGrid = new GameObject[this.height][this.width];
-        int widthGap = this.width/4;
-        int heightGap = this.height/4;
-        // could link this to the difficulty setting; the harder the difficulty the bigger the square walls
-    
-        for(int i=0;i<this.height;i++)
-        {
-            for(int j=0;j<this.width;j++)
-            {
-                if ((i+heightGap<this.height-1 && i-heightGap>0) || (j+widthGap<this.width-1 && j-widthGap>0)) {
-                    plusGameGrid[i][j]=new EmptyGameObject();
+        int widthGap = this.width / 4;
+        int heightGap = this.height / 4;
+        // could link this to the difficulty setting; the harder the difficulty the
+        // bigger the square walls
+
+        for (int i = 0; i < this.height; i++) {
+            for (int j = 0; j < this.width; j++) {
+                if ((i + heightGap < this.height - 1 && i - heightGap > 0)
+                        || (j + widthGap < this.width - 1 && j - widthGap > 0)) {
+                    plusGameGrid[i][j] = new EmptyGameObject();
                 } else {
-                    plusGameGrid[i][j]=new WallGameObject();
+                    plusGameGrid[i][j] = new WallGameObject();
                 }
             }
         }
@@ -86,7 +88,8 @@ public class Game {
     }
 
     public boolean update() {
-        if(!pausedGame){ //if the pausedGame=true the game will continue to update, when its false nothing happens and it freezez
+        if (!pausedGame) { // if the pausedGame=true the game will continue to update, when its false
+                           // nothing happens and it freezez
             boolean shouldGrowSnake = false;
             int newRow, newColumn, originalRow, originalColumn;
             originalRow = newRow = this.snake.getRow(0);
@@ -125,14 +128,8 @@ public class Game {
             } else {
                 this.grid[originalRow][originalColumn] = new EmptyGameObject();
             }
-            return true;
-        }else {
-            if(pausedGame){ // this is a weird fix to get the run method to NOT return false just bc the game is paused, need to change this but it works, feels like it will give bugs for bigger games. I would probably make this method return void and use an bolean insted. I dont want this metod to return false when it's paused, thats why i used this if/else statement
-                return true;
-            }else {
-                return false;
-            }
         }
+        return true;
 
     }
 
@@ -141,19 +138,23 @@ public class Game {
         while (createdFruit) {
             int row = (int) (Math.random() * height);
             int column = (int) (Math.random() * width);
-            System.out.println(row + " " + column); // delete me later
             if (this.grid[row][column] instanceof EmptyGameObject) {
                 this.grid[row][column] = new FruitGameObject();
                 createdFruit = false;
             }
         }
     }
-    public void setPausedGame(Boolean pausedGame) { //setter for bolean 
-        this.pausedGame = pausedGame;
+
+    public boolean getPausedGame() {
+        return this.pausedGame;
     }
-    public void pauseToggle(){ //changes the value to the oposite everytime the pause-key is pressed, making the game able to                               pause and play
-        setPausedGame(!pausedGame);
+
+    public void pauseToggle() {
+        // changes the value to the oposite everytime the pause-key is pressed, making
+        // the game able to pause and play
+        this.pausedGame = !this.pausedGame;
     }
+
     public GameObject predictMovement() {
         return this.grid[predictRow()][predictColumn()];
     }

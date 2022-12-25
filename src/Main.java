@@ -1,7 +1,5 @@
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
-
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,27 +27,29 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void showMainScene(Stage stage) throws IOException { // ADD FUNCTIONALITY
+    public void showMainScene(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("mainMenuScene.fxml"));
         Scene mainScene = new Scene(root);
         stage.setScene(mainScene);
     }
 
-    /*public void showHighScoreScene() { // ADD FUNCTIONALITY
-
-    Text text = new Text();
-    text.setText("High Scores");
-
-        int xPOS=225;
-        int yPOS=75;
-        text.setX(xPOS);
-        text.setY(yPOS);
-        text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
-
-        Group root = new Group(mainSceneButton(), quitButton(), text);
-        //Scene highScoreScene = new Scene(vBox, Color.YELLOW);
-        PRIMARY_STAGE.setScene(new Scene(root,800,800));
-    }*/
+    /*
+     * public void showHighScoreScene() { // ADD FUNCTIONALITY
+     * 
+     * Text text = new Text();
+     * text.setText("High Scores");
+     * 
+     * int xPOS=225;
+     * int yPOS=75;
+     * text.setX(xPOS);
+     * text.setY(yPOS);
+     * text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
+     * 
+     * Group root = new Group(mainSceneButton(), quitButton(), text);
+     * //Scene highScoreScene = new Scene(vBox, Color.YELLOW);
+     * PRIMARY_STAGE.setScene(new Scene(root,800,800));
+     * }
+     */
 
     public void showGameScene(Stage stage) {
         int cellcount = 20;
@@ -62,49 +62,13 @@ public class Main extends Application {
         root.getChildren().add(canvas);
         Scene gameScene = new Scene(root, gridsize, gridsize);
         stage.setScene(gameScene);
+        stage.show();
 
-        gameScene.setOnKeyPressed(e -> {
-            if (Keybind.fromKeypress(e.getCode()) != null) {
-                Keybind newDirection = Keybind.fromKeypress(e.getCode());
-                switch (newDirection) {
-                    case DOWN:
-                        if (game.getSnake().getDirection() != Direction.UP) {
-                            game.getSnake().setDirection(Direction.DOWN);
-                            System.out.println("DOWN");
-                        }
-                        break;
-                    case LEFT:
-                        if (game.getSnake().getDirection() != Direction.RIGHT) {
-                            game.getSnake().setDirection(Direction.LEFT);
-                            System.out.println("LEFT");
-                        }
-                        break;
-                    case RIGHT:
-                        if (game.getSnake().getDirection() != Direction.LEFT) {
-                            game.getSnake().setDirection(Direction.RIGHT);
-                            System.out.println("RIGHT");
-                        }
-                        break;
-                    case UP:
-                        if (game.getSnake().getDirection() != Direction.DOWN) {
-                            game.getSnake().setDirection(Direction.UP);
-                            System.out.println("UP");
-                        }
-                        break;
-                    case PAUSE:
-                            game.pauseToggle(); //calls method in class "game" which controlls the update method
-                        System.out.println("Pause");
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
+        new AnimationTimer() {
+            private long framedelay = (long) (250000000 * game.getDifficulty().getSpeedMultiplier());
+            private long lastpress;
 
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
+            public void handle(long arg0) {
                 gc.clearRect(0, 0, gridsize, gridsize);
                 gc.setFill(Color.rgb(0, 0, 0));
                 gc.fillRect(0, 0, gridsize, gridsize);
@@ -115,11 +79,61 @@ public class Main extends Application {
                         gc.fillRect(cellsize * j, cellsize * i, cellsize, cellsize);
                     }
                 }
-                if(!game.update()) {
-                    timer.cancel();
+
+                gameScene.setOnKeyPressed(e -> {
+                    if (Keybind.fromKeypress(e.getCode()) != null) {
+                        Keybind latestKeypress = Keybind.fromKeypress(e.getCode());
+                        Direction currentDirection = game.getSnake().getDirection();
+                        switch (latestKeypress) {
+                            case DOWN:
+                                if (!game.getPausedGame() && currentDirection != Direction.UP
+                                        && currentDirection != Direction.DOWN) {
+                                    game.getSnake().setDirection(Direction.DOWN);
+                                    updateGame();
+                                }
+                                break;
+                            case LEFT:
+                                if (!game.getPausedGame() && currentDirection != Direction.RIGHT
+                                        && currentDirection != Direction.LEFT) {
+                                    game.getSnake().setDirection(Direction.LEFT);
+                                    updateGame();
+                                }
+                                break;
+                            case RIGHT:
+                                if (!game.getPausedGame() && currentDirection != Direction.LEFT
+                                        && currentDirection != Direction.RIGHT) {
+                                    game.getSnake().setDirection(Direction.RIGHT);
+                                    updateGame();
+                                }
+                                break;
+                            case UP:
+                                if (!game.getPausedGame() && currentDirection != Direction.DOWN
+                                        && currentDirection != Direction.UP) {
+                                    game.getSnake().setDirection(Direction.UP);
+                                    updateGame();
+                                }
+                                break;
+                            case PAUSE:
+                                game.pauseToggle(); // calls method in class "game" which controlls the update method
+                                System.out.println("Pause");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
+
+                if (System.nanoTime() - lastpress > framedelay) {
+                    updateGame();
                 }
             }
-        }, 0, (int) (250 * game.getDifficulty().getSpeedMultiplier()));
-    }
 
+            public void updateGame() {
+                lastpress = System.nanoTime();
+                if (!game.update()) {
+                    stop();
+                }
+            }
+        }.start();
+    }
 }
