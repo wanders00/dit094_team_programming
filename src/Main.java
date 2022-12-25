@@ -12,12 +12,8 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
-
 public class Main extends Application {
 
-
-    public static int WIDTH = 800;
-    public static int HEIGHT = 800;
     public static Difficulty selectedDifficulty = Difficulty.NORMAL;
     // Add such that these variables are dependant on local file.
 
@@ -26,13 +22,11 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setHeight(HEIGHT);
-        primaryStage.setWidth(WIDTH);
-        primaryStage.setTitle("Snake Game");
-        primaryStage.setResizable(false);
-        showMainScene(primaryStage);
-        primaryStage.show();
+    public void start(Stage stage) throws Exception {
+        stage.setTitle("Snake Game");
+        stage.setResizable(false);
+        showMainScene(stage);
+        stage.show();
     }
 
     public void showMainScene(Stage stage) throws IOException { // ADD FUNCTIONALITY
