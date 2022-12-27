@@ -121,8 +121,8 @@ public class Game {
             if (predictMovement() instanceof FruitGameObject) {
                 this.snake.growSnake(this.snake.getRow(this.snake.getBody().size() - 1),
                         this.snake.getColumn(this.snake.getBody().size() - 1));
-                currentGameScore = currentGameScore + 1;
-                System.out.println("Score is :" + currentGameScore*difficulty.getScoreMultiplier());
+                currentGameScore = currentGameScore + 1; 
+                System.out.println("Score is :" + currentGameScore*difficulty.getScoreMultiplier()); //delete me :)
                 // add score related stuff here
                 generateFruit();
             } else {
@@ -184,7 +184,7 @@ public class Game {
                 return null;
         }
     }
-    public void addScore(double newScore){
+    public void addScore(double newScore){ //creating a object is maybe not needed, but an easy way to create more atributes to show in the highScore Scene
         Score score = new Score(newScore);
     }
     public double increaseScore(double Scoremultiplier){
