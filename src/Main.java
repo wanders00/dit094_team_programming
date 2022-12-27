@@ -106,7 +106,10 @@ public class Main extends Application {
 
             public void updateMovement(Direction newDirection) {
                 Direction currentDirection = game.getSnake().getDirection();
-                if (!game.getPausedGame() && currentDirection != newDirection
+                if (game.getPausedGame()) {
+                    game.pauseToggle();
+                }
+                if (currentDirection != newDirection
                         && currentDirection != newDirection.getOppositeDirection()) {
                     game.getSnake().setNewDirection(newDirection);
                     if (System.nanoTime() - lastpress > (framedelay / 10)) {

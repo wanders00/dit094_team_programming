@@ -1,7 +1,8 @@
 public class Game {
 
-    private static Layout currentLayout = Layout.NORMAL; 
-    // Should be local file // prob should initialise this somewhere else, controls the update method
+    private static Layout currentLayout = Layout.NORMAL;
+    // Should be local file // prob should initialise this somewhere else, controls
+    // the update method
 
     public enum Layout {
         NORMAL,
@@ -14,11 +15,12 @@ public class Game {
     private int height;
     private GameObject[][] grid;
     private Difficulty difficulty;
-    private Boolean pausedGame = false;
+    private Boolean pausedGame;
     // Sound sound;
     // Resolution resolution;
 
     Game(int width, int height, Difficulty difficulty) {
+        this.pausedGame = true;
         this.snake = new Snake(width / 2, height / 2);
         this.layout = currentLayout; // do something with seed argument
         this.width = width;
@@ -41,7 +43,9 @@ public class Game {
                 gameGrid = null;
                 break;
         }
-        gameGrid[height / 2][width / 2] = new SnakeSegment();
+        for (int i = 0; i < this.snake.getBody().size(); i++) {
+            gameGrid[this.snake.getRow(i)][this.snake.getColumn(i)] = new SnakeSegment();
+        }
         return gameGrid;
     }
 
@@ -90,16 +94,11 @@ public class Game {
     public boolean update() {
         if (!pausedGame) { // if the pausedGame=true the game will continue to update, when its false
                            // nothing happens and it freezez
-            boolean shouldGrowSnake = false;
-            int newRow, newColumn, originalRow, originalColumn;
-            originalRow = newRow = this.snake.getRow(0);
-            originalColumn = newColumn = this.snake.getColumn(0);
             if (predictMovement() instanceof WallGameObject || predictMovement() instanceof SnakeSegment) {
                 return false;
-            } else if (predictMovement() instanceof FruitGameObject) {
-                shouldGrowSnake = true;
-                generateFruit();
             }
+            int newRow = this.snake.getRow(0);
+            int newColumn = this.snake.getColumn(0);
             switch (this.snake.getDirection()) {
                 case DOWN:
                     newRow++;
@@ -114,20 +113,25 @@ public class Game {
                     newRow--;
                     break;
             }
-            for (int i = 0; i < this.snake.getBody().size(); i++) {
-                originalColumn = this.snake.getColumn(i);
-                originalRow = this.snake.getRow(i);
-                this.grid[newRow][newColumn] = new SnakeSegment();
-                this.snake.setColumn(i, newColumn);
-                this.snake.setRow(i, newRow);
-                newRow = originalRow;
-                newColumn = originalColumn;
-            }
-            if (shouldGrowSnake) {
-                this.snake.growSnake(originalRow, originalColumn);
+
+            if (predictMovement() instanceof FruitGameObject) {
+                this.snake.growSnake(this.snake.getRow(this.snake.getBody().size() - 1),
+                        this.snake.getColumn(this.snake.getBody().size() - 1));
+                generateFruit();
             } else {
-                this.grid[originalRow][originalColumn] = new EmptyGameObject();
+                this.grid[this.snake.getRow(this.snake.getBody().size() - 1)][this.snake
+                        .getColumn(this.snake.getBody().size() - 1)] = new EmptyGameObject();
             }
+
+            for (int i = this.snake.getBody().size() - 1; i > 0; i--) {
+                this.snake.setRow(i, this.snake.getRow(i - 1));
+                this.snake.setColumn(i, this.snake.getColumn(i - 1));
+                this.grid[this.snake.getRow(i)][this.snake.getColumn(i)] = new SnakeSegment();
+            }
+
+            this.snake.setColumn(0, newColumn);
+            this.snake.setRow(0, newRow);
+            this.grid[this.snake.getRow(0)][this.snake.getColumn(0)] = new SnakeSegment();
         }
         return true;
 
