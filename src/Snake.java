@@ -5,18 +5,24 @@ public class Snake {
 
     private ArrayList<ArrayList<Integer>> body = new ArrayList<ArrayList<Integer>>();
     private Direction currentDirection;
+    private Direction newDirection;
 
     Snake(int x, int y) {
         this.growSnake(x, y);
         this.currentDirection = Direction.UP;
+        this.newDirection = currentDirection;
     }
 
     public Direction getDirection() {
         return this.currentDirection;
     }
+    
+    public void setNewDirection(Direction newDirection) {
+        this.newDirection = newDirection;
+    }
 
-    public void setDirection(Direction newDirection) {
-        this.currentDirection = newDirection;
+    public void updateDirection() {
+        this.currentDirection = this.newDirection;
     }
 
     public void growSnake(int row, int column) {

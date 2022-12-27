@@ -1,23 +1,22 @@
 public enum Difficulty {
-    EASY(1, 1),
-    NORMAL(1, 1),
-    HARD(1, 1);
-    // random numbers, change me later :)
+    EASY(0.75, 200000000),
+    NORMAL(1, 150000000),
+    HARD(1.25, 100000000);
 
     private final double scoreMultiplier;
-    private final double speedMultiplier;
+    private final long gameTimerSpeed;
 
-    Difficulty(double scoreMultiplier, double speedMultiplier) {
+    Difficulty(double scoreMultiplier, long speedMultiplier) {
         this.scoreMultiplier = scoreMultiplier;
-        this.speedMultiplier = speedMultiplier;
+        this.gameTimerSpeed = speedMultiplier;
     }
 
     public double getScoreMultiplier() {
         return this.scoreMultiplier;
     }
 
-    public double getSpeedMultiplier() {
-        return this.speedMultiplier;
+    public long getGameTimerSpeed() {
+        return this.gameTimerSpeed;
     }
 
 }

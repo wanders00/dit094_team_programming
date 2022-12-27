@@ -13,4 +13,19 @@ public enum Direction {
     public Keybind getKeybind() {
         return this.keybind;
     }
+
+    public Direction getOppositeDirection() {
+        switch (this) {
+            case DOWN:
+                return Direction.UP;
+            case LEFT:
+                return Direction.LEFT;
+            case RIGHT:
+                return Direction.RIGHT;
+            case UP:
+                return Direction.DOWN;
+            default:
+                return null;
+        }
+    }
 }

@@ -1,4 +1,3 @@
-import java.io.IOException;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,14 +22,10 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Snake Game");
         stage.setResizable(false);
-        showMainScene(stage);
-        stage.show();
-    }
-
-    public void showMainScene(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("mainMenuScene.fxml"));
         Scene mainScene = new Scene(root);
         stage.setScene(mainScene);
+        stage.show();
     }
 
     /*
@@ -65,7 +60,7 @@ public class Main extends Application {
         stage.show();
 
         new AnimationTimer() {
-            private long framedelay = (long) (250000000 * game.getDifficulty().getSpeedMultiplier());
+            private long framedelay = game.getDifficulty().getGameTimerSpeed();
             private long lastpress;
 
             public void handle(long arg0) {
@@ -82,40 +77,21 @@ public class Main extends Application {
 
                 gameScene.setOnKeyPressed(e -> {
                     if (Keybind.fromKeypress(e.getCode()) != null) {
-                        Keybind latestKeypress = Keybind.fromKeypress(e.getCode());
-                        Direction currentDirection = game.getSnake().getDirection();
-                        switch (latestKeypress) {
+                        switch (Keybind.fromKeypress(e.getCode())) {
                             case DOWN:
-                                if (!game.getPausedGame() && currentDirection != Direction.UP
-                                        && currentDirection != Direction.DOWN) {
-                                    game.getSnake().setDirection(Direction.DOWN);
-                                    updateGame();
-                                }
+                                updateMovement(Direction.DOWN);
                                 break;
                             case LEFT:
-                                if (!game.getPausedGame() && currentDirection != Direction.RIGHT
-                                        && currentDirection != Direction.LEFT) {
-                                    game.getSnake().setDirection(Direction.LEFT);
-                                    updateGame();
-                                }
+                                updateMovement(Direction.LEFT);
                                 break;
                             case RIGHT:
-                                if (!game.getPausedGame() && currentDirection != Direction.LEFT
-                                        && currentDirection != Direction.RIGHT) {
-                                    game.getSnake().setDirection(Direction.RIGHT);
-                                    updateGame();
-                                }
+                                updateMovement(Direction.RIGHT);
                                 break;
                             case UP:
-                                if (!game.getPausedGame() && currentDirection != Direction.DOWN
-                                        && currentDirection != Direction.UP) {
-                                    game.getSnake().setDirection(Direction.UP);
-                                    updateGame();
-                                }
+                                updateMovement(Direction.UP);
                                 break;
                             case PAUSE:
                                 game.pauseToggle(); // calls method in class "game" which controlls the update method
-                                System.out.println("Pause");
                                 break;
                             default:
                                 break;
@@ -128,8 +104,20 @@ public class Main extends Application {
                 }
             }
 
+            public void updateMovement(Direction newDirection) {
+                Direction currentDirection = game.getSnake().getDirection();
+                if (!game.getPausedGame() && currentDirection != newDirection
+                        && currentDirection != newDirection.getOppositeDirection()) {
+                    game.getSnake().setNewDirection(newDirection);
+                    if (System.nanoTime() - lastpress > (framedelay / 10)) {
+                        updateGame();
+                    }
+                }
+            }
+
             public void updateGame() {
                 lastpress = System.nanoTime();
+                game.getSnake().updateDirection();
                 if (!game.update()) {
                     stop();
                 }
