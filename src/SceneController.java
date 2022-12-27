@@ -20,7 +20,6 @@ public class SceneController extends Main /*implements Initializable*/{
     private Scene scene;
     private Parent root;
 
-    private int difficultyLevel;
 
     public void switchToSettingsScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("SettingsScene.fxml"));
@@ -66,8 +65,12 @@ private Slider fxSlider;
 
 @FXML
 private Slider difficultySlider;
-/* 
-@Override
+
+
+private int difficultyLevel;
+
+
+/*@Override
 public void initialize(URL arg0, ResourceBundle arg1) {
     difficultySlider.valueProperty().addListener(new ChangeListener<Number>() {
 
@@ -77,7 +80,5 @@ public void initialize(URL arg0, ResourceBundle arg1) {
         }
         
     });
-    
-}
-*/
+}*/
 }
