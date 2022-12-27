@@ -20,6 +20,7 @@ public class SceneController extends Main {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private Game game;
 
 
     public void switchToSettingsScene(ActionEvent event) throws IOException {
@@ -68,6 +69,10 @@ public class SceneController extends Main {
     public void switchToHardDifficulty(){
         Main.selectedDifficulty = Difficulty.HARD;
     }
+
+    public void switchToNormalLayout(){Game.setCurrentLayout(Game.Layout.NORMAL);}
+
+    public void switchToPlusLayout(){Game.setCurrentLayout(Game.Layout.PLUS);}
 
 
 @FXML

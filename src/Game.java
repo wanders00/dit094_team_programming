@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
 public class Game {
-
     private static Layout currentLayout = Layout.NORMAL;
     // Should be local file // prob should initialise this somewhere else, controls
     // the update method
 
-    public enum Layout {
+    public enum Layout { // there is a scene built where the user can choose between these. If you update and add more OR remove please mention it so that the correlating scene can be edited
+
         NORMAL,
         PLUS
     }
@@ -191,8 +191,12 @@ public class Game {
         return this.difficulty.getScoreMultiplier();
     }
 
-    public double getCurrentGameScore() {
-        return currentGameScore;
+    public void getCurrentGameScore() {
+        System.out.println(currentGameScore);
+    }
+
+    public static void setCurrentLayout(Layout currentLayout) {
+        Game.currentLayout = currentLayout;
     }
 
     public int predictRow() {
