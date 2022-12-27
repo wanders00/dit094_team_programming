@@ -122,8 +122,8 @@ public class Game {
             if (predictMovement() instanceof FruitGameObject) {
                 this.snake.growSnake(this.snake.getRow(this.snake.getBody().size() - 1),
                         this.snake.getColumn(this.snake.getBody().size() - 1));
-                currentGameScore = currentGameScore + increaseScore(difficulty.getScoreMultiplier());
-                System.out.println("Score is :" + currentGameScore);
+                currentGameScore = currentGameScore + 1;
+                System.out.println("Score is :" + currentGameScore*difficulty.getScoreMultiplier());
                 // add score related stuff here
                 generateFruit();
             } else {
