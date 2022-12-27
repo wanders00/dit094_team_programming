@@ -18,7 +18,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111111" height="534.0" layoutY="268.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="233.0" layoutX="150.0" layoutY="518.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111111" height="255.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-      <Slider fx:id="difficultySlider" blockIncrement="1.0" layoutX="150.0" layoutY="405.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" onMouseReleased="#setDifficultyLevel" prefHeight="20.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0">
+      <Slider fx:id="difficultySlider" blockIncrement="1.0" layoutX="150.0" layoutY="405.0" majorTickUnit="1.0" max="10.0" minorTickCount="0" prefHeight="20.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0">
          <effect>
             <Shadow blurType="ONE_PASS_BOX" height="1.0" radius="0.0" width="0.0">
                <color>

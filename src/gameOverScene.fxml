@@ -12,7 +12,10 @@
       <Button layoutX="80.0" layoutY="336.0" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: black;" text="Main menu" textFill="#7bff39">
          <font>
             <Font name="System Bold" size="40.0" />
-         </font></Button>
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Text layoutX="169.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GAME OVER" underline="true">
          <font>
             <Font name="System Bold" size="80.0" />
@@ -21,7 +24,7 @@
       <Text layoutX="179.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ops, game over! Press &quot;Retry&quot; to play again. " />
       <Button layoutX="420.0" layoutY="336.0" mnemonicParsing="false" onAction="#switchGameScene" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: black;" text="Retry" textFill="#7bff39">
          <cursor>
-            <Cursor fx:constant="DEFAULT" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="System Bold" size="40.0" />
@@ -39,4 +42,7 @@
          </cursor>
       </Button>
    </children>
+   <cursor>
+      <Cursor fx:constant="OPEN_HAND" />
+   </cursor>
 </Pane>

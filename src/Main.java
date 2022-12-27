@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 
 
 public class Main extends Application {
-    private SceneController sceneController;
 
     public static Difficulty selectedDifficulty = Difficulty.NORMAL1;
     // Add such that these variables are dependant on local file.
@@ -130,16 +129,13 @@ public class Main extends Application {
                 lastpress = System.nanoTime();
                 game.getSnake().updateDirection();
                 if (!game.update()) {
-                    // add game over scene here 
                     stop();
                     Parent root;
                     try {
-                    
                         root = FXMLLoader.load(getClass().getResource("gameOverScene.fxml"));
                         Scene mainScene = new Scene(root);
                         stage.setScene(mainScene);
                         stage.show();
-                        System.out.println(sceneController.getDifficultyLevel());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

@@ -66,30 +66,18 @@ private Slider fxSlider;
 
 @FXML
 private Slider difficultySlider;
-
-
-public void setDifficultyLevel() {
-    difficultyLevel = (int) difficultySlider.getValue();
-}
-public int getDifficultyLevel(){
-    return difficultyLevel;
-}
-
-/*
+/* 
 @Override
-public void initialize(URL url, ResourceBundle resources) {
-
-
+public void initialize(URL arg0, ResourceBundle arg1) {
     difficultySlider.valueProperty().addListener(new ChangeListener<Number>() {
 
         @Override
         public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
             difficultyLevel = (int) difficultySlider.getValue();
-        
         }
         
-    }); 
+    });
+    
 }
 */
-
 }
