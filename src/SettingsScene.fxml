@@ -86,7 +86,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text fill="WHITE" layoutX="313.0" layoutY="550.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keybindings">
+      <Text fill="WHITE" layoutX="312.0" layoutY="550.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keybindings">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -181,25 +181,25 @@
             <Font name="System Bold" size="10.0" />
          </font>
       </Text>
-      <Button layoutX="50.0" layoutY="392.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="Easy">
+      <Button fx:id="easyDifficulty" layoutX="50.0" layoutY="392.0" mnemonicParsing="false" onAction="#switchToEasyDifficulty" prefHeight="100.0" prefWidth="200.0" text="Easy">
          <font>
-            <Font name="System Bold Italic" size="40.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="300.0" layoutY="392.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="Normal">
+      <Button fx:id="normalDifficulty" layoutX="300.0" layoutY="392.0" mnemonicParsing="false" onAction="#switchToNormalDifficulty" prefHeight="100.0" prefWidth="200.0" text="Normal">
          <font>
-            <Font name="System Bold Italic" size="40.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="550.0" layoutY="392.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="Hard">
+      <Button fx:id="hardDifficulty" layoutX="550.0" layoutY="392.0" mnemonicParsing="false" onAction="#switchToHardDifficulty" prefHeight="100.0" prefWidth="200.0" text="Hard">
          <font>
-            <Font name="System Bold Italic" size="40.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />

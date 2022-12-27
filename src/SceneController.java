@@ -12,10 +12,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
-public class SceneController extends Main /*implements Initializable*/{
+public class SceneController extends Main {
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -56,6 +57,18 @@ public class SceneController extends Main /*implements Initializable*/{
         stage.show();
     }
 
+    public void switchToEasyDifficulty(){
+        Main.selectedDifficulty = Difficulty.EASY1;
+    }
+
+    public void switchToNormalDifficulty(){
+        Main.selectedDifficulty = Difficulty.NORMAL1;
+    }
+
+    public void switchToHardDifficulty(){
+        Main.selectedDifficulty = Difficulty.HARD;
+    }
+
 
 @FXML
 private Slider volumeSlider;
@@ -64,21 +77,13 @@ private Slider volumeSlider;
 private Slider fxSlider;
 
 @FXML
-private Slider difficultySlider;
+private Button easyDifficulty;
+
+@FXML
+private Button normalDifficulty;
+
+@FXML
+private Button hardDifficulty;
 
 
-private int difficultyLevel;
-
-
-/*@Override
-public void initialize(URL arg0, ResourceBundle arg1) {
-    difficultySlider.valueProperty().addListener(new ChangeListener<Number>() {
-
-        @Override
-        public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-            difficultyLevel = (int) difficultySlider.getValue();
-        }
-        
-    });
-}*/
 }

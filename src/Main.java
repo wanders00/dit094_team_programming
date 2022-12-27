@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.Objects;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -26,7 +25,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Snake Game");
         stage.setResizable(false);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainMenuScene.fxml")));
+        Parent root = FXMLLoader.load(getClass().getResource("mainMenuScene.fxml"));
         Scene mainScene = new Scene(root);
         stage.setScene(mainScene);
         stage.show();
@@ -133,7 +132,7 @@ public class Main extends Application {
                     stop();
                     Parent root;
                     try {
-                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gameOverScene.fxml")));
+                        root = FXMLLoader.load(getClass().getResource("gameOverScene.fxml"));
                         Scene mainScene = new Scene(root);
                         stage.setScene(mainScene);
                         stage.show();
