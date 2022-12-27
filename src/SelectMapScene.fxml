@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #111111;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneController">
+   <cursor>
+      <Cursor fx:constant="OPEN_HAND" />
+   </cursor>
+   <children>
+      <Button layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="31.0" prefWidth="90.0" text="Back" textFill="RED">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button alignment="BOTTOM_CENTER" layoutX="70.0" layoutY="70.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" text="Default">
+         <font>
+            <Font name="Yu Gothic Bold" size="30.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button alignment="BOTTOM_CENTER" layoutX="470.0" layoutY="70.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" text="Plus">
+         <font>
+            <Font name="Yu Gothic Bold" size="30.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
