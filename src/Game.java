@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Game {
 
     private static Layout currentLayout = Layout.NORMAL;
@@ -16,6 +18,7 @@ public class Game {
     private GameObject[][] grid;
     private Difficulty difficulty;
     private Boolean pausedGame;
+    private double currentGameScore;
     // Sound sound;
     // Resolution resolution;
 
@@ -92,9 +95,11 @@ public class Game {
     }
 
     public boolean update() {
+        currentGameScore =0;
         if (!pausedGame) { // if the pausedGame=true the game will continue to update, when its false
                            // nothing happens and it freezez
             if (predictMovement() instanceof WallGameObject || predictMovement() instanceof SnakeSegment) {
+                addScore(currentGameScore);
                 return false;
             }
             int newRow = this.snake.getRow(0);
@@ -117,6 +122,9 @@ public class Game {
             if (predictMovement() instanceof FruitGameObject) {
                 this.snake.growSnake(this.snake.getRow(this.snake.getBody().size() - 1),
                         this.snake.getColumn(this.snake.getBody().size() - 1));
+                currentGameScore = currentGameScore + increaseScore(difficulty.getScoreMultiplier());
+                System.out.println("Score is :" + currentGameScore);
+                // add score related stuff here
                 generateFruit();
             } else {
                 this.grid[this.snake.getRow(this.snake.getBody().size() - 1)][this.snake
@@ -176,6 +184,12 @@ public class Game {
             default:
                 return null;
         }
+    }
+    public void addScore(double newScore){
+        Score score = new Score(newScore);
+    }
+    public double increaseScore(double Scoremultiplier){
+        return this.difficulty.getScoreMultiplier();
     }
 
     public int predictRow() {
