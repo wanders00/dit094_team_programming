@@ -122,6 +122,7 @@ public class Main extends Application {
                 lastpress = System.nanoTime();
                 game.getSnake().updateDirection();
                 if (!game.update()) {
+                    // add game over scene here 
                     stop();
                 }
             }
