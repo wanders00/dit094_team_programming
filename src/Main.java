@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 
 public class Main extends Application {
 
-    public static Difficulty selectedDifficulty = Difficulty.NORMAL;
+    public static Difficulty selectedDifficulty = Difficulty.NORMAL1;
     // Add such that these variables are dependant on local file.
 
     public static void main(String[] args) {
