@@ -39,4 +39,12 @@ public class SceneController extends Main {
     public void exitGameButton(ActionEvent event) throws IOException {
         Platform.exit();
     }
+
+    public void switchToGameOverScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("gameOverScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

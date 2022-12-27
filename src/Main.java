@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -123,6 +125,18 @@ public class Main extends Application {
                 game.getSnake().updateDirection();
                 if (!game.update()) {
                     stop();
+                    Parent root;
+                    try {
+                        root = FXMLLoader.load(getClass().getResource("gameOverScene.fxml"));
+                        Scene mainScene = new Scene(root);
+                        stage.setScene(mainScene);
+                        stage.show();
+                        System.out.println("Game over");
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+  
                 }
             }
         }.start();
