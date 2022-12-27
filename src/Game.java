@@ -191,6 +191,10 @@ public class Game {
         return this.difficulty.getScoreMultiplier();
     }
 
+    public double getCurrentGameScore() {
+        return currentGameScore;
+    }
+
     public int predictRow() {
         return predictCoordinates()[0];
     }
