@@ -95,7 +95,6 @@ public class Game {
     }
 
     public boolean update() {
-        currentGameScore =0;
         if (!pausedGame) { // if the pausedGame=true the game will continue to update, when its false
                            // nothing happens and it freezez
             if (predictMovement() instanceof WallGameObject || predictMovement() instanceof SnakeSegment) {

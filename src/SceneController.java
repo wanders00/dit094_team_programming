@@ -58,11 +58,11 @@ public class SceneController extends Main {
     }
 
     public void switchToEasyDifficulty(){
-        Main.selectedDifficulty = Difficulty.EASY1;
+        Main.selectedDifficulty = Difficulty.EASY;
     }
 
     public void switchToNormalDifficulty(){
-        Main.selectedDifficulty = Difficulty.NORMAL1;
+        Main.selectedDifficulty = Difficulty.NORMAL;
     }
 
     public void switchToHardDifficulty(){

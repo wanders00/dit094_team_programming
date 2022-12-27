@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Score {
-    private ArrayList<Double> scoreList= new ArrayList<>();
+    private static ArrayList<Double> scoreList= new ArrayList<>();
     private double score;
     public Score(double score){ //could add name or date
         scoreList.add(score);
@@ -9,8 +9,9 @@ public class Score {
 
     }
     public void sortHighScores(){
-        scoreList.stream().sorted();
-        System.out.println(scoreList);
+        for(int i = 0; i< scoreList.size(); i++){
+            System.out.println(scoreList.get(i));
+        }
     }
 
 }
