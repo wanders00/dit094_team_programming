@@ -2,6 +2,8 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -18,21 +20,35 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button alignment="BOTTOM_CENTER" layoutX="70.0" layoutY="70.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" text="Default">
+      <Button alignment="BOTTOM_CENTER" layoutX="70.0" layoutY="70.0" mnemonicParsing="false" onAction="#switchToNormalLayout" prefHeight="91.0" prefWidth="32.0" style="-fx-background-color: red;">
          <font>
             <Font name="Yu Gothic Bold" size="30.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitHeight="250.0" fitWidth="294.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@defaultMapImage.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Button alignment="BOTTOM_CENTER" layoutX="470.0" layoutY="70.0" mnemonicParsing="false" prefHeight="250.0" prefWidth="250.0" text="Plus">
+      <Button alignment="BOTTOM_CENTER" layoutX="470.0" layoutY="70.0" mnemonicParsing="false" onAction="#switchToPlusLayout" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: red;">
          <font>
             <Font name="Yu Gothic Bold" size="30.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@plusMapImage.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </AnchorPane>

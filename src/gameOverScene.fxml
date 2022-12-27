@@ -31,7 +31,7 @@
             <Font name="System Bold" size="40.0" />
          </font>
       </Button>
-      <Button layoutX="250.0" layoutY="570.0" mnemonicParsing="false" onAction="#exitGameButton" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: black;" text="Exit Game" textFill="RED">
+      <Button layoutX="250.0" layoutY="660.0" mnemonicParsing="false" onAction="#exitGameButton" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: black;" text="Exit Game" textFill="RED">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
@@ -42,7 +42,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="scoreLabel" alignment="CENTER" layoutX="200.0" layoutY="225.0" onMouseMoved="#printScore" prefHeight="100.0" prefWidth="400.0">
+      <Label fx:id="scoreLabel" alignment="CENTER" layoutX="200.0" layoutY="225.0" prefHeight="100.0" prefWidth="400.0">
          <font>
             <Font name="System Bold Italic" size="40.0" />
          </font>
