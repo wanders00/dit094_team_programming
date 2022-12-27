@@ -13,5 +13,14 @@ public class Score {
             System.out.println(scoreList.get(i));
         }
     }
+   /* public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    */
 
 }
