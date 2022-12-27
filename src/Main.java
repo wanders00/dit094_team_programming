@@ -11,7 +11,9 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
+
 public class Main extends Application {
+    private SceneController sceneController;
 
     public static Difficulty selectedDifficulty = Difficulty.NORMAL1;
     // Add such that these variables are dependant on local file.
@@ -47,6 +49,8 @@ public class Main extends Application {
      * PRIMARY_STAGE.setScene(new Scene(root,800,800));
      * }
      */
+
+
 
     public void showGameScene(Stage stage) {
         int cellcount = 20;
@@ -120,6 +124,8 @@ public class Main extends Application {
                 }
             }
 
+            
+
             public void updateGame() {
                 lastpress = System.nanoTime();
                 game.getSnake().updateDirection();
@@ -128,18 +134,20 @@ public class Main extends Application {
                     stop();
                     Parent root;
                     try {
+                    
                         root = FXMLLoader.load(getClass().getResource("gameOverScene.fxml"));
                         Scene mainScene = new Scene(root);
                         stage.setScene(mainScene);
                         stage.show();
-                        System.out.println("Game over");
+                        System.out.println(sceneController.getDifficultyLevel());
                     } catch (IOException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
   
                 }
             }
         }.start();
+
+    
     }
 }

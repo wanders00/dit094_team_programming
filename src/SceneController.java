@@ -1,17 +1,26 @@
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
-public class SceneController extends Main {
+public class SceneController extends Main /*implements Initializable*/{
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    private int difficultyLevel;
 
     public void switchToSettingsScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("SettingsScene.fxml"));
@@ -47,4 +56,40 @@ public class SceneController extends Main {
         stage.setScene(scene);
         stage.show();
     }
+
+
+@FXML
+private Slider volumeSlider;
+
+@FXML
+private Slider fxSlider;
+
+@FXML
+private Slider difficultySlider;
+
+
+public void setDifficultyLevel() {
+    difficultyLevel = (int) difficultySlider.getValue();
+}
+public int getDifficultyLevel(){
+    return difficultyLevel;
+}
+
+/*
+@Override
+public void initialize(URL url, ResourceBundle resources) {
+
+
+    difficultySlider.valueProperty().addListener(new ChangeListener<Number>() {
+
+        @Override
+        public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+            difficultyLevel = (int) difficultySlider.getValue();
+        
+        }
+        
+    }); 
+}
+*/
+
 }
