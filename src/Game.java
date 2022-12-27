@@ -191,8 +191,9 @@ public class Game {
         return this.difficulty.getScoreMultiplier();
     }
 
-    public double getCurrentGameScore() {
-        return currentGameScore;
+    public String getCurrentGameScore() {
+        String output = Double.toString(currentGameScore);
+        return output;
     }
 
     public int predictRow() {

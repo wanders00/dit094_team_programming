@@ -13,7 +13,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class SceneController extends Main {
@@ -57,6 +59,16 @@ public class SceneController extends Main {
         stage.show();
     }
 
+    public void switchToSelectMapScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("SelectMapScene.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+
     public void switchToEasyDifficulty(){
         Main.selectedDifficulty = Difficulty.EASY;
     }
@@ -68,6 +80,11 @@ public class SceneController extends Main {
     public void switchToHardDifficulty(){
         Main.selectedDifficulty = Difficulty.HARD;
     }
+
+    public void printScore(){
+        scoreLabel.setText("SCORE");
+    }
+
 
 
 @FXML
@@ -85,5 +102,6 @@ private Button normalDifficulty;
 @FXML
 private Button hardDifficulty;
 
+@FXML Label scoreLabel;
 
 }
