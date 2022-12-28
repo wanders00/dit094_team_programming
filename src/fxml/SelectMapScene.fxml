@@ -30,7 +30,7 @@
          <graphic>
             <ImageView fitHeight="250.0" fitWidth="294.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@defaultMapImage.png" />
+                  <Image url="@img/defaultMapImage.png" />
                </image>
             </ImageView>
          </graphic>
@@ -45,7 +45,7 @@
          <graphic>
             <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@plusMapImage.png" />
+                  <Image url="@img/plusMapImage.png" />
                </image>
             </ImageView>
          </graphic>

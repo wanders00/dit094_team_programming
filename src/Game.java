@@ -1,11 +1,11 @@
 public class Game {
-    private static Layout currentLayout = Layout.NORMAL;
+    private static Layout currentLayout = Layout.ORDINARY;
     // Should be local file
 
     public enum Layout { // there is a scene built where the user can choose between these. If you update
                          // and add more OR remove please mention it so that the correlating scene can be
                          // edited
-        NORMAL,
+        ORDINARY,
         PLUS
     }
 
@@ -35,8 +35,8 @@ public class Game {
     public GameObject[][] generateMap(int height, int width) {
         GameObject[][] gameGrid;
         switch (this.layout) {
-            case NORMAL:
-                gameGrid = generateNormalMap();
+            case ORDINARY:
+                gameGrid = generateOrdinaryMap();
                 break;
             case PLUS:
                 gameGrid = generatePlusMap();
@@ -53,7 +53,7 @@ public class Game {
         return gameGrid;
     }
 
-    private GameObject[][] generateNormalMap() {
+    private GameObject[][] generateOrdinaryMap() {
         GameObject[][] normalGameGrid = new GameObject[this.height][this.width];
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
@@ -122,9 +122,7 @@ public class Game {
             if (predictMovement() instanceof FruitGameObject) {
                 this.snake.growSnake(this.snake.getRow(this.snake.getBody().size() - 1),
                         this.snake.getColumn(this.snake.getBody().size() - 1));
-                this.currentGameScore++;
-                System.out.println("Score is :" + currentGameScore * difficulty.getScoreMultiplier()); // delete me :)
-                // add score related stuff here
+                this.currentGameScore = this.currentGameScore + 1 * difficulty.getScoreMultiplier();
                 generateFruit();
             } else {
                 this.grid[this.snake.getRow(this.snake.getBody().size() - 1)][this.snake
@@ -195,8 +193,8 @@ public class Game {
         return this.difficulty.getScoreMultiplier();
     }
 
-    public void getCurrentGameScore() {
-        System.out.println(currentGameScore);
+    public double getCurrentGameScore() {
+        return this.currentGameScore;
     }
 
     public static void setCurrentLayout(Layout currentLayout) {
@@ -221,5 +219,9 @@ public class Game {
 
     public Difficulty getDifficulty() {
         return this.difficulty;
+    }
+
+    public Layout getLayout() {
+        return this.layout;
     }
 }

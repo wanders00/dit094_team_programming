@@ -1,5 +1,4 @@
 import java.io.IOException;
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +13,7 @@ import javafx.scene.paint.Color;
 public class Main extends Application {
 
     public static Difficulty selectedDifficulty = Difficulty.NORMAL;
+    public static Stage STAGE;
     // Add such that these variables are dependant on local file.
 
     public static void main(String[] args) {
@@ -22,9 +22,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        STAGE = stage;
         stage.setTitle("Snake Game");
         stage.setResizable(false);
-        Parent root = FXMLLoader.load(getClass().getResource("mainMenuScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/mainMenuScene.fxml"));
         Scene mainScene = new Scene(root);
         stage.setScene(mainScene);
         stage.show();
@@ -48,6 +49,10 @@ public class Main extends Application {
      * }
      */
 
+    public void updateTitle(String input) {
+        STAGE.setTitle(input);
+    }
+    
     public void showGameScene(Stage stage) {
         int cellcount = 20;
         int cellsize = 40;
@@ -66,6 +71,7 @@ public class Main extends Application {
             private long lastpress;
 
             public void handle(long arg0) {
+                updateTitle("Snake Game - Map: " + game.getLayout() + " - Difficulty: " + game.getDifficulty() + " - Score: " + game.getCurrentGameScore());
                 gc.clearRect(0, 0, gridsize, gridsize);
                 gc.setFill(Color.rgb(0, 0, 0));
                 gc.fillRect(0, 0, gridsize, gridsize);
@@ -127,7 +133,7 @@ public class Main extends Application {
                     stop();
                     Parent root;
                     try {
-                        root = FXMLLoader.load(getClass().getResource("gameOverScene.fxml"));
+                        root = FXMLLoader.load(getClass().getResource("fxml/gameOverScene.fxml"));
                         Scene mainScene = new Scene(root);
                         stage.setScene(mainScene);
                         stage.show();

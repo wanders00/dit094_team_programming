@@ -18,7 +18,8 @@ public class SceneController extends Main {
     private Game game;
 
     public void switchToSettingsScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("SettingsScene.fxml"));
+        updateTitle("Snake Game - Settings");
+        root = FXMLLoader.load(getClass().getResource("fxml/SettingsScene.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -26,7 +27,8 @@ public class SceneController extends Main {
     }
 
     public void switchToMainScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("mainMenuScene.fxml"));
+        updateTitle("Snake Game");
+        root = FXMLLoader.load(getClass().getResource("fxml/mainMenuScene.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -42,7 +44,7 @@ public class SceneController extends Main {
     }
 
     public void switchToGameOverScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("gameOverScene.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxml/gameOverScene.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -50,7 +52,8 @@ public class SceneController extends Main {
     }
 
     public void switchToSelectMapScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("SelectMapScene.fxml"));
+        updateTitle("Snake Game - Map Selection");
+        root = FXMLLoader.load(getClass().getResource("fxml/SelectMapScene.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -70,7 +73,7 @@ public class SceneController extends Main {
     }
 
     public void switchToNormalLayout() {
-        Game.setCurrentLayout(Game.Layout.NORMAL); // be local file later
+        Game.setCurrentLayout(Game.Layout.ORDINARY); // be local file later
     }
 
     public void switchToPlusLayout() {
