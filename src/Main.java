@@ -11,7 +11,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
-
 public class Main extends Application {
 
     public static Difficulty selectedDifficulty = Difficulty.NORMAL;
@@ -49,13 +48,11 @@ public class Main extends Application {
      * }
      */
 
-
-
     public void showGameScene(Stage stage) {
         int cellcount = 20;
         int cellsize = 40;
         int gridsize = cellcount * cellsize;
-        Game game = new Game(cellcount, cellcount, selectedDifficulty); // Fix difficulty later
+        Game game = new Game(cellcount, cellcount, selectedDifficulty); // Fix difficulty later as local file
         Canvas canvas = new Canvas(gridsize, gridsize);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         StackPane root = new StackPane();
@@ -123,8 +120,6 @@ public class Main extends Application {
                 }
             }
 
-            
-
             public void updateGame() {
                 lastpress = System.nanoTime();
                 game.getSnake().updateDirection();
@@ -139,11 +134,10 @@ public class Main extends Application {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-  
+
                 }
             }
         }.start();
 
-    
     }
 }

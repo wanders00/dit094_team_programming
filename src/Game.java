@@ -1,12 +1,10 @@
-import java.util.ArrayList;
-
 public class Game {
     private static Layout currentLayout = Layout.NORMAL;
-    // Should be local file // prob should initialise this somewhere else, controls
-    // the update method
+    // Should be local file
 
-    public enum Layout { // there is a scene built where the user can choose between these. If you update and add more OR remove please mention it so that the correlating scene can be edited
-
+    public enum Layout { // there is a scene built where the user can choose between these. If you update
+                         // and add more OR remove please mention it so that the correlating scene can be
+                         // edited
         NORMAL,
         PLUS
     }
@@ -24,8 +22,9 @@ public class Game {
 
     Game(int width, int height, Difficulty difficulty) {
         this.pausedGame = true;
+        this.currentGameScore = 0;
         this.snake = new Snake(width / 2, height / 2);
-        this.layout = currentLayout; // do something with seed argument
+        this.layout = currentLayout; // have this read local file instead later
         this.width = width;
         this.height = height;
         this.difficulty = difficulty;
@@ -46,7 +45,9 @@ public class Game {
                 gameGrid = null;
                 break;
         }
-        for (int i = 0; i < this.snake.getBody().size(); i++) {
+
+        gameGrid[this.snake.getRow(0)][this.snake.getColumn(0)] = new SnakeSegment(true);
+        for (int i = 1; i < this.snake.getBody().size(); i++) {
             gameGrid[this.snake.getRow(i)][this.snake.getColumn(i)] = new SnakeSegment();
         }
         return gameGrid;
@@ -121,8 +122,8 @@ public class Game {
             if (predictMovement() instanceof FruitGameObject) {
                 this.snake.growSnake(this.snake.getRow(this.snake.getBody().size() - 1),
                         this.snake.getColumn(this.snake.getBody().size() - 1));
-                currentGameScore = currentGameScore + 1; 
-                System.out.println("Score is :" + currentGameScore*difficulty.getScoreMultiplier()); //delete me :)
+                this.currentGameScore++;
+                System.out.println("Score is :" + currentGameScore * difficulty.getScoreMultiplier()); // delete me :)
                 // add score related stuff here
                 generateFruit();
             } else {
@@ -138,7 +139,7 @@ public class Game {
 
             this.snake.setColumn(0, newColumn);
             this.snake.setRow(0, newRow);
-            this.grid[this.snake.getRow(0)][this.snake.getColumn(0)] = new SnakeSegment();
+            this.grid[this.snake.getRow(0)][this.snake.getColumn(0)] = new SnakeSegment(true);
         }
         return true;
 
@@ -184,10 +185,13 @@ public class Game {
                 return null;
         }
     }
-    public void addScore(double newScore){ //creating a object is maybe not needed, but an easy way to create more atributes to show in the highScore Scene
+
+    public void addScore(double newScore) { // creating a object is maybe not needed, but an easy way to create more
+                                            // atributes to show in the highScore Scene
         Score score = new Score(newScore);
     }
-    public double increaseScore(double Scoremultiplier){
+
+    public double increaseScore(double Scoremultiplier) {
         return this.difficulty.getScoreMultiplier();
     }
 
