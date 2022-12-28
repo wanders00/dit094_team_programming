@@ -1,7 +1,6 @@
 package Scenes;
-import java.io.IOException;
 
-import javafx.application.Application;
+import java.io.IOException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,28 +13,23 @@ import javafx.stage.Stage;
 public class SceneController {
 
     public void switchToSettingsScene(ActionEvent event) throws IOException {
-        SettingsScene settingsScene = new SettingsScene();
-        settingsScene.show((Stage) ((Node) event.getSource()).getScene().getWindow());
+        new SettingsScene().show((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 
     public void switchToMainScene(ActionEvent event) throws IOException {
-        MainScene mainScene = new MainScene();
-        mainScene.show((Stage) ((Node) event.getSource()).getScene().getWindow());
+        new MainScene().show((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 
     public void switchGameScene(ActionEvent event) throws IOException {
-        GameScene gameScene = new GameScene();
-        gameScene.show((Stage) ((Node) event.getSource()).getScene().getWindow());
+        new GameScene().show((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 
     public void switchToGameOverScene(ActionEvent event) throws IOException {
-        GameOverScene gameOverScene = new GameOverScene();
-        gameOverScene.show((Stage) ((Node) event.getSource()).getScene().getWindow());
+        new GameOverScene().show((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 
     public void switchToSelectMapScene(ActionEvent event) throws IOException {
-        MapSelectScene mapSelectScene = new MapSelectScene();
-        mapSelectScene.show((Stage) ((Node) event.getSource()).getScene().getWindow());
+        new MapSelectScene().show((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 
     public void exitGameButton(ActionEvent event) throws IOException {
@@ -59,5 +53,4 @@ public class SceneController {
 
     @FXML
     Label scoreLabel;
-
 }

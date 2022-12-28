@@ -10,8 +10,7 @@ public class Main extends Application {
 
     public void start(Stage stage) throws Exception {
         stage.setResizable(false);
-        MainScene asd = new MainScene();
-        asd.show(stage);
+        new MainScene().show(stage);
     }
 
     /*
