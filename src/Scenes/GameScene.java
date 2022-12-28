@@ -1,5 +1,10 @@
+package Scenes;
 import java.io.IOException;
-
+import GameLogic.Difficulty;
+import GameLogic.Direction;
+import GameLogic.Game;
+import GameLogic.Keybind;
+import GameLogic.GameObjects.GameObject;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

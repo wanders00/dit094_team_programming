@@ -1,4 +1,7 @@
+package Scenes;
+
 import java.io.IOException;
+import GameLogic.Difficulty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

@@ -1,3 +1,4 @@
+package GameLogic;
 public enum Difficulty {
 
     EASY(5, 200_000_000),

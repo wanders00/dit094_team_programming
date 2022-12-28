@@ -1,3 +1,4 @@
+package GameLogic;
 import javafx.scene.input.KeyCode;
 
 public enum Keybind {

@@ -1,9 +1,10 @@
+package GameLogic.GameObjects;
 import javafx.scene.paint.Color;
 
 public abstract class GameObject {
     private Color color;
 
-    GameObject(int red, int green, int blue) {
+    public GameObject(int red, int green, int blue) {
         this.color = Color.rgb(red, green, blue);
     }
 

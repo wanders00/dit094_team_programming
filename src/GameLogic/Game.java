@@ -1,3 +1,6 @@
+package GameLogic;
+import GameLogic.GameObjects.*;
+
 public class Game {
     private static Layout currentLayout = Layout.ORDINARY;
     // Should be local file
@@ -20,7 +23,7 @@ public class Game {
     // Sound sound;
     // Resolution resolution;
 
-    Game(int width, int height, Difficulty difficulty) {
+    public Game(int width, int height, Difficulty difficulty) {
         this.pausedGame = true;
         this.currentGameScore = 0;
         this.snake = new Snake(width / 2, height / 2);

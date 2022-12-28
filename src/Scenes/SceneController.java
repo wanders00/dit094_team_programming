@@ -1,4 +1,7 @@
+package Scenes;
 import java.io.IOException;
+
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
-public class SceneController extends Main {
+public class SceneController {
+
     public void switchToSettingsScene(ActionEvent event) throws IOException {
         SettingsScene settingsScene = new SettingsScene();
         settingsScene.show((Stage) ((Node) event.getSource()).getScene().getWindow());

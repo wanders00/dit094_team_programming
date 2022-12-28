@@ -1,9 +1,9 @@
+package GameLogic;
 import java.util.ArrayList;
 
 public class Score {
     private static ArrayList<Double> scoreList = new ArrayList<>();
     private double score;
-    private SceneController sceneController;
 
     public Score(double score) { // could add name or date
         scoreList.add(score);
