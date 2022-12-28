@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Snake {
-    private static int initialBodyLength = 3;
+    private static int initialBodyLength = 6;
     private ArrayList<ArrayList<Integer>> body = new ArrayList<ArrayList<Integer>>();
     private Direction currentDirection;
     private Direction newDirection;
