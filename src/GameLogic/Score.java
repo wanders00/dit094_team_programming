@@ -1,6 +1,10 @@
 package GameLogic;
 
 import java.util.ArrayList;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
 
 public class Score {
     private static ArrayList<Double> scoreList = new ArrayList<>();
