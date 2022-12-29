@@ -98,9 +98,8 @@ public class GameScene extends SceneController {
                 game.getSnake().updateDirection();
                 if (!game.update()) {
                     stop();
-                    Parent root;
                     try {
-                        root = FXMLLoader.load(getClass().getResource("fxml/gameOverScene.fxml"));
+                        Parent root = FXMLLoader.load(getClass().getResource("fxml/gameOverScene.fxml"));
                         Scene mainScene = new Scene(root);
                         stage.setScene(mainScene);
                         stage.show();

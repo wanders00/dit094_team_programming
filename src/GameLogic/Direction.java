@@ -1,4 +1,5 @@
 package GameLogic;
+
 public enum Direction {
     UP(Keybind.UP),
     DOWN(Keybind.DOWN),

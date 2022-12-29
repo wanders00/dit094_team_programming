@@ -1,9 +1,11 @@
 package GameLogic;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Snake {
-    private static int initialBodyLength = 6;
+    private static int initialBodyLength = 6; // Should also be local file, just to have more data, even if it is dummy
+                                              // data.
     private ArrayList<ArrayList<Integer>> body = new ArrayList<ArrayList<Integer>>();
     private Direction currentDirection;
     private Direction newDirection;
@@ -38,6 +40,11 @@ public class Snake {
 
     public void setColumn(int bodypart, int column) {
         this.body.get(bodypart).set(1, column);
+    }
+
+    public void setPosition(int bodypart, int row, int column) {
+        setRow(bodypart, row);
+        setColumn(bodypart, column);
     }
 
     public int getRow(int bodypart) {

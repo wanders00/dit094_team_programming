@@ -1,4 +1,5 @@
 package GameLogic;
+
 import GameLogic.GameObjects.*;
 
 public class Game {
@@ -20,8 +21,6 @@ public class Game {
     private Difficulty difficulty;
     private Boolean pausedGame;
     private double currentGameScore;
-    // Sound sound;
-    // Resolution resolution;
 
     public Game(int width, int height, Difficulty difficulty) {
         this.pausedGame = true;
@@ -31,11 +30,11 @@ public class Game {
         this.width = width;
         this.height = height;
         this.difficulty = difficulty;
-        this.grid = generateMap(height, width);
+        this.grid = generateMap();
         generateFruit();
     }
 
-    public GameObject[][] generateMap(int height, int width) {
+    public GameObject[][] generateMap() {
         GameObject[][] gameGrid;
         switch (this.layout) {
             case ORDINARY:
@@ -60,7 +59,10 @@ public class Game {
         GameObject[][] normalGameGrid = new GameObject[this.height][this.width];
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
-                if (i == 0 || i == height - 1 || j == 00 || j == width - 1) {
+                if (i % (height - 1) == 0 || j % (width - 1) == 0) {
+                    // If i or j == lowest or highest value, it is a border (WallGameObject).
+                    // 0 = lowest value, 0 % X == 0 > where X is any number.
+                    // height/width = highest value, - 1 since array start at 0.
                     normalGameGrid[i][j] = new WallGameObject();
                 } else {
                     normalGameGrid[i][j] = new EmptyGameObject();
@@ -71,7 +73,8 @@ public class Game {
     }
 
     private GameObject[][] generatePlusMap() {
-        GameObject[][] plusGameGrid = new GameObject[this.height][this.width];
+        GameObject[][] plusGameGrid = generateOrdinaryMap();
+        // To get the initial border-walls.
         int widthGap = this.width / 4;
         int heightGap = this.height / 4;
         // could link this to the difficulty setting; the harder the difficulty the
@@ -79,18 +82,8 @@ public class Game {
 
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
-                if ((i + heightGap < this.height - 1 && i - heightGap > 0)
-                        || (j + widthGap < this.width - 1 && j - widthGap > 0)) {
-                    plusGameGrid[i][j] = new EmptyGameObject();
-                } else {
-                    plusGameGrid[i][j] = new WallGameObject();
-                }
-            }
-        }
-
-        for (int i = 0; i < this.height; i++) {
-            for (int j = 0; j < this.width; j++) {
-                if (i == 0 || i == this.height - 1 || j == 00 || j == this.width - 1) {
+                if (!((i + heightGap < this.height - 1 && i - heightGap > 0)
+                        || (j + widthGap < this.width - 1 && j - widthGap > 0))) {
                     plusGameGrid[i][j] = new WallGameObject();
                 }
             }
@@ -99,54 +92,48 @@ public class Game {
     }
 
     public boolean update() {
-        if (!pausedGame) { // if the pausedGame=true the game will continue to update, when its false
-                           // nothing happens and it freezez
+        if (!pausedGame) {
+            // If pausedGame == false; the game will update.
+            // Otherwise nothing will happen, it is "paused".
+
             if (predictMovement() instanceof WallGameObject || predictMovement() instanceof SnakeSegment) {
+                // Game Over, return false to indicate that to the GameScene.
                 addScore(currentGameScore);
                 return false;
-            }
-            int newRow = this.snake.getRow(0);
-            int newColumn = this.snake.getColumn(0);
-            switch (this.snake.getDirection()) {
-                case DOWN:
-                    newRow++;
-                    break;
-                case LEFT:
-                    newColumn--;
-                    break;
-                case RIGHT:
-                    newColumn++;
-                    break;
-                case UP:
-                    newRow--;
-                    break;
-            }
-
-            if (predictMovement() instanceof FruitGameObject) {
-                this.snake.growSnake(this.snake.getRow(this.snake.getBody().size() - 1),
-                        this.snake.getColumn(this.snake.getBody().size() - 1));
-                this.currentGameScore = this.currentGameScore + 1 * difficulty.getScoreMultiplier();
+            } else if (predictMovement() instanceof FruitGameObject) {
+                // growSnake() and increase score, then move.
+                this.snake.growSnake(this.snake.getRow(this.snake.getBody().size() - 1), this.snake
+                        .getColumn(this.snake.getBody().size() - 1));
+                this.currentGameScore = this.currentGameScore + difficulty.getScoreMultiplier();
                 generateFruit();
             } else {
+                // else = instanceof EmptyGameObject, clean up the tail then move.
                 this.grid[this.snake.getRow(this.snake.getBody().size() - 1)][this.snake
                         .getColumn(this.snake.getBody().size() - 1)] = new EmptyGameObject();
             }
+            // predictMovement() predicts the next upcoming GameObject depending on the
+            // direction. Then different upcoming GameObject have different logic what
+            // will incur if the snake head collide with it.
 
             for (int i = this.snake.getBody().size() - 1; i > 0; i--) {
-                this.snake.setRow(i, this.snake.getRow(i - 1));
-                this.snake.setColumn(i, this.snake.getColumn(i - 1));
+                this.snake.setPosition(i, this.snake.getRow(i - 1), this.snake.getColumn(i - 1));
                 this.grid[this.snake.getRow(i)][this.snake.getColumn(i)] = new SnakeSegment();
             }
+            // Move the entire body except the head.
+            // Each part takes the position of the preceding one.
 
-            this.snake.setColumn(0, newColumn);
-            this.snake.setRow(0, newRow);
+            this.snake.setPosition(0, predictRow(), predictColumn());
             this.grid[this.snake.getRow(0)][this.snake.getColumn(0)] = new SnakeSegment(true);
+            // The "0" argument indicates the head, as its the first in the arraylist.
+            // Unique movement for the head, as it is dependant on the direction.
         }
         return true;
 
     }
 
     public void generateFruit() {
+        // Randoms a position until it find a EmptyGameObject on the grid,
+        // then make it into a FruitGameObject instead.
         boolean createdFruit = true;
         while (createdFruit) {
             int row = (int) (Math.random() * height);
@@ -163,16 +150,13 @@ public class Game {
     }
 
     public void pauseToggle() {
-        // changes the value to the oposite everytime the pause-key is pressed, making
-        // the game able to pause and play
+        // Changes the value to the oposite everytime the pause-key is pressed,
+        // making the game able to pause and unpause.
         this.pausedGame = !this.pausedGame;
     }
 
-    public GameObject predictMovement() {
-        return this.grid[predictRow()][predictColumn()];
-    }
-
     public int[] predictCoordinates() {
+        // Predicts the next position of the snake head depending on the direction.
         switch (this.snake.getDirection()) {
             case DOWN:
                 return new int[] { this.snake.getRow(0) + 1, this.snake.getColumn(0) };
@@ -185,6 +169,23 @@ public class Game {
             default:
                 return null;
         }
+    }
+
+    public int predictRow() {
+        // Utilise predictCoordinates(), but returns row as int instead.
+        // First part of the int[] from predictCoordinates() is row, so 0 == row.
+        return predictCoordinates()[0];
+    }
+
+    public int predictColumn() {
+        // Utilise predictCoordinates(), but returns column as int instead.
+        // Second part of the int[] from predictCoordinates() is column, so 1 == column.
+        return predictCoordinates()[1];
+    }
+
+    public GameObject predictMovement() {
+        // Utilise predictRow & predictColumn, but returns a GameObject instead.
+        return this.grid[predictRow()][predictColumn()];
     }
 
     public void addScore(double newScore) { // creating a object is maybe not needed, but an easy way to create more
@@ -202,14 +203,6 @@ public class Game {
 
     public static void setCurrentLayout(Layout currentLayout) {
         Game.currentLayout = currentLayout;
-    }
-
-    public int predictRow() {
-        return predictCoordinates()[0];
-    }
-
-    public int predictColumn() {
-        return predictCoordinates()[1];
     }
 
     public GameObject[][] getState() {

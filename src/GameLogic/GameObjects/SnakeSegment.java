@@ -1,4 +1,5 @@
 package GameLogic.GameObjects;
+
 public class SnakeSegment extends GameObject {
 
     private final static int BODY_RED = 0;
@@ -16,5 +17,8 @@ public class SnakeSegment extends GameObject {
     public SnakeSegment(boolean isHead) {
         super(HEAD_RED, HEAD_GREEN, HEAD_BLUE);
     }
+    // Overloaded method so we can have different color for the head,
+    // but still be a SnakeSegment. If constructor is given a boolean argument
+    // create with head color instead.
 
 }
