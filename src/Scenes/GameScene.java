@@ -20,33 +20,33 @@ public class GameScene extends SceneController {
     public static Difficulty selectedDifficulty = Difficulty.NORMAL; // read from json file
 
     public void show(Stage stage) {
-        int cellcount = 20;
-        int cellsize = 40;
-        int gridsize = cellcount * cellsize;
-        Game game = new Game(cellcount, cellcount, selectedDifficulty); // Fix difficulty later as local file
-        Canvas canvas = new Canvas(gridsize, gridsize);
+        int cellCount = 20;
+        int cellSize = 40;
+        int gridSize = cellCount * cellSize;
+        Game game = new Game(cellCount, cellCount, selectedDifficulty); // Fix difficulty later as local file
+        Canvas canvas = new Canvas(gridSize, gridSize);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         StackPane root = new StackPane();
         root.getChildren().add(canvas);
-        Scene gameScene = new Scene(root, gridsize, gridsize);
+        Scene gameScene = new Scene(root, gridSize, gridSize);
         stage.setScene(gameScene);
         stage.show();
 
         new AnimationTimer() {
-            private long framedelay = game.getDifficulty().getGameTimerSpeed();
-            private long lastpress;
+            private long frameDelay = game.getDifficulty().getGameTimerSpeed();
+            private long lastPress;
 
             public void handle(long arg0) {
                 stage.setTitle("Snake Game - Map: " + game.getLayout() + " - Difficulty: " + game.getDifficulty()
                         + " - Score: " + game.getCurrentGameScore());
-                gc.clearRect(0, 0, gridsize, gridsize);
+                gc.clearRect(0, 0, gridSize, gridSize);
                 gc.setFill(Color.rgb(0, 0, 0));
-                gc.fillRect(0, 0, gridsize, gridsize);
-                for (int i = 0; i < cellcount; i++) {
-                    for (int j = 0; j < cellcount; j++) {
+                gc.fillRect(0, 0, gridSize, gridSize);
+                for (int i = 0; i < cellCount; i++) {
+                    for (int j = 0; j < cellCount; j++) {
                         GameObject currentGameObject = game.getState()[i][j];
                         gc.setFill(currentGameObject.getColor());
-                        gc.fillRect(cellsize * j, cellsize * i, cellsize, cellsize);
+                        gc.fillRect(cellSize * j, cellSize * i, cellSize, cellSize);
                     }
                 }
 
@@ -74,7 +74,7 @@ public class GameScene extends SceneController {
                     }
                 });
 
-                if (System.nanoTime() - lastpress > framedelay) {
+                if (System.nanoTime() - lastPress > frameDelay) {
                     updateGame();
                 }
             }
@@ -85,16 +85,17 @@ public class GameScene extends SceneController {
                     game.pauseToggle();
                 }
                 if (currentDirection != newDirection
-                        && currentDirection != newDirection.getOppositeDirection()) {
+                        && currentDirection != newDirection.getOppositeDirection()) { 
+                        // prevents the user from going in the opposite direction and essentially "skipping" a turn
                     game.getSnake().setNewDirection(newDirection);
-                    if (System.nanoTime() - lastpress > (framedelay / 10)) {
+                    if (System.nanoTime() - lastPress > (frameDelay / 10)) { // used to allow for faster turn
                         updateGame();
                     }
                 }
             }
 
             public void updateGame() {
-                lastpress = System.nanoTime();
+                lastPress = System.nanoTime();
                 game.getSnake().updateDirection();
                 if (!game.update()) {
                     stop();
