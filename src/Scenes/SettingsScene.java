@@ -20,14 +20,17 @@ public class SettingsScene extends SceneController {
     }
 
     public void switchToEasyDifficulty() {
+        Audio.play("audio/ButtonEasy.wav");
         GameScene.selectedDifficulty = Difficulty.EASY; // be local file later
     }
 
     public void switchToNormalDifficulty() {
+        Audio.play("audio/ButtonClick.wav");
         GameScene.selectedDifficulty = Difficulty.NORMAL; // be local file later
     }
 
     public void switchToHardDifficulty() {
+        Audio.play("audio/ButtonHard.wav");
         GameScene.selectedDifficulty = Difficulty.HARD; // be local file later
     }
 
