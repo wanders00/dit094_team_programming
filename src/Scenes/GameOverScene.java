@@ -31,11 +31,4 @@ public class GameOverScene extends SceneController {
                 + System.lineSeparator() + " Difficulty: " + currentDifficulty);
     }
 
-    @FXML
-    private Label scoreLabel;
-
-    public void initialize() {
-        scoreLabel.setText("Score: " + currentScore + System.lineSeparator() + "Layout: " + currentLayout
-                + System.lineSeparator() + " Difficulty: " + currentDifficulty);
-    }
 }
