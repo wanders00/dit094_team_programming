@@ -5,7 +5,6 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-
 public class Score {
     private static ArrayList<Double> scoreList = new ArrayList<>();
     private double score;

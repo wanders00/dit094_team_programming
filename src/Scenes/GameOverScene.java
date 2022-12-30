@@ -1,4 +1,5 @@
 package Scenes;
+
 import java.io.IOException;
 
 import GameLogic.Difficulty;
@@ -20,7 +21,14 @@ public class GameOverScene extends SceneController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        //printScore();
+    }
+
+    @FXML
+    private Label scoreLabel;
+
+    public void initialize() {
+        scoreLabel.setText("Score: " + currentScore + System.lineSeparator() + "Layout: " + currentLayout
+                + System.lineSeparator() + " Difficulty: " + currentDifficulty);
     }
 
     @FXML

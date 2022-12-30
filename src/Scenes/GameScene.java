@@ -6,8 +6,6 @@ import GameLogic.Game;
 import GameLogic.Keybind;
 import GameLogic.GameObjects.GameObject;
 import javafx.animation.AnimationTimer;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -100,6 +98,9 @@ public class GameScene extends SceneController {
                 if (!game.update()) {
                     stop();
                     try {
+                        GameOverScene.currentScore = game.getCurrentGameScore();
+                        GameOverScene.currentLayout = game.getLayout();
+                        GameOverScene.currentDifficulty = game.getDifficulty();
                         new GameOverScene().show(stage);
                         /*Parent root = FXMLLoader.load(getClass().getResource("fxml/gameOverScene.fxml"));
                         Scene gameOverScene = new Scene(root);

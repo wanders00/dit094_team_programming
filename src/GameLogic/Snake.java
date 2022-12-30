@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Snake {
-    private static int initialBodyLength = 6; // Should also be local file, just to have more data, even if it is dummy data.
+    private final static int initialBodyLength = 6;
+    // Should also be local file, just to have more data, even if it is dummy data.
+
     private ArrayList<ArrayList<Integer>> body = new ArrayList<ArrayList<Integer>>();
     private Direction currentDirection;
     private Direction newDirection;
