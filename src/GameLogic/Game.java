@@ -3,7 +3,7 @@ package GameLogic;
 import GameLogic.GameObjects.*;
 
 public class Game {
-    private static Layout currentLayout = Layout.ORDINARY;
+    public static Layout currentLayout = Layout.ORDINARY;
     // Should be local file
 
     public enum Layout { // there is a scene built where the user can choose between these. If you update
@@ -20,7 +20,7 @@ public class Game {
     private GameObject[][] grid;
     private Difficulty difficulty;
     private Boolean pausedGame;
-    private static double currentGameScore;
+    private double currentGameScore;
 
     public Game(int width, int height, Difficulty difficulty) {
         this.pausedGame = true;
@@ -197,15 +197,15 @@ public class Game {
         return this.difficulty.getScoreMultiplier();
     }
 
-    public static double getCurrentGameScore() {
+    public double getCurrentGameScore() {
         return currentGameScore;
     }
 
-    public static String toStringScore(){
-        return getCurrentGameScore()+"";
+    public String toStringScore() {
+        return String.valueOf(this.currentGameScore);
     }
 
-    public static void setCurrentLayout(Layout currentLayout) {
+    public void setCurrentLayout(Layout currentLayout) {
         Game.currentLayout = currentLayout;
     }
 

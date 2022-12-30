@@ -2,9 +2,12 @@ package Scenes;
 
 import java.io.IOException;
 import GameLogic.Difficulty;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
 public class SettingsScene extends SceneController {
@@ -27,4 +30,19 @@ public class SettingsScene extends SceneController {
     public void switchToHardDifficulty() {
         GameScene.selectedDifficulty = Difficulty.HARD; // be local file later
     }
+
+    @FXML
+    private Button easyDifficulty;
+
+    @FXML
+    private Button normalDifficulty;
+
+    @FXML
+    private Button hardDifficulty;
+
+    @FXML
+    private Slider volumeSlider;
+
+    @FXML
+    private Slider fxSlider;
 }
