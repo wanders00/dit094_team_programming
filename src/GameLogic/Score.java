@@ -21,7 +21,10 @@ public class Score {
         for (int i = 0; i < scoreList.size(); i++) {
             if(scoreList.size()<10){
             System.out.println(scoreList.get(i));}
-            scoreList.remove(scoreList);
+
+            while(scoreList.size() > 10) {
+                scoreList.remove(11);
+            }
         
         }
     }
