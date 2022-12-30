@@ -11,7 +11,7 @@ public class Score {
 
     public Score(double score) { // could add name or date
         int initialsize = scoreList.size();
-        for (int i = 0; i <= initialsize; i++) {
+        for (int i = 0; i <= initialsize; i++) {//A for-loop to arrange our scores in order of their values
             if (i == scoreList.size()) {
                 scoreList.add(score);
             } else if (score > scoreList.get(i)) {
