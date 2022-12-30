@@ -21,7 +21,7 @@ public class GameScene extends SceneController {
 
     public void show(Stage stage) {
         int cellCount = 20;
-        int cellSize = 40;
+        int cellSize = 20;
         int gridSize = cellCount * cellSize;
         Game game = new Game(cellCount, cellCount, selectedDifficulty); // Fix difficulty later as local file
         Canvas canvas = new Canvas(gridSize, gridSize);
