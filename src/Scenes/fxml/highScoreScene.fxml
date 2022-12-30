@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: indianred;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: indianred;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.SceneController">
    <children>
-      <Text fill="WHITE" layoutX="205.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="High scores" underline="true" wrappingWidth="389.75244140625">
+      <Label layoutX="198.0" layoutY="195.0" prefHeight="515.0" prefWidth="403.0" text="SCORE 1&#10;SCORE 2&#10;SCORE 3&#10;">
          <font>
-            <Font size="78.0" />
+            <Font name="System Bold" size="25.0" />
+         </font></Label>
+      <Button layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="31.0" prefWidth="90.0" text="Back" textFill="RED">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Text layoutX="139.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HIGHS CORES" underline="true">
+         <font>
+            <Font name="System Bold" size="80.0" />
          </font>
       </Text>
-      <Button layoutX="40.0" layoutY="684.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="146.0" text="Main menu" />
-      <Label layoutX="205.0" layoutY="137.0" prefHeight="515.0" prefWidth="403.0" text="Label" textFill="WHITE" />
    </children>
 </AnchorPane>

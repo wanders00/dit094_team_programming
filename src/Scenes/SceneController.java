@@ -38,6 +38,10 @@ public class SceneController {
         new MapSelectScene().show((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 
+    public void switchToHigScoreScene(ActionEvent event) throws IOException{
+        new HighScoreScene().show((Stage) ((Node) event.getSource()).getScene().getWindow());
+    }
+
     public void exitGameButton(ActionEvent event) throws IOException {
         Platform.exit();
     }

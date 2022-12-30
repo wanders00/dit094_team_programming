@@ -33,7 +33,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="150.0" layoutY="510.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: black;" text="High Scores" textFill="WHITE">
+      <Button layoutX="150.0" layoutY="510.0" mnemonicParsing="false" onAction="#switchToHigScoreScene" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: black;" text="High Scores" textFill="WHITE">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
