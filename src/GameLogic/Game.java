@@ -1,9 +1,12 @@
 package GameLogic;
 
+import javax.print.DocFlavor.STRING;
+
 import GameLogic.GameObjects.*;
 
 public class Game {
     public static Layout currentLayout = Layout.ORDINARY;
+    public static String playerName;
     // Should be local file
 
     public enum Layout { // there is a scene built where the user can choose between these. If you update
@@ -21,6 +24,7 @@ public class Game {
     private Difficulty difficulty;
     private Boolean pausedGame;
     private double currentGameScore;
+    
 
     public Game(int width, int height, Difficulty difficulty) {
         this.pausedGame = true;

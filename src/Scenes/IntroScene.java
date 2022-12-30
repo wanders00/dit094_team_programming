@@ -13,4 +13,7 @@ public class IntroScene extends SceneController{
         stage.setScene(scene);
         stage.show();
     }
+
+    
 }
+
