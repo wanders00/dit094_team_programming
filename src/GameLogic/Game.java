@@ -20,7 +20,7 @@ public class Game {
     private GameObject[][] grid;
     private Difficulty difficulty;
     private Boolean pausedGame;
-    private double currentGameScore;
+    private static double currentGameScore;
 
     public Game(int width, int height, Difficulty difficulty) {
         this.pausedGame = true;
@@ -197,8 +197,12 @@ public class Game {
         return this.difficulty.getScoreMultiplier();
     }
 
-    public double getCurrentGameScore() {
-        return this.currentGameScore;
+    public static double getCurrentGameScore() {
+        return currentGameScore;
+    }
+
+    public static String toStringScore(){
+        return getCurrentGameScore()+"";
     }
 
     public static void setCurrentLayout(Layout currentLayout) {

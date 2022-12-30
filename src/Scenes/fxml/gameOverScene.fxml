@@ -10,7 +10,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: Indianred;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.SceneController">
    <children>
-      <Button layoutX="80.0" layoutY="336.0" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: black;" text="Main menu" textFill="#7bff39">
+      <Button layoutX="80.0" layoutY="460.0" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: black;" text="Main menu" textFill="#7bff39">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
@@ -23,7 +23,7 @@
          </font>
       </Text>
       <Text layoutX="179.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ops, game over! Press &quot;Retry&quot; to play again. " />
-      <Button layoutX="420.0" layoutY="336.0" mnemonicParsing="false" onAction="#switchGameScene" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: black;" text="Retry" textFill="#7bff39">
+      <Button layoutX="420.0" layoutY="460.0" mnemonicParsing="false" onAction="#switchGameScene" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: black;" text="Retry" textFill="#7bff39">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -42,10 +42,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="scoreLabel" alignment="CENTER" layoutX="200.0" layoutY="225.0" prefHeight="100.0" prefWidth="400.0">
+      <Label fx:id="scoreLabel" alignment="CENTER" layoutX="244.0" layoutY="227.0" onMouseClicked="#printScore" prefHeight="120.0" prefWidth="314.0" text="PRESS ME!!!">
          <font>
             <Font name="System Bold Italic" size="40.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
    </children>
    <cursor>

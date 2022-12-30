@@ -99,10 +99,11 @@ public class GameScene extends SceneController {
                 if (!game.update()) {
                     stop();
                     try {
-                        Parent root = FXMLLoader.load(getClass().getResource("fxml/gameOverScene.fxml"));
-                        Scene mainScene = new Scene(root);
-                        stage.setScene(mainScene);
-                        stage.show();
+                        new GameOverScene().show(stage);
+                        /*Parent root = FXMLLoader.load(getClass().getResource("fxml/gameOverScene.fxml"));
+                        Scene gameOverScene = new Scene(root);
+                        stage.setScene(gameOverScene);
+                        stage.show();*/
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

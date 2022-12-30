@@ -13,6 +13,7 @@ public class Main extends Application {
         new MainScene().show(stage);
     }
 
+
     /*
      * public void showHighScoreScene() { // ADD FUNCTIONALITY
      * 
