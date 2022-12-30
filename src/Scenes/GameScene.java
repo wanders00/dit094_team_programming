@@ -14,6 +14,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.media.*;
 
 public class GameScene extends SceneController {
 
@@ -98,6 +99,9 @@ public class GameScene extends SceneController {
                 lastPress = System.nanoTime();
                 game.getSnake().updateDirection();
                 if (!game.update()) {
+                    Audio.play("audio/death_sound_2.mp3");
+                    Audio.play("audio/test.mp3");
+                    
                     stop();
                     try {
                         new GameOverScene().show(stage);
