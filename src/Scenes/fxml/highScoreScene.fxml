@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: indianred;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.SceneController">
    <children>
-      <Label layoutX="198.0" layoutY="195.0" prefHeight="515.0" prefWidth="403.0" text="NAME - SCORE - DIFFICULTY &#10;NAME - SCORE - DIFFICULTY &#10;&#10;SCORE 3&#10;" textAlignment="CENTER">
+      <Label layoutX="198.0" layoutY="195.0" prefHeight="515.0" prefWidth="403.0" text="SCORE 1&#10;SCORE 2&#10;SCORE 3&#10;SCORE 4&#10;SCORE 5&#10;&#10;" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="25.0" />
          </font></Label>
