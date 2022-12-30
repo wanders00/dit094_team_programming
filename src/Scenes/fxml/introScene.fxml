@@ -40,7 +40,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField layoutX="214.0" layoutY="212.0" prefHeight="74.0" prefWidth="364.0" promptText="Enter Username" style="-fx-background-color: #111111;">
+      <TextField fx:id="userNameField" layoutX="214.0" layoutY="212.0" prefHeight="74.0" prefWidth="364.0" promptText="Enter Username" style="-fx-background-color: #111111;">
          <font>
             <Font name="System Bold Italic" size="25.0" />
          </font>
