@@ -7,6 +7,7 @@ import GameLogic.GameObjects.*;
 public class Game {
     public static Layout currentLayout = Layout.ORDINARY;
     public static String playerName;
+    
     // Should be local file
 
     public enum Layout { // there is a scene built where the user can choose between these. If you update

@@ -5,6 +5,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
@@ -12,7 +14,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #111111;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.IntroScene">
    <children>
-      <Text fill="#7bff39" layoutX="209.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO SNAKE GAME" wrappingWidth="396.8994140625">
+      <ImageView fitHeight="792.0" fitWidth="800.0" layoutX="14.0" layoutY="14.0" opacity="0.3" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../../../../Downloads/23511276.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="#7bff39" layoutX="212.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO SNAKE GAME" wrappingWidth="396.8994140625">
          <font>
             <Font name="System Bold" size="60.0" />
          </font>
@@ -59,6 +66,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="498.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true" />
    </children>
    <cursor>
       <Cursor fx:constant="OPEN_HAND" />
