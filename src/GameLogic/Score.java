@@ -26,7 +26,7 @@ public class Score {
         this.score = score;
     }
 
-    public void sortHighScores() {
+    public void sortHighScores() {//Sort high scores in order of their value
         for (int i = 0; i < scoreList.size(); i++) {
             if (scoreList.size() < 10) {
                 System.out.println(scoreList.get(i));
