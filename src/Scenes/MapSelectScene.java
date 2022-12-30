@@ -1,4 +1,5 @@
 package Scenes;
+
 import java.io.IOException;
 import GameLogic.Game;
 import javafx.fxml.FXMLLoader;
@@ -16,10 +17,10 @@ public class MapSelectScene extends SceneController {
     }
 
     public void switchToNormalLayout() {
-        Game.setCurrentLayout(Game.Layout.ORDINARY); // be local file later
+        Game.currentLayout = Game.Layout.ORDINARY; // be local file later
     }
 
     public void switchToPlusLayout() {
-        Game.setCurrentLayout(Game.Layout.PLUS); // be local file later
+        Game.currentLayout = Game.Layout.PLUS; // be local file later
     }
 }
