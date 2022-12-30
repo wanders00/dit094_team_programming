@@ -10,23 +10,34 @@ public class Score {
     private double score;
 
     public Score(double score) { // could add name or date
-        scoreList.add(score);
+        int initialsize = scoreList.size();
+        for (int i = 0; i <= initialsize; i++) {
+            if (i == scoreList.size()) {
+                scoreList.add(score);
+            } else if (score > scoreList.get(i)) {
+                scoreList.add(i, score);
+            }
+
+        }
+        if(scoreList.size() > 10){
+            scoreList.remove(10);
+        }
         sortHighScores();
         this.score = score;
-
     }
 
     public void sortHighScores() {
         for (int i = 0; i < scoreList.size(); i++) {
-            if(scoreList.size()<10){
-            System.out.println(scoreList.get(i));}
+            if (scoreList.size() < 10) {
+                System.out.println(scoreList.get(i));
+            }
 
-            while(scoreList.size() > 10) {
+            while (scoreList.size() > 10) {
                 scoreList.remove(11);
             }
-        
         }
     }
+
     /*
      * public double getScore() {
      * return score;

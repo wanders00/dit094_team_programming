@@ -31,4 +31,5 @@ public class GameOverScene extends SceneController {
                 + System.lineSeparator() + " Difficulty: " + currentDifficulty);
     }
 
+
 }
