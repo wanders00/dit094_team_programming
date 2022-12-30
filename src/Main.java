@@ -1,3 +1,4 @@
+import Scenes.IntroScene;
 import Scenes.MainScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -10,7 +11,8 @@ public class Main extends Application {
 
     public void start(Stage stage) throws Exception {
         stage.setResizable(false);
-        new MainScene().show(stage);
+        new IntroScene().show(stage);
+        //new MainScene().show(stage);
     }
 
 }
