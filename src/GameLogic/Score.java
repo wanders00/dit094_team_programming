@@ -14,11 +14,15 @@ public class Score {
         scoreList.add(score);
         sortHighScores();
         this.score = score;
+
     }
 
     public void sortHighScores() {
         for (int i = 0; i < scoreList.size(); i++) {
-            System.out.println(scoreList.get(i));
+            if(scoreList.size()<10){
+            System.out.println(scoreList.get(i));}
+            scoreList.remove(scoreList);
+        
         }
     }
     /*
