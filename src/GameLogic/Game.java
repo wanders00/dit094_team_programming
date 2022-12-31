@@ -95,6 +95,55 @@ public class Game {
         return plusGameGrid;
     }
 
+
+    // awful implementation/logic but it works
+    // feel free to fix it otherwise I'll do it another time
+
+    // not linked to any menus yet, so I'll leave it commented
+
+    	// private GameObject[][] generateNewMap() {
+    //     GameObject[][] newGameGrid = generateOrdinaryMap();
+
+    //     int widthGap = this.width / 3;
+    //     int heightGap = this.height / 3;
+    //     for (int i = 0; i < this.height; i++) {
+    //         for (int j = 0; j < this.width; j++) {
+    //             if((i<heightGap && i+j<heightGap)||(j<widthGap && i+j<widthGap)) {
+    //                 newGameGrid[i][j] = new WallGameObject();
+    //             }
+    //         }
+    //     }
+
+    //     heightGap = this.height - heightGap;
+    //     for (int i = 0; i < this.height; i++) {
+    //         for (int j = 0; j < this.width; j++) {
+    //             if((i>heightGap && i-j>=heightGap)&&(j<widthGap && i-j>=heightGap)) {
+    //                 newGameGrid[i][j] = new WallGameObject();
+    //             }
+    //         }
+    //     }
+
+    //     heightGap = this.height/3;
+    //     widthGap = this.width - widthGap;
+    //     for (int i = 0; i < this.height; i++) {
+    //         for (int j = 0; j < this.width; j++) {
+    //             if((i<heightGap && j-i>=widthGap)&&(j>widthGap && j-i>=widthGap)) {
+    //                 newGameGrid[i][j] = new WallGameObject();
+    //             }
+    //         }
+    //     }
+
+    //     heightGap = this.height - heightGap;
+    //     for (int i = 0; i < this.height; i++) {
+    //         for (int j = 0; j < this.width; j++) {
+    //             if((i>heightGap && i+j>=this.height+heightGap-1)&&(j>widthGap && i+j>=this.width+widthGap-1)) {
+    //                 newGameGrid[i][j] = new WallGameObject();
+    //             }
+    //         }
+    //     }
+    //     return newGameGrid;
+	// }
+
     public boolean update() {
         if (!pausedGame) {
             // If pausedGame == false; the game will update.
