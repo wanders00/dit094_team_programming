@@ -96,48 +96,27 @@ public class Game {
     }
 
 
-    // awful implementation/logic but it works
-    // feel free to fix it otherwise I'll do it another time
+    // kinda bad implementation but it works
+    // feel free to improve it otherwise I'll do it another time
 
     // not linked to any menus yet, so I'll leave it commented
 
-    	// private GameObject[][] generateNewMap() {
+    // private GameObject[][] generateNewMap() {
     //     GameObject[][] newGameGrid = generateOrdinaryMap();
 
-    //     int widthGap = this.width / 3;
-    //     int heightGap = this.height / 3;
-    //     for (int i = 0; i < this.height; i++) {
-    //         for (int j = 0; j < this.width; j++) {
-    //             if((i<heightGap && i+j<heightGap)||(j<widthGap && i+j<widthGap)) {
-    //                 newGameGrid[i][j] = new WallGameObject();
-    //             }
-    //         }
-    //     }
+    //     int upperWidthGap = this.width / 3;
+    //     int upperHeightGap = this.height / 3;
+    //     int lowerWidthGap = this.width - upperWidthGap;
+    //     int lowerHeightGap = this.height - upperHeightGap;
 
-    //     heightGap = this.height - heightGap;
     //     for (int i = 0; i < this.height; i++) {
     //         for (int j = 0; j < this.width; j++) {
-    //             if((i>heightGap && i-j>=heightGap)&&(j<widthGap && i-j>=heightGap)) {
-    //                 newGameGrid[i][j] = new WallGameObject();
-    //             }
-    //         }
-    //     }
-
-    //     heightGap = this.height/3;
-    //     widthGap = this.width - widthGap;
-    //     for (int i = 0; i < this.height; i++) {
-    //         for (int j = 0; j < this.width; j++) {
-    //             if((i<heightGap && j-i>=widthGap)&&(j>widthGap && j-i>=widthGap)) {
-    //                 newGameGrid[i][j] = new WallGameObject();
-    //             }
-    //         }
-    //     }
-
-    //     heightGap = this.height - heightGap;
-    //     for (int i = 0; i < this.height; i++) {
-    //         for (int j = 0; j < this.width; j++) {
-    //             if((i>heightGap && i+j>=this.height+heightGap-1)&&(j>widthGap && i+j>=this.width+widthGap-1)) {
-    //                 newGameGrid[i][j] = new WallGameObject();
+    //             if(((i<upperHeightGap && i+j<upperHeightGap)||(j<upperWidthGap && i+j<upperWidthGap))
+    //             || ((i>lowerHeightGap && i-j>=lowerHeightGap)&&(j<upperWidthGap && i-j>=lowerHeightGap))
+    //             || ((i<upperHeightGap && j-i>=lowerWidthGap)&&(j>lowerWidthGap && j-i>=lowerWidthGap))
+    //             || ((i>lowerHeightGap && i+j>=this.height+lowerHeightGap-1)&&(j>lowerWidthGap && i+j>=this.width+lowerWidthGap-1))) {
+    //                 
+    //                  newGameGrid[i][j] = new WallGameObject();
     //             }
     //         }
     //     }
