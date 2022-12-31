@@ -3,9 +3,7 @@ package Scenes;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class SceneController {
@@ -40,10 +38,11 @@ public class SceneController {
     }
 
     public void switchToHigScoreScene(ActionEvent event) throws IOException {
+        Audio.play("audio/button.mp3");
         new HighScoreScene().show((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 
-    public void exitGameButton(ActionEvent event) throws IOException {
+    public void exitGameButton() {
         Audio.play("audio/button.mp3");
         Platform.exit();
     }

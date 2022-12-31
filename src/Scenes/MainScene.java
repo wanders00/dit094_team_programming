@@ -9,8 +9,7 @@ public class MainScene extends SceneController {
     public void show(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/mainMenuScene.fxml"));
         stage.setTitle("Snake Game");
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        stage.setScene(new Scene(root));
         stage.show();
     }
     

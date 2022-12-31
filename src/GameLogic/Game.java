@@ -1,11 +1,8 @@
 package GameLogic;
 
-import javax.print.DocFlavor.STRING;
-
 import GameLogic.GameObjects.*;
 
 public class Game {
-    public static Layout currentLayout = Layout.ORDINARY;
     public static String playerName;
     
     // Should be local file
@@ -27,14 +24,16 @@ public class Game {
     private double currentGameScore;
     
 
-    public Game(int width, int height, Difficulty difficulty) {
+    public Game(int width, int height) {
+        FileHandler fh = new FileHandler();
         this.pausedGame = true;
         this.currentGameScore = 0;
         this.snake = new Snake(width / 2, height / 2);
-        this.layout = currentLayout; // have this read local file instead later
         this.width = width;
         this.height = height;
-        this.difficulty = difficulty;
+        this.layout = fh.readGameLayout();
+        this.difficulty = fh.readGameDifficulty();
+        fh.updateCurrentScore(0);
         this.grid = generateMap();
         generateFruit();
     }
@@ -103,14 +102,14 @@ public class Game {
 
             if (predictMovement() instanceof WallGameObject || predictMovement() instanceof SnakeSegment) {
                 // Game Over, return false to indicate that to the GameScene.
-                addScore(currentGameScore);
                 return false;
             } else if (predictMovement() instanceof FruitGameObject) {
                 // growSnake() and increase score, then move.
-                Audio.play("audio/Eat.wav");
+                Scenes.Audio.play("audio/Eat.wav");
                 this.snake.growSnake(this.snake.getRow(this.snake.getBody().size() - 1), this.snake
                         .getColumn(this.snake.getBody().size() - 1));
                 this.currentGameScore = this.currentGameScore + difficulty.getScoreMultiplier();
+                new FileHandler().updateCurrentScore(this.currentGameScore);
                 generateFruit();
             } else {
                 // else = instanceof EmptyGameObject, clean up the tail then move.
@@ -194,25 +193,12 @@ public class Game {
         return this.grid[predictRow()][predictColumn()];
     }
 
-    public void addScore(double newScore) { // creating a object is maybe not needed, but an easy way to create more
-                                            // atributes to show in the highScore Scene
-        Score score = new Score(newScore);
-    }
-
-    public double increaseScore(double Scoremultiplier) {
-        return this.difficulty.getScoreMultiplier();
-    }
-
     public double getCurrentGameScore() {
         return currentGameScore;
     }
 
     public String toStringScore() {
         return String.valueOf(this.currentGameScore);
-    }
-
-    public void setCurrentLayout(Layout currentLayout) {
-        Game.currentLayout = currentLayout;
     }
 
     public GameObject[][] getState() {

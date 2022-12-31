@@ -23,3 +23,6 @@ hs_err_pid*
 
 # folders
 /.vscode/launch.json
+
+#Local file, to not clutter the git, will auto-generate on launch anyways
+GameData.json
