@@ -30,6 +30,11 @@ public class MapSelectScene extends SceneController {
         switchToSelectMapScene(event);
     }
 
+    public void switchToOctagonLayout(ActionEvent event) throws IOException {
+        new FileHandler().updateGameLayout(Game.Layout.OCTAGON);
+        switchToSelectMapScene(event);
+    }
+
     public void initialize() {
         switch (new FileHandler().readGameLayout()) {
             case ORDINARY:
@@ -37,6 +42,9 @@ public class MapSelectScene extends SceneController {
                 break;
             case PLUS:
                 plusMap.setStyle("-fx-border-color: none ; ");
+                break;
+            case OCTAGON:
+                octagonMap.setStyle("-fx-border-color: none ; ");
                 break;
             default:
                 break;
@@ -48,4 +56,7 @@ public class MapSelectScene extends SceneController {
 
     @FXML
     private Button plusMap;
+
+    @FXML
+    private Button octagonMap;
 }

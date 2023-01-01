@@ -11,7 +11,8 @@ public class Game {
                          // and add more OR remove please mention it so that the correlating scene can be
                          // edited
         ORDINARY,
-        PLUS
+        PLUS,
+        OCTAGON
     }
 
     private Snake snake;
@@ -47,6 +48,9 @@ public class Game {
             case PLUS:
                 gameGrid = generatePlusMap();
                 break;
+            case OCTAGON:
+                gameGrid = generateOctagonMap();
+                break;
             default:
                 gameGrid = null;
                 break;
@@ -81,8 +85,6 @@ public class Game {
         // To get the initial border-walls.
         int widthGap = this.width / 4;
         int heightGap = this.height / 4;
-        // could link this to the difficulty setting; the harder the difficulty the
-        // bigger the square walls
 
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
@@ -99,29 +101,27 @@ public class Game {
     // kinda bad implementation but it works
     // feel free to improve it otherwise I'll do it another time
 
-    // not linked to any menus yet, so I'll leave it commented
+    private GameObject[][] generateOctagonMap() {
+        GameObject[][] octagonGameGrid = generateOrdinaryMap();
+        // To get the initial border-walls.
+        int upperWidthGap = this.width / 3;
+        int upperHeightGap = this.height / 3;
+        int lowerWidthGap = this.width - upperWidthGap;
+        int lowerHeightGap = this.height - upperHeightGap;
 
-    // private GameObject[][] generateNewMap() {
-    //     GameObject[][] newGameGrid = generateOrdinaryMap();
-
-    //     int upperWidthGap = this.width / 3;
-    //     int upperHeightGap = this.height / 3;
-    //     int lowerWidthGap = this.width - upperWidthGap;
-    //     int lowerHeightGap = this.height - upperHeightGap;
-
-    //     for (int i = 0; i < this.height; i++) {
-    //         for (int j = 0; j < this.width; j++) {
-    //             if(((i<upperHeightGap && i+j<upperHeightGap)||(j<upperWidthGap && i+j<upperWidthGap))
-    //             || ((i>lowerHeightGap && i-j>=lowerHeightGap)&&(j<upperWidthGap && i-j>=lowerHeightGap))
-    //             || ((i<upperHeightGap && j-i>=lowerWidthGap)&&(j>lowerWidthGap && j-i>=lowerWidthGap))
-    //             || ((i>lowerHeightGap && i+j>=this.height+lowerHeightGap-1)&&(j>lowerWidthGap && i+j>=this.width+lowerWidthGap-1))) {
-    //                 
-    //                  newGameGrid[i][j] = new WallGameObject();
-    //             }
-    //         }
-    //     }
-    //     return newGameGrid;
-	// }
+        for (int i = 0; i < this.height; i++) {
+            for (int j = 0; j < this.width; j++) {
+                if(((i<upperHeightGap && i+j<upperHeightGap)||(j<upperWidthGap && i+j<upperWidthGap))
+                || ((i>lowerHeightGap && i-j>=lowerHeightGap)&&(j<upperWidthGap && i-j>=lowerHeightGap))
+                || ((i<upperHeightGap && j-i>=lowerWidthGap)&&(j>lowerWidthGap && j-i>=lowerWidthGap))
+                || ((i>lowerHeightGap && i+j>=this.height+lowerHeightGap-1)&&(j>lowerWidthGap && i+j>=this.width+lowerWidthGap-1))) {
+                    
+                     octagonGameGrid[i][j] = new WallGameObject();
+                }
+            }
+        }
+        return octagonGameGrid;
+	}
 
     public boolean update() {
         if (!pausedGame) {

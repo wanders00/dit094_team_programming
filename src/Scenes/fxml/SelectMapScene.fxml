@@ -50,5 +50,20 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button fx:id="octagonMap" alignment="BOTTOM_CENTER" layoutX="70.0" layoutY="470.0" mnemonicParsing="false" onAction="#switchToOctagonLayout" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: red;">
+         <font>
+            <Font name="Yu Gothic Bold" size="30.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/octagonMapImage.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
