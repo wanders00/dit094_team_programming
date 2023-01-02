@@ -2,13 +2,13 @@ package GameLogic.GameObjects;
 
 public class SnakeSegment extends GameObject {
 
-    private final static int BODY_RED = 29;
-    private final static int BODY_GREEN = 170;
-    private final static int BODY_BLUE = 160;
+    private final static int BODY_RED = 70;
+    private final static int BODY_GREEN = 152;
+    private final static int BODY_BLUE = 232;
 
-    private final static int HEAD_RED = 33;
-    private final static int HEAD_GREEN = 131;
-    private final static int HEAD_BLUE = 128;
+    private final static int HEAD_RED = 25;
+    private final static int HEAD_GREEN = 98;
+    private final static int HEAD_BLUE = 196;
 
     public SnakeSegment() {
         super(BODY_RED, BODY_GREEN, BODY_BLUE);
