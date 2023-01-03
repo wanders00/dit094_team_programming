@@ -76,7 +76,7 @@
          <graphic>
             <ImageView fitHeight="250.0" fitWidth="269.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/BlankMap.png" />
+                  <Image url="@img/blankMapImage.png" />
                </image>
             </ImageView>
          </graphic>
