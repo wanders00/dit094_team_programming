@@ -51,6 +51,9 @@ public class MapSelectScene extends SceneController {
             case OCTAGON:
                 octagonMap.setStyle("-fx-border-color: none ; ");
                 break;
+            case BLANK:
+                blankMap.setStyle("-fx-border-color: none ; ");
+                break;
             default:
                 break;
         }
