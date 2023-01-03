@@ -37,7 +37,7 @@ public class SceneController {
         new MapSelectScene().show((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 
-    public void switchToHigScoreScene(ActionEvent event) throws IOException {
+    public void switchToHighScoreScene(ActionEvent event) throws IOException {
         Audio.play("audio/button.mp3");
         new HighScoreScene().show((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
