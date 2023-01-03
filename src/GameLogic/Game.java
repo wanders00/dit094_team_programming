@@ -97,6 +97,12 @@ public class Game {
         return plusGameGrid;
     }
 
+    private GameObject[][] generateBlankMap()
+    {
+        GameObject[][] grid = new GameObject[height][width];
+        for(int i=0;i<height;i++)for(int j=0;j<width;j++)grid[i][j]=new EmptyGameObject();
+        return grid;
+    }
 
     // kinda bad implementation but it works
     // feel free to improve it otherwise I'll do it another time
@@ -137,7 +143,8 @@ public class Game {
                 this.snake.growSnake(this.snake.getRow(this.snake.getBody().size() - 1), this.snake
                         .getColumn(this.snake.getBody().size() - 1));
                 this.currentGameScore = this.currentGameScore + difficulty.getScoreMultiplier();
-                new FileHandler().updateCurrentScore(this.currentGameScore);
+                new FileHandler().updateCurrentScore(this.currentGameScore);//this method should be static, 
+                //creating a new instance of a class for one use is ridiculous
                 generateFruit();
             } else {
                 // else = instanceof EmptyGameObject, clean up the tail then move.
@@ -190,15 +197,16 @@ public class Game {
 
     public int[] predictCoordinates() {
         // Predicts the next position of the snake head depending on the direction.
-        switch (this.snake.getDirection()) {
+        switch (this.snake.getDirection()) 
+        {
             case DOWN:
-                return new int[] { this.snake.getRow(0) + 1, this.snake.getColumn(0) };
+                return new int[] { (this.snake.getRow(0) + 1 + height)%height, (this.snake.getColumn(0)+width)%width };
             case LEFT:
-                return new int[] { this.snake.getRow(0), this.snake.getColumn(0) - 1 };
+                return new int[] { (this.snake.getRow(0)+ height)%height, (this.snake.getColumn(0) - 1 + width)%width };
             case RIGHT:
-                return new int[] { this.snake.getRow(0), this.snake.getColumn(0) + 1 };
+                return new int[] { (this.snake.getRow(0)+ height)%height, (this.snake.getColumn(0) + 1 + width)%width };
             case UP:
-                return new int[] { this.snake.getRow(0) - 1, this.snake.getColumn(0) };
+                return new int[] { (this.snake.getRow(0) - 1+ height)%height, (this.snake.getColumn(0)+width)%width };
             default:
                 return null;
         }
