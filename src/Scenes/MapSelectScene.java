@@ -35,6 +35,11 @@ public class MapSelectScene extends SceneController {
         switchToSelectMapScene(event);
     }
 
+    public void switchToBlankLayout(ActionEvent event) throws IOException {
+        new FileHandler().updateGameLayout(Game.Layout.BLANK);
+        switchToSelectMapScene(event);
+    }
+
     public void initialize() {
         switch (new FileHandler().readGameLayout()) {
             case ORDINARY:
@@ -59,4 +64,7 @@ public class MapSelectScene extends SceneController {
 
     @FXML
     private Button octagonMap;
+
+    @FXML
+    private Button blankMap;
 }

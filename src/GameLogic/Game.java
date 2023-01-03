@@ -12,7 +12,8 @@ public class Game {
                          // edited
         ORDINARY,
         PLUS,
-        OCTAGON
+        OCTAGON,
+        BLANK
     }
 
     private Snake snake;
@@ -50,6 +51,9 @@ public class Game {
                 break;
             case OCTAGON:
                 gameGrid = generateOctagonMap();
+                break;
+            case BLANK:
+                gameGrid = generateBlankMap();
                 break;
             default:
                 gameGrid = null;
