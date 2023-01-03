@@ -1,7 +1,7 @@
 package Scenes;
 import java.io.IOException;
-import GameLogic.Difficulty;
 import GameLogic.Direction;
+import GameLogic.FileHandler;
 import GameLogic.Game;
 import GameLogic.Keybind;
 import GameLogic.GameObjects.GameObject;
@@ -12,17 +12,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.media.*;
 
 public class GameScene extends SceneController {
-
-    public static Difficulty selectedDifficulty = Difficulty.NORMAL; // read from json file
 
     public void show(Stage stage) {
         int cellCount = 20;
         int cellSize = 40;
         int gridSize = cellCount * cellSize;
-        Game game = new Game(cellCount, cellCount, selectedDifficulty); // Fix difficulty later as local file
+        Game game = new Game(cellCount, cellCount); // Fix difficulty later as local file
         Canvas canvas = new Canvas(gridSize, gridSize);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         StackPane root = new StackPane();
@@ -32,7 +29,7 @@ public class GameScene extends SceneController {
         stage.show();
 
         new AnimationTimer() {
-            private long frameDelay = game.getDifficulty().getGameTimerSpeed();
+            private long frameDelay = new FileHandler().readGameDifficulty().getGameTimerSpeed();
             private long lastPress;
 
             public void handle(long arg0) {
@@ -102,14 +99,8 @@ public class GameScene extends SceneController {
                     
                     stop();
                     try {
-                        GameOverScene.currentScore = game.getCurrentGameScore();
-                        GameOverScene.currentLayout = game.getLayout();
-                        GameOverScene.currentDifficulty = game.getDifficulty();
+                        new FileHandler().updateHighScores(game.getCurrentGameScore());
                         new GameOverScene().show(stage);
-                        /*Parent root = FXMLLoader.load(getClass().getResource("fxml/gameOverScene.fxml"));
-                        Scene gameOverScene = new Scene(root);
-                        stage.setScene(gameOverScene);
-                        stage.show();*/
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

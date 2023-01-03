@@ -1,19 +1,18 @@
 package GameLogic;
 
-import javax.print.DocFlavor.STRING;
-
 import GameLogic.GameObjects.*;
 
 public class Game {
-    public static Layout currentLayout = Layout.ORDINARY;
     public static String playerName;
+    
     // Should be local file
 
     public enum Layout { // there is a scene built where the user can choose between these. If you update
                          // and add more OR remove please mention it so that the correlating scene can be
                          // edited
         ORDINARY,
-        PLUS
+        PLUS,
+        OCTAGON
     }
 
     private Snake snake;
@@ -26,14 +25,16 @@ public class Game {
     private double currentGameScore;
     
 
-    public Game(int width, int height, Difficulty difficulty) {
+    public Game(int width, int height) {
+        FileHandler fh = new FileHandler();
         this.pausedGame = true;
         this.currentGameScore = 0;
         this.snake = new Snake(width / 2, height / 2);
-        this.layout = currentLayout; // have this read local file instead later
         this.width = width;
         this.height = height;
-        this.difficulty = difficulty;
+        this.layout = fh.readGameLayout();
+        this.difficulty = fh.readGameDifficulty();
+        fh.updateCurrentScore(0);
         this.grid = generateMap();
         generateFruit();
     }
@@ -46,6 +47,9 @@ public class Game {
                 break;
             case PLUS:
                 gameGrid = generatePlusMap();
+                break;
+            case OCTAGON:
+                gameGrid = generateOctagonMap();
                 break;
             default:
                 gameGrid = null;
@@ -81,8 +85,6 @@ public class Game {
         // To get the initial border-walls.
         int widthGap = this.width / 4;
         int heightGap = this.height / 4;
-        // could link this to the difficulty setting; the harder the difficulty the
-        // bigger the square walls
 
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
@@ -95,6 +97,38 @@ public class Game {
         return plusGameGrid;
     }
 
+    private GameObject[][] generateBlankMap()
+    {
+        GameObject[][] grid = new GameObject[height][width];
+        for(int i=0;i<height;i++)for(int j=0;j<width;j++)grid[i][j]=new EmptyGameObject();
+        return grid;
+    }
+
+    // kinda bad implementation but it works
+    // feel free to improve it otherwise I'll do it another time
+
+    private GameObject[][] generateOctagonMap() {
+        GameObject[][] octagonGameGrid = generateOrdinaryMap();
+        // To get the initial border-walls.
+        int upperWidthGap = this.width / 3;
+        int upperHeightGap = this.height / 3;
+        int lowerWidthGap = this.width - upperWidthGap;
+        int lowerHeightGap = this.height - upperHeightGap;
+
+        for (int i = 0; i < this.height; i++) {
+            for (int j = 0; j < this.width; j++) {
+                if(((i<upperHeightGap && i+j<upperHeightGap)||(j<upperWidthGap && i+j<upperWidthGap))
+                || ((i>lowerHeightGap && i-j>=lowerHeightGap)&&(j<upperWidthGap && i-j>=lowerHeightGap))
+                || ((i<upperHeightGap && j-i>=lowerWidthGap)&&(j>lowerWidthGap && j-i>=lowerWidthGap))
+                || ((i>lowerHeightGap && i+j>=this.height+lowerHeightGap-1)&&(j>lowerWidthGap && i+j>=this.width+lowerWidthGap-1))) {
+                    
+                     octagonGameGrid[i][j] = new WallGameObject();
+                }
+            }
+        }
+        return octagonGameGrid;
+	}
+
     public boolean update() {
         if (!pausedGame) {
             // If pausedGame == false; the game will update.
@@ -102,14 +136,15 @@ public class Game {
 
             if (predictMovement() instanceof WallGameObject || predictMovement() instanceof SnakeSegment) {
                 // Game Over, return false to indicate that to the GameScene.
-                addScore(currentGameScore);
                 return false;
             } else if (predictMovement() instanceof FruitGameObject) {
                 // growSnake() and increase score, then move.
-                Audio.play("audio/Eat.wav");
+                Scenes.Audio.play("audio/Eat.wav");
                 this.snake.growSnake(this.snake.getRow(this.snake.getBody().size() - 1), this.snake
                         .getColumn(this.snake.getBody().size() - 1));
                 this.currentGameScore = this.currentGameScore + difficulty.getScoreMultiplier();
+                new FileHandler().updateCurrentScore(this.currentGameScore);//this method should be static, 
+                //creating a new instance of a class for one use is ridiculous
                 generateFruit();
             } else {
                 // else = instanceof EmptyGameObject, clean up the tail then move.
@@ -162,15 +197,16 @@ public class Game {
 
     public int[] predictCoordinates() {
         // Predicts the next position of the snake head depending on the direction.
-        switch (this.snake.getDirection()) {
+        switch (this.snake.getDirection()) 
+        {
             case DOWN:
-                return new int[] { this.snake.getRow(0) + 1, this.snake.getColumn(0) };
+                return new int[] { (this.snake.getRow(0) + 1 + height)%height, (this.snake.getColumn(0)+width)%width };
             case LEFT:
-                return new int[] { this.snake.getRow(0), this.snake.getColumn(0) - 1 };
+                return new int[] { (this.snake.getRow(0)+ height)%height, (this.snake.getColumn(0) - 1 + width)%width };
             case RIGHT:
-                return new int[] { this.snake.getRow(0), this.snake.getColumn(0) + 1 };
+                return new int[] { (this.snake.getRow(0)+ height)%height, (this.snake.getColumn(0) + 1 + width)%width };
             case UP:
-                return new int[] { this.snake.getRow(0) - 1, this.snake.getColumn(0) };
+                return new int[] { (this.snake.getRow(0) - 1+ height)%height, (this.snake.getColumn(0)+width)%width };
             default:
                 return null;
         }
@@ -193,25 +229,12 @@ public class Game {
         return this.grid[predictRow()][predictColumn()];
     }
 
-    public void addScore(double newScore) { // creating a object is maybe not needed, but an easy way to create more
-                                            // atributes to show in the highScore Scene
-        Score score = new Score(newScore);
-    }
-
-    public double increaseScore(double Scoremultiplier) {
-        return this.difficulty.getScoreMultiplier();
-    }
-
     public double getCurrentGameScore() {
         return currentGameScore;
     }
 
     public String toStringScore() {
         return String.valueOf(this.currentGameScore);
-    }
-
-    public void setCurrentLayout(Layout currentLayout) {
-        Game.currentLayout = currentLayout;
     }
 
     public GameObject[][] getState() {

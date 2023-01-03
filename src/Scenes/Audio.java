@@ -1,5 +1,6 @@
 package Scenes;
-import javafx.scene.media.*;
+
+import javafx.scene.media.AudioClip;
 
 public class Audio 
 {

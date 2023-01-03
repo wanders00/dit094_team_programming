@@ -35,25 +35,25 @@ public class Snake {
         this.body.add(new ArrayList<>(Arrays.asList(row, column)));
     }
 
-    public void setRow(int bodypart, int row) {
-        this.body.get(bodypart).set(0, row);
+    public void setRow(int bodyPart, int row) {
+        this.body.get(bodyPart).set(0, row);
     }
 
-    public void setColumn(int bodypart, int column) {
-        this.body.get(bodypart).set(1, column);
+    public void setColumn(int bodyPart, int column) {
+        this.body.get(bodyPart).set(1, column);
     }
 
-    public void setPosition(int bodypart, int row, int column) {
-        setRow(bodypart, row);
-        setColumn(bodypart, column);
+    public void setPosition(int bodyPart, int row, int column) {
+        setRow(bodyPart, row);
+        setColumn(bodyPart, column);
     }
 
-    public int getRow(int bodypart) {
-        return this.body.get(bodypart).get(0);
+    public int getRow(int bodyPart) {
+        return this.body.get(bodyPart).get(0);
     }
 
-    public int getColumn(int bodypart) {
-        return this.body.get(bodypart).get(1);
+    public int getColumn(int bodyPart) {
+        return this.body.get(bodyPart).get(1);
     }
 
     public ArrayList<ArrayList<Integer>> getBody() { // contains all the body parts of the snake

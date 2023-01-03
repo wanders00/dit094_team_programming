@@ -2,8 +2,7 @@ package Scenes;
 
 import java.io.IOException;
 
-import GameLogic.Difficulty;
-import GameLogic.Game.Layout;
+import GameLogic.FileHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,14 +12,9 @@ import javafx.stage.Stage;
 
 public class GameOverScene extends SceneController {
 
-    public static double currentScore;
-    public static Layout currentLayout;
-    public static Difficulty currentDifficulty;
     public void show(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/gameOverScene.fxml"));
-        stage.setTitle("Snake Game - Game Over");
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        stage.setScene(new Scene(root));
         stage.show();
     }
 
@@ -28,8 +22,9 @@ public class GameOverScene extends SceneController {
     private Label scoreLabel;
 
     public void initialize() {
-        scoreLabel.setText("Score: " + currentScore + System.lineSeparator() + "Layout: " + currentLayout
-                + System.lineSeparator() + " Difficulty: " + currentDifficulty);
+        FileHandler fh = new FileHandler();
+        scoreLabel.setText("Score: " + fh.readCurrentScore() + System.lineSeparator() + "Layout: " + fh.readGameLayout()
+                + System.lineSeparator() + "Difficulty: " + fh.readGameDifficulty());
     }
 
 

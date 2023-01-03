@@ -12,9 +12,15 @@ public class IntroScene extends SceneController{
 
     @FXML
     private TextField userNameField;
+    public void setUsername(){
+        String playerName = userNameField.getText();
 
+    }
+    
     public void show(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/introScene.fxml"));
+        stage.setTitle("Snake Game");
+        stage.setScene(new Scene(root));
         stage.setTitle("Snake Game - Intro Page");
         Scene scene = new Scene(root);
         stage.setScene(scene);
