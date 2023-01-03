@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 
 public class HighScoreScene extends SceneController {
 
+    public static final int HIGH_SCORES_AMOUNT = 10;
+
     public void show(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/highScoreScene.fxml"));
         stage.setTitle("Snake Game - High Scores");

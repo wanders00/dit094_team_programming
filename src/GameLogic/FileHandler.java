@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import GameLogic.Game.Layout;
+import Scenes.HighScoreScene;
 
 @SuppressWarnings({ "unchecked", "deprecated" })
 public class FileHandler {
@@ -85,30 +86,36 @@ public class FileHandler {
             highScores.add(newScore);
             updateValue("highScores", highScores);
         } else {
+            JSONObject newScore = new JSONObject();
             for (int i = 0; i < highScores.size(); i++) {
                 JSONObject curJSONObject = (JSONObject) highScores.get(i);
                 Double curScore = Double.parseDouble(curJSONObject.get("score").toString());
-                if (score > curScore) {
+                if (score > curScore) { // Can most likely make this part better
                     JSONObject lastObject = (JSONObject) highScores.get(highScores.size() - 1);
                     for (int j = highScores.size() - 1; j > i; j--) {
                         highScores.set(j, highScores.get(j - 1));
                     }
                     highScores.add(lastObject);
-                    JSONObject newScore = new JSONObject();
                     newScore.put("score", score);
                     newScore.put("layout", readGameLayout().toString());
                     newScore.put("difficulty", readGameDifficulty().toString());
                     highScores.set(i, newScore);
-
-                    while (highScores.size() > 10) { // remove magic number
-                        highScores.remove(10);
-                    }
-
-                    updateValue("highScores", highScores);
+                    break;
+                } else if (i == highScores.size() - 1) {
+                    newScore.put("score", score);
+                    newScore.put("layout", readGameLayout().toString());
+                    newScore.put("difficulty", readGameDifficulty().toString());
+                    highScores.add(newScore);
                     break;
                 }
             }
         }
+
+        while (highScores.size() > HighScoreScene.HIGH_SCORES_AMOUNT) {
+            highScores.remove(HighScoreScene.HIGH_SCORES_AMOUNT);
+        }
+
+        updateValue("highScores", highScores);
     }
 
     public void updateCurrentScore(double newCurrentScore) {
