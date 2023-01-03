@@ -18,6 +18,7 @@ public class GameOverScene extends SceneController {
     public static Difficulty currentDifficulty;
     public void show(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/gameOverScene.fxml"));
+        stage.setTitle("Snake Game - Game Over");
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

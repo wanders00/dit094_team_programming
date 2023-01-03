@@ -18,7 +18,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <effect>
-            <DropShadow height="0.0" radius="0.0" width="0.0">
+            <DropShadow height="1.0" radius="0.0" width="0.0">
                <color>
                   <Color red="0.14020468294620514" green="0.18421052396297455" blue="0.1108674481511116" />
                </color>
