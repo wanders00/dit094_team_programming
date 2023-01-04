@@ -11,9 +11,11 @@ public class Game {
                          // and add more OR remove please mention it so that the correlating scene can be
                          // edited
         ORDINARY,
-        PLUS,
-        OCTAGON,
-        BLANK
+        BLANK,
+        BORDERED_PLUS,
+        UNBORDERED_PLUS,
+        BORDERED_OCTAGON,
+        UNBORDERED_OCTAGON
     }
 
     private Snake snake;
@@ -44,16 +46,22 @@ public class Game {
         GameObject[][] gameGrid;
         switch (this.layout) {
             case ORDINARY:
-                gameGrid = generateOrdinaryMap();
-                break;
-            case PLUS:
-                gameGrid = generatePlusMap();
-                break;
-            case OCTAGON:
-                gameGrid = generateOctagonMap();
+                gameGrid = generateOrdinaryMap(true);
                 break;
             case BLANK:
-                gameGrid = generateBlankMap();
+                gameGrid = generateOrdinaryMap(false);
+                break;
+            case BORDERED_PLUS:
+                gameGrid = generatePlusMap(true);
+                break;
+            case UNBORDERED_PLUS:
+                gameGrid = generatePlusMap(false);
+                break;
+            case BORDERED_OCTAGON:
+                gameGrid = generateOctagonMap(true);
+                break;
+            case UNBORDERED_OCTAGON:
+                gameGrid = generateOctagonMap(false);
                 break;
             default:
                 gameGrid = null;
@@ -67,33 +75,46 @@ public class Game {
         return gameGrid;
     }
 
-    private GameObject[][] generateOrdinaryMap() {
+    private GameObject[][] generateOrdinaryMap(boolean hasBorders) {
         GameObject[][] normalGameGrid = new GameObject[this.height][this.width];
+
+        // generate a default square map without walls
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
-                if (i % (height - 1) == 0 || j % (width - 1) == 0) {
-                    // If i or j == lowest or highest value, it is a border (WallGameObject).
-                    // 0 = lowest value, 0 % X == 0 > where X is any number.
-                    // height/width = highest value, - 1 since array start at 0.
-                    normalGameGrid[i][j] = new WallGameObject();
-                } else {
-                    normalGameGrid[i][j] = new EmptyGameObject();
-                }
+                normalGameGrid[i][j] = new EmptyGameObject();
             }
         }
-        return normalGameGrid;
-    }
 
-    private GameObject[][] generatePlusMap() {
-        GameObject[][] plusGameGrid = generateOrdinaryMap();
-        // To get the initial border-walls.
+        if (hasBorders) { // if hasBorders is true, then add the outer walls
+            for (int i = 0; i < this.height; i++) {
+                for (int j = 0; j < this.width; j++) {
+                    if (i % (this.height - 1) == 0 || j % (this.width - 1) == 0) {
+                        // If i or j == lowest or highest value, it is a border (WallGameObject).
+                        // 0 = lowest value, 0 % X == 0 > where X is any number.
+                        // height/width = highest value, - 1 since array start at 0.
+                        normalGameGrid[i][j] = new WallGameObject();
+                    } 
+                }
+            }
+        } 
+        return normalGameGrid;
+    }       
+
+    private GameObject[][] generatePlusMap(boolean hasBorders) {
+        GameObject[][] plusGameGrid;
+        if (hasBorders) { // an if-statement to determine whether the map will have borders or not
+            plusGameGrid = generateOrdinaryMap(true);
+        }
+        else {
+            plusGameGrid = generateOrdinaryMap(false);
+        }
         int widthGap = this.width / 4;
         int heightGap = this.height / 4;
 
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
                 if (!((i + heightGap < this.height - 1 && i - heightGap > 0)
-                        || (j + widthGap < this.width - 1 && j - widthGap > 0))) {
+                || (j + widthGap < this.width - 1 && j - widthGap > 0))) {
                     plusGameGrid[i][j] = new WallGameObject();
                 }
             }
@@ -101,19 +122,18 @@ public class Game {
         return plusGameGrid;
     }
 
-    private GameObject[][] generateBlankMap()
-    {
-        GameObject[][] grid = new GameObject[height][width];
-        for(int i=0;i<height;i++)for(int j=0;j<width;j++)grid[i][j]=new EmptyGameObject();
-        return grid;
-    }
-
     // kinda bad implementation but it works
     // feel free to improve it otherwise I'll do it another time
 
-    private GameObject[][] generateOctagonMap() {
-        GameObject[][] octagonGameGrid = generateOrdinaryMap();
-        // To get the initial border-walls.
+    private GameObject[][] generateOctagonMap(boolean hasBorders) {
+        GameObject[][] octagonGameGrid;
+        if (hasBorders) { // an if-statement to determine whether the map will have borders or not
+            octagonGameGrid = generateOrdinaryMap(true);
+        }
+        else {
+            octagonGameGrid = generateOrdinaryMap(false);
+        }
+
         int upperWidthGap = this.width / 3;
         int upperHeightGap = this.height / 3;
         int lowerWidthGap = this.width - upperWidthGap;
@@ -122,9 +142,9 @@ public class Game {
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
                 if(((i<upperHeightGap && i+j<upperHeightGap)||(j<upperWidthGap && i+j<upperWidthGap))
-                || ((i>lowerHeightGap && i-j>=lowerHeightGap)&&(j<upperWidthGap && i-j>=lowerHeightGap))
-                || ((i<upperHeightGap && j-i>=lowerWidthGap)&&(j>lowerWidthGap && j-i>=lowerWidthGap))
-                || ((i>lowerHeightGap && i+j>=this.height+lowerHeightGap-1)&&(j>lowerWidthGap && i+j>=this.width+lowerWidthGap-1))) {
+                || ((i>=lowerHeightGap && i-j>=lowerHeightGap)&&(j<upperWidthGap && i-j>=lowerHeightGap))
+                || ((i<upperHeightGap && j-i>=lowerWidthGap)&&(j>=lowerWidthGap && j-i>=lowerWidthGap))
+                || ((i>=lowerHeightGap && i+j>=this.height+lowerHeightGap-1)&&(j>=lowerWidthGap && i+j>=this.width+lowerWidthGap-1))) {
                     
                      octagonGameGrid[i][j] = new WallGameObject();
                 }

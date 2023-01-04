@@ -25,18 +25,28 @@ public class MapSelectScene extends SceneController {
         switchToSelectMapScene(event);
     }
 
-    public void switchToPlusLayout(ActionEvent event) throws IOException {
-        new FileHandler().updateGameLayout(Game.Layout.PLUS);
-        switchToSelectMapScene(event);
-    }
-
-    public void switchToOctagonLayout(ActionEvent event) throws IOException {
-        new FileHandler().updateGameLayout(Game.Layout.OCTAGON);
-        switchToSelectMapScene(event);
-    }
-
     public void switchToBlankLayout(ActionEvent event) throws IOException {
         new FileHandler().updateGameLayout(Game.Layout.BLANK);
+        switchToSelectMapScene(event);
+    }
+
+    public void switchToBorderedPlusLayout(ActionEvent event) throws IOException {
+        new FileHandler().updateGameLayout(Game.Layout.BORDERED_PLUS);
+        switchToSelectMapScene(event);
+    }
+
+    public void switchToUnborderedPlusLayout(ActionEvent event) throws IOException {
+        new FileHandler().updateGameLayout(Game.Layout.UNBORDERED_PLUS);
+        switchToSelectMapScene(event);
+    }
+
+    public void switchToBorderedOctagonLayout(ActionEvent event) throws IOException {
+        new FileHandler().updateGameLayout(Game.Layout.BORDERED_OCTAGON);
+        switchToSelectMapScene(event);
+    }
+
+    public void switchToUnborderedOctagonLayout(ActionEvent event) throws IOException {
+        new FileHandler().updateGameLayout(Game.Layout.UNBORDERED_OCTAGON);
         switchToSelectMapScene(event);
     }
 
@@ -45,14 +55,20 @@ public class MapSelectScene extends SceneController {
             case ORDINARY:
                 ordinaryMap.setStyle("-fx-border-color: none ; ");
                 break;
-            case PLUS:
-                plusMap.setStyle("-fx-border-color: none ; ");
+            case BORDERED_PLUS:
+                borderedPlusMap.setStyle("-fx-border-color: none ; ");
                 break;
-            case OCTAGON:
-                octagonMap.setStyle("-fx-border-color: none ; ");
+            case BORDERED_OCTAGON:
+                borderedOctagonMap.setStyle("-fx-border-color: none ; ");
                 break;
             case BLANK:
                 blankMap.setStyle("-fx-border-color: none ; ");
+                break;
+            case UNBORDERED_PLUS:
+                unborderedPlusMap.setStyle("-fx-border-color: none ; ");
+                break;
+            case UNBORDERED_OCTAGON:
+                unborderedOctagonMap.setStyle("-fx-border-color: none ; ");
                 break;
             default:
                 break;
@@ -63,10 +79,16 @@ public class MapSelectScene extends SceneController {
     private Button ordinaryMap;
 
     @FXML
-    private Button plusMap;
+    private Button borderedPlusMap;
 
     @FXML
-    private Button octagonMap;
+    private Button unborderedPlusMap;
+
+    @FXML
+    private Button borderedOctagonMap;
+
+    @FXML
+    private Button unborderedOctagonMap;
 
     @FXML
     private Button blankMap;

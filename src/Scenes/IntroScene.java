@@ -13,7 +13,7 @@ public class IntroScene extends SceneController{
     @FXML
     private TextField userNameField;
     public void setUsername(){
-        String playerName = userNameField.getText();
+        // String playerName = userNameField.getText();
 
     }
     
