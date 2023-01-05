@@ -7,14 +7,15 @@ import javafx.util.Duration;
 
 public class Audio 
 {
+    //Loading all audio files
     static private MediaPlayer MainTheme = new MediaPlayer(new Media(new Audio().getClass().getResource("audio/8bit_beat.mp3").toExternalForm()));
     static private AudioClip ButtonSound = new AudioClip(new Audio().getClass().getResource("audio/button.mp3").toExternalForm());
     static private AudioClip EatSound = new AudioClip(new Audio().getClass().getResource("audio/Eat.mp3").toExternalForm());
     static private AudioClip DeathSound = new AudioClip(new Audio().getClass().getResource("audio/DoubleSound.mp3").toExternalForm());
-    
+    //Volume variables
     static double SoundVolume = 1.0;//swap to value from file
     static double MusicVolume = 1.0;//swap to value from file
-
+    //Sound playback functions
     static public void ButtonPress()
     {
         ButtonSound.play(SoundVolume);
@@ -36,6 +37,7 @@ public class Audio
         });
         MainTheme.play();
     }
+    //Volume setters
     static public void setMusicVolume(double target)
     {
         MusicVolume = target;
