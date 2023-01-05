@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
@@ -16,7 +15,6 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.SettingsScene">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111111" height="534.0" layoutY="268.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="233.0" layoutX="150.0" layoutY="518.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111111" height="255.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
       <CheckBox layoutX="150.0" layoutY="185.0" mnemonicParsing="false" onAction="#switchFxOff" selected="true" text="Sound Effects" textFill="WHITE">
          <font>
@@ -86,101 +84,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text fill="WHITE" layoutX="312.0" layoutY="550.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keybindings">
-         <font>
-            <Font name="System Bold" size="30.0" />
-         </font>
-      </Text>
-      <TextArea fx:id="turnUpBind" layoutX="258.0" layoutY="589.0" prefHeight="31.0" prefWidth="61.0" promptText="Enter key">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </TextArea>
-      <Text fill="#7bff39" layoutX="150.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TURN UP">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </Text>
-      <Text fill="#7bff39" layoutX="150.0" layoutY="650.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TURN LEFT">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </Text>
-      <Text fill="#7bff39" layoutX="150.0" layoutY="690.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TURN DOWN">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </Text>
-      <Text fill="#7bff39" layoutX="150.0" layoutY="730.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TURN RIGHT">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </Text>
-      <Text fill="#7bff39" layoutX="480.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAUSE">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </Text>
-      <TextArea fx:id="turnLeftBind" layoutX="258.0" layoutY="629.0" prefHeight="31.0" prefWidth="61.0" promptText="Enter key">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </TextArea>
-      <TextArea fx:id="turnDownBind" layoutX="258.0" layoutY="669.0" prefHeight="31.0" prefWidth="61.0" promptText="Enter key">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </TextArea>
-      <TextArea fx:id="turnRightBInd" layoutX="258.0" layoutY="709.0" prefHeight="31.0" prefWidth="61.0" promptText="Enter key">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </TextArea>
-      <TextArea layoutX="545.0" layoutY="589.0" prefHeight="31.0" prefWidth="61.0" promptText="Enter key">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </TextArea>
-      <Text fill="#fcfcfc" layoutX="326.0" layoutY="609.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Default &quot;W&quot;)">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-      </Text>
-      <Text fill="#fcfcfc" layoutX="326.0" layoutY="649.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Default &quot;A&quot;)">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-      </Text>
-      <Text fill="#fcfcfc" layoutX="327.0" layoutY="689.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Default &quot;S&quot;)">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-      </Text>
-      <Text fill="#fcfcfc" layoutX="328.0" layoutY="728.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Default &quot;D&quot;)">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-      </Text>
-      <Text fill="#fcfcfc" layoutX="545.0" layoutY="638.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Default &quot;P&quot;)">
-         <font>
-            <Font name="System Bold" size="10.0" />
-         </font>
-      </Text>
       <Button fx:id="easyDifficulty" layoutX="50.0" layoutY="392.0" mnemonicParsing="false" onAction="#switchToEasyDifficulty" prefHeight="100.0" prefWidth="200.0" text="Easy">
          <font>
             <Font name="System Bold" size="30.0" />
@@ -210,6 +113,14 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Text>
+      <Button layoutX="149.0" layoutY="570.0" mnemonicParsing="false" onAction="#switchToSelectMapScene" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: black;" text="Select Map" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
    <opaqueInsets>
       <Insets />

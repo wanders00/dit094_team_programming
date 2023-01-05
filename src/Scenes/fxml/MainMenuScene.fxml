@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #111111;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.MainScene">
    <children>
-      <Button layoutX="150.0" layoutY="120.0" mnemonicParsing="false" onAction="#switchGameScene" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: black;" text="PLAY!!" textAlignment="CENTER" textFill="#7bff39" underline="true">
+      <Button layoutX="150.0" layoutY="120.0" mnemonicParsing="false" onAction="#switchGameScene" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: black;" text="START GAME" textAlignment="CENTER" textFill="#7bff39" underline="true">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
@@ -25,7 +25,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button layoutX="150.0" layoutY="380.0" mnemonicParsing="false" onAction="#switchToSettingsScene" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: black;" text="Settings" textFill="WHITE">
+      <Button layoutX="150.0" layoutY="250.0" mnemonicParsing="false" onAction="#switchToSettingsScene" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: black;" text="Settings" textFill="WHITE">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
@@ -33,7 +33,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="150.0" layoutY="510.0" mnemonicParsing="false" onAction="#switchToHighScoreScene" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: black;" text="High Scores" textFill="WHITE">
+      <Button layoutX="150.0" layoutY="380.0" mnemonicParsing="false" onAction="#switchToHighScoreScene" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: black;" text="High Scores" textFill="WHITE">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
@@ -48,22 +48,6 @@
          <effect>
             <InnerShadow choke="0.71" height="59.93" radius="29.9525" width="61.88" />
          </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="150.0" layoutY="250.0" mnemonicParsing="false" onAction="#switchToSelectMapScene" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: black;" text="Select Map" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="40.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="34.0" layoutY="34.0" mnemonicParsing="false" onAction="#switchToIntroScene" prefHeight="31.0" prefWidth="121.0" text="Change user" textFill="RED">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

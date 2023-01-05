@@ -90,17 +90,4 @@ public class SettingsScene extends SceneController {
 
     @FXML
     private CheckBox muteMusic;
-/*
-    @FXML
-    private TextField turnUpBind;
-
-    @FXML
-    private TextField turnLeftBind;
-
-    @FXML
-    private TextField turnDownBind;
-
-    @FXML
-    private TextField turnRightBind;
-    */
 }

@@ -2,6 +2,7 @@ import java.io.File;
 
 import GameLogic.FileHandler;
 import Scenes.IntroScene;
+import Scenes.MainScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -16,7 +17,7 @@ public class Main extends Application {
 
     public void start(Stage stage) throws Exception {
         stage.setResizable(false);
-        new IntroScene().show(stage);
+        new MainScene().show(stage);
     }
 
 }
