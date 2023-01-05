@@ -29,7 +29,7 @@ public class GameScene extends SceneController {
         stage.show();
 
         new AnimationTimer() {
-            private long frameDelay = new FileHandler().readGameDifficulty().getGameTimerSpeed();
+            private long frameDelay = FileHandler.readGameDifficulty().getGameTimerSpeed();
             private long lastPress;
 
             public void handle(long arg0) {
@@ -94,12 +94,11 @@ public class GameScene extends SceneController {
                 lastPress = System.nanoTime();
                 game.getSnake().updateDirection();
                 if (!game.update()) {
-                    Audio.play("audio/death_sound_2.mp3");
-                    Audio.play("audio/test.mp3");
+                    Audio.DeathSound();
                     
                     stop();
                     try {
-                        new FileHandler().updateHighScores(game.getCurrentGameScore());
+                        FileHandler.updateHighScores(game.getCurrentGameScore());
                         new GameOverScene().show(stage);
                     } catch (IOException e) {
                         e.printStackTrace();

@@ -14,7 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #111111;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scenes.IntroScene">
    <children>
-      <ImageView fitHeight="792.0" fitWidth="800.0" layoutX="14.0" layoutY="14.0" opacity="0.3" pickOnBounds="true">
+      <ImageView fitHeight="792.0" fitWidth="800.0" layoutY="4.0" opacity="0.3" pickOnBounds="true">
          <image>
             <Image url="@../../../../../../../Downloads/23511276.jpg" />
          </image>

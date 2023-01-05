@@ -1,7 +1,7 @@
 package GameLogic.GameObjects;
 import javafx.scene.paint.Color;
 
-public abstract class GameObject {
+public abstract class GameObject {//An abstract class to provide a skeleton for game objects.
     private Color color;
 
     public GameObject(int red, int green, int blue) {

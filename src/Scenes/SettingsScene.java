@@ -30,20 +30,17 @@ public class SettingsScene extends SceneController {
     }
 
     public void switchToEasyDifficulty(ActionEvent event) throws IOException {
-        Audio.play("audio/ButtonEasy.wav");
-        new FileHandler().updateGameDifficulty(Difficulty.EASY);
+        FileHandler.updateGameDifficulty(Difficulty.EASY);
         switchToSettingsScene(event);
     }
 
     public void switchToNormalDifficulty(ActionEvent event) throws IOException {
-        Audio.play("audio/ButtonClick.wav");
-        new FileHandler().updateGameDifficulty(Difficulty.NORMAL);
+        FileHandler.updateGameDifficulty(Difficulty.NORMAL);
         switchToSettingsScene(event);
     }
 
     public void switchToHardDifficulty(ActionEvent event) throws IOException {
-        Audio.play("audio/ButtonHard.wav");
-        new FileHandler().updateGameDifficulty(Difficulty.HARD);
+        FileHandler.updateGameDifficulty(Difficulty.HARD);
         switchToSettingsScene(event);
     }
 
@@ -52,7 +49,7 @@ public class SettingsScene extends SceneController {
     }
 
     public void initialize() {
-        switch (new FileHandler().readGameDifficulty()) {
+        switch (FileHandler.readGameDifficulty()) {
             case EASY:
                 easyDifficulty.setStyle("-fx-background-color: " + selectedButtonColor + "; ");
                 break;

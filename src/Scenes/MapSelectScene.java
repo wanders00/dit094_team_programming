@@ -21,37 +21,37 @@ public class MapSelectScene extends SceneController {
     }
 
     public void switchToOrdinaryLayout(ActionEvent event) throws IOException {
-        new FileHandler().updateGameLayout(Game.Layout.ORDINARY);
+        FileHandler.updateGameLayout(Game.Layout.ORDINARY);
         switchToSelectMapScene(event);
     }
 
     public void switchToBlankLayout(ActionEvent event) throws IOException {
-        new FileHandler().updateGameLayout(Game.Layout.BLANK);
+        FileHandler.updateGameLayout(Game.Layout.BLANK);
         switchToSelectMapScene(event);
     }
 
     public void switchToBorderedPlusLayout(ActionEvent event) throws IOException {
-        new FileHandler().updateGameLayout(Game.Layout.BORDERED_PLUS);
+        FileHandler.updateGameLayout(Game.Layout.BORDERED_PLUS);
         switchToSelectMapScene(event);
     }
 
     public void switchToUnborderedPlusLayout(ActionEvent event) throws IOException {
-        new FileHandler().updateGameLayout(Game.Layout.UNBORDERED_PLUS);
+        FileHandler.updateGameLayout(Game.Layout.UNBORDERED_PLUS);
         switchToSelectMapScene(event);
     }
 
     public void switchToBorderedOctagonLayout(ActionEvent event) throws IOException {
-        new FileHandler().updateGameLayout(Game.Layout.BORDERED_OCTAGON);
+        FileHandler.updateGameLayout(Game.Layout.BORDERED_OCTAGON);
         switchToSelectMapScene(event);
     }
 
     public void switchToUnborderedOctagonLayout(ActionEvent event) throws IOException {
-        new FileHandler().updateGameLayout(Game.Layout.UNBORDERED_OCTAGON);
+        FileHandler.updateGameLayout(Game.Layout.UNBORDERED_OCTAGON);
         switchToSelectMapScene(event);
     }
 
     public void initialize() {
-        switch (new FileHandler().readGameLayout()) {
+        switch (FileHandler.readGameLayout()) {
             case ORDINARY:
                 ordinaryMap.setStyle("-fx-border-color: none ; ");
                 break;

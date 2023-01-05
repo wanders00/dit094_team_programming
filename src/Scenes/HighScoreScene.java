@@ -26,8 +26,7 @@ public class HighScoreScene extends SceneController {
     private Label highScoresLabel;
 
     public void initialize() {
-        FileHandler fileHandler = new FileHandler();
-        String[] highScores = fileHandler.readHighScores();
+        String[] highScores = FileHandler.readHighScores();
         String labelText = "";
         for (int i = 0; i < highScores.length; i++) {
             labelText = labelText + (i + 1) + ". " + highScores[i] + System.lineSeparator();

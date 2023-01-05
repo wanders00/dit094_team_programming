@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class IntroScene extends SceneController{
+public class IntroScene extends SceneController{//The fir
 
     @FXML
     private TextField userNameField;
@@ -23,6 +23,7 @@ public class IntroScene extends SceneController{
         stage.setTitle("Snake Game - Intro Page");
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        Audio.PlayMainTheme();
         stage.show();
     }
 }
