@@ -23,7 +23,6 @@ public class IntroScene extends SceneController{//The fir
         stage.setTitle("Snake Game - Intro Page");
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        Audio.PlayMainTheme();
         stage.show();
     }
 }
