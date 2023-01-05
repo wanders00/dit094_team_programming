@@ -4,19 +4,8 @@ import GameLogic.GameObjects.*;
 
 public class Game {
     public static String playerName;
-    
-    // Should be local file
 
-    public enum Layout { // there is a scene built where the user can choose between these. If you update
-                         // and add more OR remove please mention it so that the correlating scene can be
-                         // edited
-        ORDINARY,
-        BLANK,
-        BORDERED_PLUS,
-        UNBORDERED_PLUS,
-        BORDERED_OCTAGON,
-        UNBORDERED_OCTAGON
-    }
+    // Should be local file
 
     private Snake snake;
     private Layout layout;
@@ -26,7 +15,6 @@ public class Game {
     private Difficulty difficulty;
     private Boolean pausedGame;
     private double currentGameScore;
-    
 
     public Game(int width, int height) {
         this.pausedGame = true;
@@ -92,19 +80,18 @@ public class Game {
                         // 0 = lowest value, 0 % X == 0 > where X is any number.
                         // height/width = highest value, - 1 since array start at 0.
                         normalGameGrid[i][j] = new WallGameObject();
-                    } 
+                    }
                 }
             }
-        } 
+        }
         return normalGameGrid;
-    }       
+    }
 
     private GameObject[][] generatePlusMap(boolean hasBorders) {
         GameObject[][] plusGameGrid;
         if (hasBorders) { // an if-statement to determine whether the map will have borders or not
             plusGameGrid = generateOrdinaryMap(true);
-        }
-        else {
+        } else {
             plusGameGrid = generateOrdinaryMap(false);
         }
         int widthGap = this.width / 4;
@@ -113,7 +100,7 @@ public class Game {
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
                 if (!((i + heightGap < this.height - 1 && i - heightGap > 0)
-                || (j + widthGap < this.width - 1 && j - widthGap > 0))) {
+                        || (j + widthGap < this.width - 1 && j - widthGap > 0))) {
                     plusGameGrid[i][j] = new WallGameObject();
                 }
             }
@@ -128,8 +115,7 @@ public class Game {
         GameObject[][] octagonGameGrid;
         if (hasBorders) { // an if-statement to determine whether the map will have borders or not
             octagonGameGrid = generateOrdinaryMap(true);
-        }
-        else {
+        } else {
             octagonGameGrid = generateOrdinaryMap(false);
         }
 
@@ -140,17 +126,20 @@ public class Game {
 
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
-                if(((i<upperHeightGap && i+j<upperHeightGap)||(j<upperWidthGap && i+j<upperWidthGap))
-                || ((i>=lowerHeightGap && i-j>=lowerHeightGap)&&(j<upperWidthGap && i-j>=lowerHeightGap))
-                || ((i<upperHeightGap && j-i>=lowerWidthGap)&&(j>=lowerWidthGap && j-i>=lowerWidthGap))
-                || ((i>=lowerHeightGap && i+j>=this.height+lowerHeightGap-1)&&(j>=lowerWidthGap && i+j>=this.width+lowerWidthGap-1))) {
-                    
-                     octagonGameGrid[i][j] = new WallGameObject();
+                if (((i < upperHeightGap && i + j < upperHeightGap) || (j < upperWidthGap && i + j < upperWidthGap))
+                        || ((i >= lowerHeightGap && i - j >= lowerHeightGap)
+                                && (j < upperWidthGap && i - j >= lowerHeightGap))
+                        || ((i < upperHeightGap && j - i >= lowerWidthGap)
+                                && (j >= lowerWidthGap && j - i >= lowerWidthGap))
+                        || ((i >= lowerHeightGap && i + j >= this.height + lowerHeightGap - 1)
+                                && (j >= lowerWidthGap && i + j >= this.width + lowerWidthGap - 1))) {
+
+                    octagonGameGrid[i][j] = new WallGameObject();
                 }
             }
         }
         return octagonGameGrid;
-	}
+    }
 
     public boolean update() {
         if (!pausedGame) {
@@ -166,8 +155,8 @@ public class Game {
                 this.snake.growSnake(this.snake.getRow(this.snake.getBody().size() - 1), this.snake
                         .getColumn(this.snake.getBody().size() - 1));
                 this.currentGameScore = this.currentGameScore + difficulty.getScoreMultiplier();
-                FileHandler.updateCurrentScore(this.currentGameScore);//this method should be static, 
-                //creating a new instance of a class for one use is ridiculous
+                FileHandler.updateCurrentScore(this.currentGameScore);// this method should be static,
+                // creating a new instance of a class for one use is ridiculous
                 generateFruit();
             } else {
                 // else = instanceof EmptyGameObject, clean up the tail then move.
@@ -220,16 +209,19 @@ public class Game {
 
     public int[] predictCoordinates() {
         // Predicts the next position of the snake head depending on the direction.
-        switch (this.snake.getDirection()) 
-        {
+        switch (this.snake.getDirection()) {
             case DOWN:
-                return new int[] { (this.snake.getRow(0) + 1 + height)%height, (this.snake.getColumn(0)+width)%width };
+                return new int[] { (this.snake.getRow(0) + 1 + height) % height,
+                        (this.snake.getColumn(0) + width) % width };
             case LEFT:
-                return new int[] { (this.snake.getRow(0)+ height)%height, (this.snake.getColumn(0) - 1 + width)%width };
+                return new int[] { (this.snake.getRow(0) + height) % height,
+                        (this.snake.getColumn(0) - 1 + width) % width };
             case RIGHT:
-                return new int[] { (this.snake.getRow(0)+ height)%height, (this.snake.getColumn(0) + 1 + width)%width };
+                return new int[] { (this.snake.getRow(0) + height) % height,
+                        (this.snake.getColumn(0) + 1 + width) % width };
             case UP:
-                return new int[] { (this.snake.getRow(0) - 1+ height)%height, (this.snake.getColumn(0)+width)%width };
+                return new int[] { (this.snake.getRow(0) - 1 + height) % height,
+                        (this.snake.getColumn(0) + width) % width };
             default:
                 return null;
         }

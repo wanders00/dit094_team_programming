@@ -1,28 +1,41 @@
 package GameLogic;
 public enum Difficulty {//Enum to create different difficulty levels of our game which are EASY,NORMAL AND HARD.
 
-    EASY(5, 200_000_000),
-    NORMAL(10, 150_000_000),
-    HARD(15, 100_000_000); 
-    // Cornelia and marcus thinks it would be fun to have an extreme hard level at
-    // 50_000_000, will maybe implement :D
+    EASY("Easy", 5, 200_000_000),
+    NORMAL("Normal", 10, 150_000_000),
+    HARD("Hard", 15, 100_000_000);
 
-    private final double scoreMultiplier;
-    private final long gameTimerSpeed;
+    private final String DIFFICULTY_NAME;
+    private final double SCORE_MULTIPLIER;
+    private final long GAME_TIMER_SPEED;
     // gameTimerSpeed = in nanoseconds, 100_000_000 = 1 second.
     // Will be a ~0.1 seconds slower than the actual value. (Computing delay)
 
-    Difficulty(double scoreMultiplier, long gameTimerSpeed) {
-        this.scoreMultiplier = scoreMultiplier;
-        this.gameTimerSpeed = gameTimerSpeed;
+    Difficulty(String name, double scoreMultiplier, long gameTimerSpeed) {
+        this.DIFFICULTY_NAME = name;
+        this.SCORE_MULTIPLIER = scoreMultiplier;
+        this.GAME_TIMER_SPEED = gameTimerSpeed;
     }
 
     public double getScoreMultiplier() {
-        return this.scoreMultiplier;
+        return this.SCORE_MULTIPLIER;
     }
 
     public long getGameTimerSpeed() {
-        return this.gameTimerSpeed;
+        return this.GAME_TIMER_SPEED;
+    }
+
+    public String toString() {
+        return this.DIFFICULTY_NAME;
+    }
+
+    public static Difficulty fromString(String input) {
+        for (Difficulty difficulty : Difficulty.values()) {
+            if (difficulty.toString().equals(input)) {
+                return difficulty;
+            }
+        }
+        return null;
     }
 
 }
