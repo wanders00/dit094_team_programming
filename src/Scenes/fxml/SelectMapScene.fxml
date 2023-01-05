@@ -21,7 +21,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="ordinaryMap" alignment="BOTTOM_CENTER" layoutX="70.0" layoutY="70.0" mnemonicParsing="false" onAction="#switchToOrdinaryLayout" prefHeight="91.0" prefWidth="32.0" style="-fx-background-color: red;">
+      <Button fx:id="ordinaryMap" alignment="BOTTOM_CENTER" layoutX="120.0" layoutY="70.0" mnemonicParsing="false" onAction="#switchToOrdinaryLayout" prefHeight="118.0" prefWidth="99.0" style="-fx-background-color: red;">
          <font>
             <Font name="Yu Gothic Bold" size="30.0" />
          </font>
@@ -29,14 +29,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <graphic>
-            <ImageView fitHeight="250.0" fitWidth="294.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="178.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/defaultMapImage.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="blankMap" alignment="BOTTOM_CENTER" layoutX="470.0" layoutY="70.0" mnemonicParsing="false" onAction="#switchToBlankLayout" prefHeight="91.0" prefWidth="32.0" style="-fx-background-color: red;">
+      <Button fx:id="blankMap" alignment="BOTTOM_CENTER" layoutX="466.0" layoutY="70.0" mnemonicParsing="false" onAction="#switchToBlankLayout" prefHeight="38.0" prefWidth="0.0" style="-fx-background-color: red;">
          <font>
             <Font name="Yu Gothic Bold" size="30.0" />
          </font>
@@ -44,14 +44,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <graphic>
-            <ImageView fitHeight="250.0" fitWidth="269.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="186.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/blankMapImage.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="borderedPlusMap" alignment="BOTTOM_CENTER" layoutX="70.0" layoutY="470.0" mnemonicParsing="false" onAction="#switchToBorderedPlusLayout" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: red;">
+      <Button fx:id="borderedPlusMap" alignment="BOTTOM_CENTER" layoutX="120.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchToBorderedPlusLayout" prefHeight="0.0" prefWidth="38.0" style="-fx-background-color: red;">
          <font>
             <Font name="Yu Gothic Bold" size="30.0" />
          </font>
@@ -59,14 +59,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <graphic>
-            <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="187.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/plusMapImage.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="unborderedPlusMap" alignment="BOTTOM_CENTER" layoutX="470.0" layoutY="470.0" mnemonicParsing="false" onAction="#switchToUnborderedPlusLayout" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: red;">
+      <Button fx:id="unborderedPlusMap" alignment="BOTTOM_CENTER" layoutX="470.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchToUnborderedPlusLayout" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: red;">
          <font>
             <Font name="Yu Gothic Bold" size="30.0" />
          </font>
@@ -74,14 +74,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <graphic>
-            <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="190.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/unborderedPlusMapImage.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="borderedOctagonMap" alignment="BOTTOM_CENTER" layoutX="70.0" layoutY="870.0" mnemonicParsing="false" onAction="#switchToBorderedOctagonLayout" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: red;">
+      <Button fx:id="borderedOctagonMap" alignment="BOTTOM_CENTER" layoutX="120.0" layoutY="530.0" mnemonicParsing="false" onAction="#switchToBorderedOctagonLayout" prefHeight="0.0" prefWidth="40.0" style="-fx-background-color: red;">
          <font>
             <Font name="Yu Gothic Bold" size="30.0" />
          </font>
@@ -89,14 +89,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <graphic>
-            <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="199.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/octagonMapImage.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="unborderedOctagonMap" alignment="BOTTOM_CENTER" layoutX="470.0" layoutY="870.0" mnemonicParsing="false" onAction="#switchToUnborderedOctagonLayout" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: red;">
+      <Button fx:id="unborderedOctagonMap" alignment="BOTTOM_CENTER" layoutX="472.0" layoutY="530.0" mnemonicParsing="false" onAction="#switchToUnborderedOctagonLayout" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: red;">
          <font>
             <Font name="Yu Gothic Bold" size="30.0" />
          </font>
@@ -104,29 +104,39 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <graphic>
-            <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="169.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/unborderedOctagonMapImage.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Text fill="WHITE" layoutX="584.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plus without walls">
+      <Text fill="WHITE" layoutX="517.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plus without walls">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="185.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plus with walls">
+      <Text fill="WHITE" layoutX="165.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plus with walls">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="600.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default without walls">
+      <Text fill="WHITE" layoutX="502.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default without walls">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="166.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default Square">
+      <Text fill="WHITE" layoutX="166.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default Square">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="154.0" layoutY="528.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Octagon with walls">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="503.0" layoutY="528.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Octagon without walls">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
