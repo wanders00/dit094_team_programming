@@ -22,9 +22,8 @@ public class GameOverScene extends SceneController {
     private Label scoreLabel;
 
     public void initialize() {
-        FileHandler fh = new FileHandler();
-        scoreLabel.setText("Score: " + fh.readCurrentScore() + System.lineSeparator() + "Layout: " + fh.readGameLayout()
-                + System.lineSeparator() + "Difficulty: " + fh.readGameDifficulty());
+        scoreLabel.setText("Score: " + FileHandler.readCurrentScore() + System.lineSeparator() + "Layout: " + FileHandler.readGameLayout()
+                + System.lineSeparator() + "Difficulty: " + FileHandler.readGameDifficulty());
     }
 
 

@@ -29,15 +29,14 @@ public class Game {
     
 
     public Game(int width, int height) {
-        FileHandler fh = new FileHandler();
         this.pausedGame = true;
         this.currentGameScore = 0;
         this.snake = new Snake(width / 2, height / 2);
         this.width = width;
         this.height = height;
-        this.layout = fh.readGameLayout();
-        this.difficulty = fh.readGameDifficulty();
-        fh.updateCurrentScore(0);
+        this.layout = FileHandler.readGameLayout();
+        this.difficulty = FileHandler.readGameDifficulty();
+        FileHandler.updateCurrentScore(0);
         this.grid = generateMap();
         generateFruit();
     }
@@ -167,7 +166,7 @@ public class Game {
                 this.snake.growSnake(this.snake.getRow(this.snake.getBody().size() - 1), this.snake
                         .getColumn(this.snake.getBody().size() - 1));
                 this.currentGameScore = this.currentGameScore + difficulty.getScoreMultiplier();
-                new FileHandler().updateCurrentScore(this.currentGameScore);//this method should be static, 
+                FileHandler.updateCurrentScore(this.currentGameScore);//this method should be static, 
                 //creating a new instance of a class for one use is ridiculous
                 generateFruit();
             } else {

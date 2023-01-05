@@ -9,7 +9,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         if (!new File("GameData.json").isFile()) {
-            new FileHandler().initializeFile();
+            FileHandler.initializeFile();
         }
         launch(args);
     }
