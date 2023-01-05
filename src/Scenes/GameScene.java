@@ -94,8 +94,7 @@ public class GameScene extends SceneController {
                 lastPress = System.nanoTime();
                 game.getSnake().updateDirection();
                 if (!game.update()) {
-                    Audio.play("audio/death_sound_2.mp3");
-                    Audio.play("audio/test.mp3");
+                    Audio.DeathSound();
                     
                     stop();
                     try {
