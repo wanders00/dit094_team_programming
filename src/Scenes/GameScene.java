@@ -1,4 +1,5 @@
 package Scenes;
+
 import java.io.IOException;
 import GameLogic.Direction;
 import GameLogic.FileHandler;
@@ -81,8 +82,9 @@ public class GameScene extends SceneController {
                     game.pauseToggle();
                 }
                 if (currentDirection != newDirection
-                        && currentDirection != newDirection.getOppositeDirection()) { 
-                        // prevents the user from going in the opposite direction and essentially "skipping" a turn
+                        && currentDirection != newDirection.getOppositeDirection()) {
+                    // prevents the user from going in the opposite direction and essentially
+                    // "skipping" a turn
                     game.getSnake().setNewDirection(newDirection);
                     if (System.nanoTime() - lastPress > (frameDelay / 10)) { // used to allow for faster turn
                         updateGame();
@@ -95,7 +97,7 @@ public class GameScene extends SceneController {
                 game.getSnake().updateDirection();
                 if (!game.update()) {
                     Audio.DeathSound();
-                    
+
                     stop();
                     try {
                         FileHandler.updateHighScores(game.getCurrentGameScore());

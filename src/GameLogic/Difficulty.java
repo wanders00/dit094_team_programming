@@ -1,5 +1,8 @@
 package GameLogic;
-public enum Difficulty {//Enum to create different difficulty levels of our game which are EASY,NORMAL AND HARD.
+
+public enum Difficulty {
+    // Enum to create different difficulty levels of our game which are EASY,NORMAL
+    // AND HARD.
 
     EASY("Easy", 5, 200_000_000),
     NORMAL("Normal", 10, 150_000_000),

@@ -17,8 +17,6 @@ import javafx.stage.Stage;
 
 public class SettingsScene extends SceneController {
 
-
-
     public static String selectedButtonColor = "#ffcccc";
     // Hexdecimal colors
 
@@ -44,8 +42,8 @@ public class SettingsScene extends SceneController {
         switchToSettingsScene(event);
     }
 
-    public void changeUpKeyBind(){
-        //Planning to do the change keybind logic here
+    public void changeUpKeyBind() {
+        // Planning to do the change keybind logic here
     }
 
     public void switchMusicOff(ActionEvent event) throws IOException {
@@ -55,6 +53,7 @@ public class SettingsScene extends SceneController {
     public void switchFxOff(ActionEvent event) throws IOException {
         Audio.switchSoundVolume();
     }
+
     public void initialize() {
         switch (FileHandler.readGameDifficulty()) {
             case EASY:
@@ -68,10 +67,8 @@ public class SettingsScene extends SceneController {
                 break;
             default:
                 break;
-        }   
+        }
     }
-
-
 
     @FXML
     private Button easyDifficulty;
