@@ -53,4 +53,12 @@ public class Audio
     {
         setSoundVolume(((double)target)/100.0);
     }
+    static public void switchSoundVolume()
+    {
+        SoundVolume=1-SoundVolume;
+    }
+    static public void switchMusicVolume()
+    {
+        MusicVolume=1-MusicVolume;
+    }
 }
