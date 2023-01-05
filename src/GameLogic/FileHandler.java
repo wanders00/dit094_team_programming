@@ -14,7 +14,7 @@ import Scenes.HighScoreScene;
 
 @SuppressWarnings({ "unchecked", "deprecated" })
 public class FileHandler {
-    public void initializeFile() {
+    static public void initializeFile() {
         JSONObject obj = new JSONObject();
         obj.put("gameDifficulty", "NORMAL");
         obj.put("gameLayout", "ORDINARY");
@@ -30,7 +30,7 @@ public class FileHandler {
 
     }
 
-    public JSONObject getJSONObject() {
+    static public JSONObject getJSONObject() {
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader("GameData.json"));
@@ -42,15 +42,15 @@ public class FileHandler {
         }
     }
 
-    public Difficulty readGameDifficulty() {
+    static public Difficulty readGameDifficulty() {
         return Difficulty.valueOf((String) getJSONObject().get("gameDifficulty"));
     }
 
-    public Layout readGameLayout() {
+    static public Layout readGameLayout() {
         return Layout.valueOf((String) getJSONObject().get("gameLayout"));
     }
 
-    public String[] readHighScores() {
+    static public String[] readHighScores() {
         JSONArray highScores = (JSONArray) getJSONObject().get("highScores");
         String[] output = new String[highScores.size()];
 
@@ -64,19 +64,19 @@ public class FileHandler {
         return output;
     }
 
-    public double readCurrentScore() {
+    static public double readCurrentScore() {
         return Double.parseDouble((String) getJSONObject().get("currentScore"));
     }
 
-    public void updateGameDifficulty(Difficulty newDifficulty) {
+    static public void updateGameDifficulty(Difficulty newDifficulty) {
         updateValue("gameDifficulty", newDifficulty.toString());
     }
 
-    public void updateGameLayout(Layout newLayout) {
+    static public void updateGameLayout(Layout newLayout) {
         updateValue("gameLayout", newLayout.toString());
     }
 
-    public void updateHighScores(double score) {
+    static public void updateHighScores(double score) {
         JSONArray highScores = (JSONArray) getJSONObject().get("highScores");
         if (highScores.isEmpty()) {
             JSONObject newScore = new JSONObject();
@@ -118,11 +118,11 @@ public class FileHandler {
         updateValue("highScores", highScores);
     }
 
-    public void updateCurrentScore(double newCurrentScore) {
+    static public void updateCurrentScore(double newCurrentScore) {
         updateValue("currentScore", String.valueOf(newCurrentScore));
     }
 
-    public void updateValue(Object key, Object value) {
+    static public void updateValue(Object key, Object value) {
         JSONObject jsonObject = getJSONObject();
         jsonObject.put(key, value);
 
