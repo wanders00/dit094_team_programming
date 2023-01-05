@@ -12,8 +12,8 @@ public class Audio
     static private AudioClip EatSound = new AudioClip(new Audio().getClass().getResource("audio/Eat.mp3").toExternalForm());
     static private AudioClip DeathSound = new AudioClip(new Audio().getClass().getResource("audio/DoubleSound.mp3").toExternalForm());
     
-    static double SoundVolume;
-    static double MusicVolume;
+    static double SoundVolume = 1.0;//swap to value from file
+    static double MusicVolume = 1.0;//swap to value from file
 
     static public void ButtonPress()
     {
