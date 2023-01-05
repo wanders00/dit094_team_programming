@@ -44,9 +44,6 @@ public class SettingsScene extends SceneController {
         switchToSettingsScene(event);
     }
 
-    public void changeUpKeyBind(){
-        //Planning to do the change keybind logic here
-    }
 
     public void switchMusicOff(ActionEvent event) throws IOException {
         Audio.switchMusicVolume();
