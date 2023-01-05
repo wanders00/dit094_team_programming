@@ -13,8 +13,8 @@ import GameLogic.Game.Layout;
 import Scenes.HighScoreScene;
 
 @SuppressWarnings({ "unchecked", "deprecated" })
-public class FileHandler {
-    static public void initializeFile() {
+public class FileHandler {//The file handler class reads and writes the game logic objects into files.
+    static public void initializeFile() {//Initialize a new file
         JSONObject obj = new JSONObject();
         obj.put("gameDifficulty", "NORMAL");
         obj.put("gameLayout", "ORDINARY");
@@ -30,7 +30,7 @@ public class FileHandler {
 
     }
 
-    static public JSONObject getJSONObject() {
+    static public JSONObject getJSONObject() {//Method to get and return the Object.
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader("GameData.json"));
@@ -42,15 +42,15 @@ public class FileHandler {
         }
     }
 
-    static public Difficulty readGameDifficulty() {
+    static public Difficulty readGameDifficulty() {//Method that reads the value of the Difficulty object
         return Difficulty.valueOf((String) getJSONObject().get("gameDifficulty"));
     }
 
-    static public Layout readGameLayout() {
+    static public Layout readGameLayout() {//Method that reads the value of the Game layout object
         return Layout.valueOf((String) getJSONObject().get("gameLayout"));
     }
 
-    static public String[] readHighScores() {
+    static public String[] readHighScores() {//Method that reads the value of the HighScore object
         JSONArray highScores = (JSONArray) getJSONObject().get("highScores");
         String[] output = new String[highScores.size()];
 
@@ -64,19 +64,19 @@ public class FileHandler {
         return output;
     }
 
-    static public double readCurrentScore() {
+    static public double readCurrentScore() {//Method that reads the value of the Scoreobject
         return Double.parseDouble((String) getJSONObject().get("currentScore"));
     }
 
-    static public void updateGameDifficulty(Difficulty newDifficulty) {
+    static public void updateGameDifficulty(Difficulty newDifficulty) {//Method to update a new game Difficulty
         updateValue("gameDifficulty", newDifficulty.toString());
     }
 
-    static public void updateGameLayout(Layout newLayout) {
+    static public void updateGameLayout(Layout newLayout) {//Method to update a new game Layout
         updateValue("gameLayout", newLayout.toString());
     }
 
-    static public void updateHighScores(double score) {
+    static public void updateHighScores(double score) {//Method to update new High SCores
         JSONArray highScores = (JSONArray) getJSONObject().get("highScores");
         if (highScores.isEmpty()) {
             JSONObject newScore = new JSONObject();
@@ -118,11 +118,11 @@ public class FileHandler {
         updateValue("highScores", highScores);
     }
 
-    static public void updateCurrentScore(double newCurrentScore) {
+    static public void updateCurrentScore(double newCurrentScore) {//Method to update a new current score
         updateValue("currentScore", String.valueOf(newCurrentScore));
     }
 
-    static public void updateValue(Object key, Object value) {
+    static public void updateValue(Object key, Object value) {//Method that updates the value of the Object Key
         JSONObject jsonObject = getJSONObject();
         jsonObject.put(key, value);
 
