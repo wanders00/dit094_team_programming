@@ -54,7 +54,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <Slider fx:id="musicSlider" layoutX="150.0" layoutY="128.0" prefHeight="20.0" prefWidth="500.0" snapToTicks="true">
+      <Slider fx:id="musicSlider" layoutX="150.0" layoutY="128.0" majorTickUnit="1.0" minorTickCount="0" prefHeight="20.0" prefWidth="500.0" showTickMarks="true" snapToTicks="true">
          <effect>
             <Shadow blurType="ONE_PASS_BOX" height="0.0" radius="0.0" width="0.0">
                <color>
