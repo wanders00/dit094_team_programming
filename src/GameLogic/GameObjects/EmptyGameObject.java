@@ -1,5 +1,5 @@
 package GameLogic.GameObjects;
-public class EmptyGameObject extends GameObject {
+public class EmptyGameObject extends GameObject {//Initialiizng an empty game object
 
     private final static int RED = 229;
     private final static int GREEN = 208;
