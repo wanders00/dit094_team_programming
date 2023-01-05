@@ -48,6 +48,13 @@ public class SettingsScene extends SceneController {
         //Planning to do the change keybind logic here
     }
 
+    public void switchMusicOff(ActionEvent event) throws IOException {
+        Audio.switchMusicVolume();
+    }
+
+    public void switchFxOff(ActionEvent event) throws IOException {
+        Audio.switchSoundVolume();
+    }
     public void initialize() {
         switch (FileHandler.readGameDifficulty()) {
             case EASY:
@@ -64,7 +71,7 @@ public class SettingsScene extends SceneController {
         }   
     }
 
-    
+
 
     @FXML
     private Button easyDifficulty;

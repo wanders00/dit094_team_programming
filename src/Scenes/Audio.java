@@ -59,6 +59,6 @@ public class Audio
     }
     static public void switchMusicVolume()
     {
-        MusicVolume=1-MusicVolume;
+        setMusicVolume(1-MusicVolume);
     }
 }
