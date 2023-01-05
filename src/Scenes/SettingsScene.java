@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -63,8 +64,10 @@ public class SettingsScene extends SceneController {
                 break;
             default:
                 break;
-        }
+        }   
     }
+
+    
 
     @FXML
     private Button easyDifficulty;
@@ -82,6 +85,9 @@ public class SettingsScene extends SceneController {
     private Slider fxSlider;
 
     @FXML
+    private CheckBox muteMusic;
+/*
+    @FXML
     private TextField turnUpBind;
 
     @FXML
@@ -92,4 +98,5 @@ public class SettingsScene extends SceneController {
 
     @FXML
     private TextField turnRightBind;
+    */
 }
