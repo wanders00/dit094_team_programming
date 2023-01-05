@@ -54,7 +54,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <Slider fx:id="musicSlider" layoutX="150.0" layoutY="128.0" prefHeight="20.0" prefWidth="500.0" snapToTicks="true">
+      <Slider fx:id="musicSlider" layoutX="150.0" layoutY="128.0" majorTickUnit="1.0" minorTickCount="0" prefHeight="20.0" prefWidth="500.0" showTickMarks="true" snapToTicks="true">
          <effect>
             <Shadow blurType="ONE_PASS_BOX" height="0.0" radius="0.0" width="0.0">
                <color>
@@ -91,7 +91,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <TextArea layoutX="258.0" layoutY="589.0" prefHeight="31.0" prefWidth="61.0" promptText="Enter key">
+      <TextArea fx:id="turnUpBind" layoutX="258.0" layoutY="589.0" prefHeight="31.0" prefWidth="61.0" promptText="Enter key">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>
@@ -124,7 +124,7 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Text>
-      <TextArea layoutX="258.0" layoutY="629.0" prefHeight="31.0" prefWidth="61.0" promptText="Enter key">
+      <TextArea fx:id="turnLeftBind" layoutX="258.0" layoutY="629.0" prefHeight="31.0" prefWidth="61.0" promptText="Enter key">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>
@@ -132,7 +132,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </TextArea>
-      <TextArea layoutX="258.0" layoutY="669.0" prefHeight="31.0" prefWidth="61.0" promptText="Enter key">
+      <TextArea fx:id="turnDownBind" layoutX="258.0" layoutY="669.0" prefHeight="31.0" prefWidth="61.0" promptText="Enter key">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>
@@ -140,7 +140,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </TextArea>
-      <TextArea layoutX="258.0" layoutY="709.0" prefHeight="31.0" prefWidth="61.0" promptText="Enter key">
+      <TextArea fx:id="turnRightBInd" layoutX="258.0" layoutY="709.0" prefHeight="31.0" prefWidth="61.0" promptText="Enter key">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>

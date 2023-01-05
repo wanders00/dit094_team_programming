@@ -3,16 +3,21 @@ package Scenes;
 import java.io.IOException;
 import GameLogic.Difficulty;
 import GameLogic.FileHandler;
+import GameLogic.Keybind;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class SettingsScene extends SceneController {
+
+
 
     public static String selectedButtonColor = "#ffcccc";
     // Hexdecimal colors
@@ -39,6 +44,10 @@ public class SettingsScene extends SceneController {
         switchToSettingsScene(event);
     }
 
+    public void changeUpKeyBind(){
+        //Planning to do the change keybind logic here
+    }
+
     public void initialize() {
         switch (FileHandler.readGameDifficulty()) {
             case EASY:
@@ -52,8 +61,10 @@ public class SettingsScene extends SceneController {
                 break;
             default:
                 break;
-        }
+        }   
     }
+
+    
 
     @FXML
     private Button easyDifficulty;
@@ -69,4 +80,20 @@ public class SettingsScene extends SceneController {
 
     @FXML
     private Slider fxSlider;
+
+    @FXML
+    private CheckBox muteMusic;
+/*
+    @FXML
+    private TextField turnUpBind;
+
+    @FXML
+    private TextField turnLeftBind;
+
+    @FXML
+    private TextField turnDownBind;
+
+    @FXML
+    private TextField turnRightBind;
+    */
 }
