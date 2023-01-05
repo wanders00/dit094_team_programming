@@ -31,9 +31,14 @@ public class GameOverScene extends SceneController {
     private Label scoreLabel;
 
     public void initialize() {
-        scoreLabel.setText("Score: " + FileHandler.readCurrentScore() + System.lineSeparator() + "Layout: "
-                + FileHandler.readGameLayout().toString() + System.lineSeparator() + "Difficulty: "
-                + FileHandler.readGameDifficulty().toString());
+        String text = "";
+        if(FileHandler.updateHighScores()) {
+            text = "Congrats new High Score!" + System.lineSeparator();
+        }
+        text = text + "Score: " + FileHandler.readCurrentScore() + System.lineSeparator() + "Layout: "
+        + FileHandler.readGameLayout().toString() + System.lineSeparator() + "Difficulty: "
+        + FileHandler.readGameDifficulty().toString();
+        scoreLabel.setText(text);
     }
 
 }

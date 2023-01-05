@@ -76,7 +76,9 @@ public class FileHandler {// The file handler class reads and writes the game lo
         updateValue("gameLayout", newLayout.toString());
     }
 
-    static public void updateHighScores(double score) {// Method to update new High SCores
+    static public boolean updateHighScores() {// Method to update new High Scores
+        double score = readCurrentScore();
+        boolean newHighScore = false;
         JSONArray highScores = (JSONArray) getJSONObject().get("highScores");
         JSONObject newScore = new JSONObject();
         newScore.put("score", score);
@@ -84,17 +86,20 @@ public class FileHandler {// The file handler class reads and writes the game lo
         newScore.put("difficulty", readGameDifficulty().toString());
         if (highScores.isEmpty()) {
             highScores.add(newScore);
+            newHighScore = true;
         } else {
             for (int i = 0; i < highScores.size(); i++) {
                 JSONObject curJSONObject = (JSONObject) highScores.get(i);
                 Double curScore = Double.parseDouble(curJSONObject.get("score").toString());
                 if (score > curScore) {
                     highScores.add(i, newScore);
+                    newHighScore = true;
                     break;
                     // If score > curScore, add it in its position and push all the others down,
                     // then break to not infinite loop.
-                } else if (i == highScores.size() - 1) {
+                } else if (i == highScores.size() - 1 && highScores.size() < HighScoreScene.HIGH_SCORES_AMOUNT) {
                     highScores.add(newScore);
+                    newHighScore = true; 
                     break;
                 }
                 // If i = highScores.size() and the previous if statement was not true;
@@ -109,6 +114,7 @@ public class FileHandler {// The file handler class reads and writes the game lo
         // To remove any scores that are above the high scores amount (top 10).
 
         updateValue("highScores", highScores);
+        return newHighScore;
     }
 
     static public void updateCurrentScore(double newCurrentScore) {// Method to update a new current score

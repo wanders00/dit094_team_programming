@@ -100,7 +100,6 @@ public class GameScene extends SceneController {
 
                     stop();
                     try {
-                        FileHandler.updateHighScores(game.getCurrentGameScore());
                         new GameOverScene().show(stage);
                     } catch (IOException e) {
                         e.printStackTrace();

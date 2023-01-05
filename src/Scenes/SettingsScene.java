@@ -3,7 +3,8 @@ package Scenes;
 import java.io.IOException;
 import GameLogic.Difficulty;
 import GameLogic.FileHandler;
-import GameLogic.Keybind;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +13,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class SettingsScene extends SceneController {
+
+    double test = 0;
+    double test2 = 0;
 
     public static String selectedButtonColor = "#ffcccc";
     // Hexdecimal colors
@@ -42,7 +45,6 @@ public class SettingsScene extends SceneController {
         switchToSettingsScene(event);
     }
 
-
     public void switchMusicOff(ActionEvent event) throws IOException {
         Audio.switchMusicVolume();
     }
@@ -65,6 +67,32 @@ public class SettingsScene extends SceneController {
             default:
                 break;
         }
+
+        test = (int) musicSlider.getValue();
+
+        musicSlider.valueProperty().addListener(new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+                test = musicSlider.getValue() * 0.01;
+                Audio.setMusicVolume(test);
+                System.out.println(test);
+            }
+
+        });
+
+        test2 = (int) fxSlider.getValue();
+
+        fxSlider.valueProperty().addListener(new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+                test2 = fxSlider.getValue() * 0.01;
+                Audio.setSoundVolume(test2);
+                System.out.println(test2);
+            }
+
+        });
     }
 
     @FXML
@@ -77,7 +105,7 @@ public class SettingsScene extends SceneController {
     private Button hardDifficulty;
 
     @FXML
-    private Slider volumeSlider;
+    private Slider musicSlider;
 
     @FXML
     private Slider fxSlider;
