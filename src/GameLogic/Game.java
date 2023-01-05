@@ -162,7 +162,7 @@ public class Game {
                 return false;
             } else if (predictMovement() instanceof FruitGameObject) {
                 // growSnake() and increase score, then move.
-                Scenes.Audio.play("audio/Eat.wav");
+                Scenes.Audio.EatSound();
                 this.snake.growSnake(this.snake.getRow(this.snake.getBody().size() - 1), this.snake
                         .getColumn(this.snake.getBody().size() - 1));
                 this.currentGameScore = this.currentGameScore + difficulty.getScoreMultiplier();

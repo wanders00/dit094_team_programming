@@ -25,19 +25,16 @@ public class SettingsScene extends SceneController {
     }
 
     public void switchToEasyDifficulty(ActionEvent event) throws IOException {
-        Audio.play("audio/ButtonEasy.wav");
         FileHandler.updateGameDifficulty(Difficulty.EASY);
         switchToSettingsScene(event);
     }
 
     public void switchToNormalDifficulty(ActionEvent event) throws IOException {
-        Audio.play("audio/ButtonClick.wav");
         FileHandler.updateGameDifficulty(Difficulty.NORMAL);
         switchToSettingsScene(event);
     }
 
     public void switchToHardDifficulty(ActionEvent event) throws IOException {
-        Audio.play("audio/ButtonHard.wav");
         FileHandler.updateGameDifficulty(Difficulty.HARD);
         switchToSettingsScene(event);
     }
