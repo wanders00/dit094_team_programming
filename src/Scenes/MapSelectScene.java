@@ -3,7 +3,7 @@ package Scenes;
 import java.io.IOException;
 
 import GameLogic.FileHandler;
-import GameLogic.Game;
+import GameLogic.Layout;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,32 +21,32 @@ public class MapSelectScene extends SceneController {
     }
 
     public void switchToOrdinaryLayout(ActionEvent event) throws IOException {
-        FileHandler.updateGameLayout(Game.Layout.ORDINARY);
+        FileHandler.updateGameLayout(Layout.ORDINARY);
         switchToSelectMapScene(event);
     }
 
     public void switchToBlankLayout(ActionEvent event) throws IOException {
-        FileHandler.updateGameLayout(Game.Layout.BLANK);
+        FileHandler.updateGameLayout(Layout.BLANK);
         switchToSelectMapScene(event);
     }
 
     public void switchToBorderedPlusLayout(ActionEvent event) throws IOException {
-        FileHandler.updateGameLayout(Game.Layout.BORDERED_PLUS);
+        FileHandler.updateGameLayout(Layout.BORDERED_PLUS);
         switchToSelectMapScene(event);
     }
 
     public void switchToUnborderedPlusLayout(ActionEvent event) throws IOException {
-        FileHandler.updateGameLayout(Game.Layout.UNBORDERED_PLUS);
+        FileHandler.updateGameLayout(Layout.UNBORDERED_PLUS);
         switchToSelectMapScene(event);
     }
 
     public void switchToBorderedOctagonLayout(ActionEvent event) throws IOException {
-        FileHandler.updateGameLayout(Game.Layout.BORDERED_OCTAGON);
+        FileHandler.updateGameLayout(Layout.BORDERED_OCTAGON);
         switchToSelectMapScene(event);
     }
 
     public void switchToUnborderedOctagonLayout(ActionEvent event) throws IOException {
-        FileHandler.updateGameLayout(Game.Layout.UNBORDERED_OCTAGON);
+        FileHandler.updateGameLayout(Layout.UNBORDERED_OCTAGON);
         switchToSelectMapScene(event);
     }
 
