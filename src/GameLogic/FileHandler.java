@@ -13,7 +13,7 @@ import GameLogic.Game.Layout;
 import Scenes.HighScoreScene;
 
 @SuppressWarnings({ "unchecked", "deprecated" })
-public class FileHandler {
+public class FileHandler {//The file handler class reads and writes the game logic objects into files.
     static public void initializeFile() {
         JSONObject obj = new JSONObject();
         obj.put("gameDifficulty", "NORMAL");
