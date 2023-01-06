@@ -20,6 +20,9 @@ public class MapSelectScene extends SceneController {
         stage.show();
     }
 
+    // Functions to swap map for the buttons.
+    // First change map in the GameData.json.
+    // Then re-initialize the scene to have the button states update to be correct.
     public void switchToOrdinaryLayout(ActionEvent event) throws IOException {
         FileHandler.updateGameLayout(Layout.ORDINARY);
         switchToSelectMapScene(event);
@@ -50,25 +53,26 @@ public class MapSelectScene extends SceneController {
         switchToSelectMapScene(event);
     }
 
+    // Makes the selected map stand out
     public void initialize() {
         switch (FileHandler.readGameLayout()) {
             case ORDINARY:
-                ordinaryMap.setStyle("-fx-border-color: none ; ");
+                ordinaryMap.setStyle("-fx-border-style: outset ; ");
                 break;
             case BORDERED_PLUS:
-                borderedPlusMap.setStyle("-fx-border-color: none ; ");
+                borderedPlusMap.setStyle("-fx-border-style: outset ; ");
                 break;
             case BORDERED_OCTAGON:
-                borderedOctagonMap.setStyle("-fx-border-color: none ; ");
+                borderedOctagonMap.setStyle("-fx-border-style: outset ; ");
                 break;
             case BLANK:
-                blankMap.setStyle("-fx-border-color: none ; ");
+                blankMap.setStyle("-fx-border-style: outset ; ");
                 break;
             case UNBORDERED_PLUS:
-                unborderedPlusMap.setStyle("-fx-border-color: none ; ");
+                unborderedPlusMap.setStyle("-fx-border-style: outset ; ");
                 break;
             case UNBORDERED_OCTAGON:
-                unborderedOctagonMap.setStyle("-fx-border-color: none ; ");
+                unborderedOctagonMap.setStyle("-fx-border-style: outset ; ");
                 break;
             default:
                 break;

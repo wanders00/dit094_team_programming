@@ -13,11 +13,6 @@ public class SceneController {
         new SettingsScene().show((Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 
-    public void switchToIntroScene(ActionEvent event) throws IOException {
-        Audio.ButtonPress();
-        new IntroScene().show((Stage) ((Node) event.getSource()).getScene().getWindow());
-    }
-
     public void switchToMainScene(ActionEvent event) throws IOException {
         Audio.ButtonPress();
         new MainScene().show((Stage) ((Node) event.getSource()).getScene().getWindow());

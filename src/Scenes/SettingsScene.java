@@ -17,9 +17,6 @@ import javafx.stage.Stage;
 
 public class SettingsScene extends SceneController {
 
-    double test = 0;
-    double test2 = 0;
-
     public static String selectedButtonColor = "#ffcccc";
     // Hexdecimal colors
 
@@ -45,15 +42,17 @@ public class SettingsScene extends SceneController {
         switchToSettingsScene(event);
     }
 
-    public void switchMusicOff(ActionEvent event) throws IOException {
-        Audio.switchMusicVolume();
+    public void switchFXOnOff(ActionEvent event) throws IOException {
+        FileHandler.switchFXOnOff();
     }
 
-    public void switchFxOff(ActionEvent event) throws IOException {
-        Audio.switchSoundVolume();
+    public void switchMusicOnOff(ActionEvent event) throws IOException {
+        FileHandler.switchMusicOnOff();
+        Audio.switchMusicOnOff();
     }
 
     public void initialize() {
+        // Initializes the buttons to be correct state dependent on the settings.
         switch (FileHandler.readGameDifficulty()) {
             case EASY:
                 easyDifficulty.setStyle("-fx-background-color: " + selectedButtonColor + "; ");
@@ -68,28 +67,26 @@ public class SettingsScene extends SceneController {
                 break;
         }
 
-        test = (int) musicSlider.getValue();
+        fxOnOff.setSelected(FileHandler.readFXOnOff());
+        musicOnOff.setSelected(FileHandler.readMusicOnOff());
 
+        musicSlider.setValue(FileHandler.readMusicVolume());
         musicSlider.valueProperty().addListener(new ChangeListener<Number>() {
-
             @Override
             public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-                test = musicSlider.getValue() * 0.01;
-                Audio.setMusicVolume(test);
-                System.out.println(test);
+                FileHandler.updateMusicVolume(musicSlider.getValue());
+                Audio.updateMusicVolume();
+                System.out.println(FileHandler.readMusicVolume());
             }
 
         });
 
-        test2 = (int) fxSlider.getValue();
-
+        fxSlider.setValue(FileHandler.readFXVolume());
         fxSlider.valueProperty().addListener(new ChangeListener<Number>() {
-
             @Override
             public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-                test2 = fxSlider.getValue() * 0.01;
-                Audio.setSoundVolume(test2);
-                System.out.println(test2);
+                FileHandler.updateFXVolume(fxSlider.getValue());
+                System.out.println(FileHandler.readFXVolume());
             }
 
         });
@@ -111,5 +108,8 @@ public class SettingsScene extends SceneController {
     private Slider fxSlider;
 
     @FXML
-    private CheckBox muteMusic;
+    private CheckBox fxOnOff;
+
+    @FXML
+    private CheckBox musicOnOff;
 }

@@ -209,6 +209,8 @@ public class Game {
 
     public int[] predictCoordinates() {
         // Predicts the next position of the snake head depending on the direction.
+        // The (x + height) % height and (x + width) % width allows for crossover
+        // movement, i.e from one side to the other.
         switch (this.snake.getDirection()) {
             case DOWN:
                 return new int[] { (this.snake.getRow(0) + 1 + height) % height,

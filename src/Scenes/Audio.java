@@ -1,5 +1,6 @@
 package Scenes;
 
+import GameLogic.FileHandler;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -7,63 +8,50 @@ import javafx.util.Duration;
 
 public class Audio {
     // Loading all audio files
-    static private MediaPlayer MainTheme = new MediaPlayer(
+    private static MediaPlayer MainTheme = new MediaPlayer(
             new Media(new Audio().getClass().getResource("audio/8bit_beat.mp3").toExternalForm()));
-    static private AudioClip ButtonSound = new AudioClip(
+    private static AudioClip ButtonSound = new AudioClip(
             new Audio().getClass().getResource("audio/button.mp3").toExternalForm());
-    static private AudioClip EatSound = new AudioClip(
+    private static AudioClip EatSound = new AudioClip(
             new Audio().getClass().getResource("audio/Eat.mp3").toExternalForm());
-    static private AudioClip DeathSound = new AudioClip(
+    private static AudioClip DeathSound = new AudioClip(
             new Audio().getClass().getResource("audio/DoubleSound.mp3").toExternalForm());
-    // Volume variables
-    static double SoundVolume = 1.0;// swap to value from file
-    static double MusicVolume = 1.0;// swap to value from file
     // Sound playback functions
 
-    static public void ButtonPress() {
-        ButtonSound.play(SoundVolume);
+    public static void ButtonPress() {
+        if (FileHandler.readFXOnOff()) {
+            ButtonSound.play(FileHandler.readFXVolume());
+        }
     }
 
-    static public void EatSound() {
-        EatSound.play(SoundVolume);
+    public static void EatSound() {
+        if (FileHandler.readFXOnOff()) {
+            EatSound.play(FileHandler.readFXVolume());
+        }
     }
 
-    static public void DeathSound() {
-        DeathSound.play(SoundVolume);
+    public static void DeathSound() {
+        if (FileHandler.readFXOnOff()) {
+            DeathSound.play(FileHandler.readFXVolume());
+        }
     }
 
-    static public void PlayMainTheme() {
+    public static void PlayMainTheme() {
         MainTheme.setOnEndOfMedia(new Runnable() {
             public void run() {
                 MainTheme.seek(Duration.ZERO);
             }
         });
         MainTheme.play();
+        updateMusicVolume();
     }
 
-    // Volume setters
-    static public void setMusicVolume(double target) {
-        MusicVolume = target;
-        MainTheme.setVolume(MusicVolume);
+    public static void updateMusicVolume() {
+        MainTheme.setVolume(FileHandler.readMusicVolume());
     }
 
-    static public void setMusicVolume(int target) {
-        setMusicVolume(((double) target) / 100.0);
+    public static void switchMusicOnOff() {
+        MainTheme.setMute(!FileHandler.readMusicOnOff());
     }
 
-    static public void setSoundVolume(double target) {
-        SoundVolume = target;
-    }
-
-    static public void setSoundVolume(int target) {
-        setSoundVolume(((double) target) / 100.0);
-    }
-
-    static public void switchSoundVolume() {
-        SoundVolume = 1 - SoundVolume;
-    }
-
-    static public void switchMusicVolume() {
-        setMusicVolume(1 - MusicVolume);
-    }
 }

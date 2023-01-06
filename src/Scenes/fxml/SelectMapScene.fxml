@@ -112,32 +112,32 @@
             </ImageView>
          </graphic>
       </Button>
-      <Text fill="WHITE" layoutX="517.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plus without walls">
+      <Text fill="WHITE" layoutX="500.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Borderless Plus">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="165.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plus with walls">
+      <Text fill="WHITE" layoutX="150.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Borderless Plus">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="502.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default without walls">
+      <Text fill="WHITE" layoutX="500.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Blank">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="166.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default Square">
+      <Text fill="WHITE" layoutX="150.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="154.0" layoutY="528.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Octagon with walls">
+      <Text fill="WHITE" layoutX="150.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Octagon">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="503.0" layoutY="528.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Octagon without walls">
+      <Text fill="WHITE" layoutX="500.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Borderless Octagon">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>

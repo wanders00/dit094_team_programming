@@ -12,13 +12,17 @@ import org.json.simple.parser.ParseException;
 import Scenes.HighScoreScene;
 
 @SuppressWarnings({ "unchecked", "deprecated" })
-public class FileHandler {// The file handler class reads and writes the game logic objects into files.
-    static public void initializeFile() {// Initialize a new file
+public abstract class FileHandler {
+    public static void initializeFile() {// Initialize a new file
         JSONObject obj = new JSONObject();
         obj.put("gameDifficulty", Difficulty.NORMAL.toString());
         obj.put("gameLayout", Layout.ORDINARY.toString());
         obj.put("highScores", new JSONArray());
         obj.put("currentScore", "0");
+        obj.put("musicOnOff", "true");
+        obj.put("fxOnOff", "true");
+        obj.put("musicVolume", ".5"); // 0-100% where 1 = 100%
+        obj.put("fxVolume", ".5"); // 0-100% where 1 = 100%
 
         try (FileWriter file = new FileWriter("GameData.json")) {
             file.write(obj.toString());
@@ -29,7 +33,7 @@ public class FileHandler {// The file handler class reads and writes the game lo
 
     }
 
-    static public JSONObject getJSONObject() {// Method to get and return the Object.
+    public static JSONObject getJSONObject() {
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader("GameData.json"));
@@ -42,15 +46,15 @@ public class FileHandler {// The file handler class reads and writes the game lo
         }
     }
 
-    static public Difficulty readGameDifficulty() {
+    public static Difficulty readGameDifficulty() {
         return Difficulty.fromString((String) getJSONObject().get("gameDifficulty"));
     }
 
-    static public Layout readGameLayout() {
+    public static Layout readGameLayout() {
         return Layout.fromString((String) getJSONObject().get("gameLayout"));
     }
 
-    static public String[] readHighScores() {// Method that reads the value of the HighScore object
+    public static String[] readHighScores() {
         JSONArray highScores = (JSONArray) getJSONObject().get("highScores");
         String[] output = new String[highScores.size()];
 
@@ -64,19 +68,51 @@ public class FileHandler {// The file handler class reads and writes the game lo
         return output;
     }
 
-    static public double readCurrentScore() {// Method that reads the value of the Scoreobject
+    public static double readCurrentScore() {
         return Double.parseDouble((String) getJSONObject().get("currentScore"));
     }
 
-    static public void updateGameDifficulty(Difficulty newDifficulty) {// Method to update a new game Difficulty
+    public static boolean readMusicOnOff() {
+        return Boolean.parseBoolean((String) getJSONObject().get("musicOnOff"));
+    }
+
+    public static boolean readFXOnOff() {
+        return Boolean.parseBoolean((String) getJSONObject().get("fxOnOff"));
+    }
+
+    public static double readMusicVolume() {
+        return Double.parseDouble((String) getJSONObject().get("musicVolume"));
+    }
+
+    public static double readFXVolume() {
+        return Double.parseDouble((String) getJSONObject().get("fxVolume"));
+    }
+
+    public static void switchMusicOnOff() {
+        updateValue("musicOnOff", Boolean.toString(!readMusicOnOff()));
+    }
+
+    public static void switchFXOnOff() {
+        updateValue("fxOnOff", Boolean.toString(!readFXOnOff()));
+    }
+
+    public static void updateMusicVolume(double newMusicVolume) {
+        updateValue("musicVolume", String.valueOf(newMusicVolume));
+    }
+
+    public static void updateFXVolume(double newFXVolume) {
+        updateValue("fxVolume", String.valueOf(newFXVolume));
+    }
+
+    public static void updateGameDifficulty(Difficulty newDifficulty) {
         updateValue("gameDifficulty", newDifficulty.toString());
     }
 
-    static public void updateGameLayout(Layout newLayout) {// Method to update a new game Layout
+    public static void updateGameLayout(Layout newLayout) {
         updateValue("gameLayout", newLayout.toString());
     }
 
-    static public boolean updateHighScores() {// Method to update new High Scores
+    public static boolean updateHighScores() {
         double score = readCurrentScore();
         boolean newHighScore = false;
         JSONArray highScores = (JSONArray) getJSONObject().get("highScores");
@@ -99,7 +135,7 @@ public class FileHandler {// The file handler class reads and writes the game lo
                     // then break to not infinite loop.
                 } else if (i == highScores.size() - 1 && highScores.size() < HighScoreScene.HIGH_SCORES_AMOUNT) {
                     highScores.add(newScore);
-                    newHighScore = true; 
+                    newHighScore = true;
                     break;
                 }
                 // If i = highScores.size() and the previous if statement was not true;
@@ -117,11 +153,12 @@ public class FileHandler {// The file handler class reads and writes the game lo
         return newHighScore;
     }
 
-    static public void updateCurrentScore(double newCurrentScore) {// Method to update a new current score
+    public static void updateCurrentScore(double newCurrentScore) {
         updateValue("currentScore", String.valueOf(newCurrentScore));
     }
 
-    static public void updateValue(Object key, Object value) {// Method that updates the value of the Object Key
+    public static void updateValue(Object key, Object value) {
+        // Updates the specified key with the new value.
         JSONObject jsonObject = getJSONObject();
         jsonObject.put(key, value);
 

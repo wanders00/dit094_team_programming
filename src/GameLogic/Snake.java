@@ -5,8 +5,9 @@ import java.util.Arrays;
 
 public class Snake {
     private final static int initialBodyLength = 6;
-    // Should also be local file, just to have more data, even if it is dummy data.
 
+    // The snake object contains the coordinates of each of its' bodyparts.
+    // With the getters and setters to utilise this information in the game.
     private ArrayList<ArrayList<Integer>> body = new ArrayList<ArrayList<Integer>>();
     private Direction currentDirection;
     private Direction newDirection;
@@ -56,7 +57,7 @@ public class Snake {
         return this.body.get(bodyPart).get(1);
     }
 
-    public ArrayList<ArrayList<Integer>> getBody() { // contains all the body parts of the snake
+    public ArrayList<ArrayList<Integer>> getBody() {
         return this.body;
     }
 }

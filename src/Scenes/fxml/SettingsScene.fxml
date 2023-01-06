@@ -16,7 +16,7 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111111" height="534.0" layoutY="268.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#111111" height="255.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-      <CheckBox layoutX="150.0" layoutY="185.0" mnemonicParsing="false" onAction="#switchFxOff" selected="true" text="Sound Effects" textFill="WHITE">
+      <CheckBox fx:id="fxOnOff" layoutX="150.0" layoutY="185.0" mnemonicParsing="false" onAction="#switchFXOnOff" selected="true" text="Sound Effects" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -24,7 +24,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </CheckBox>
-      <CheckBox fx:id="muteMusic" layoutX="150.0" layoutY="105.0" mnemonicParsing="false" onAction="#switchMusicOff" selected="true" text="Music" textFill="WHITE">
+      <CheckBox fx:id="musicOnOff" layoutX="150.0" layoutY="105.0" mnemonicParsing="false" onAction="#switchMusicOnOff" selected="true" text="Music" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
@@ -52,7 +52,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <Slider fx:id="musicSlider" layoutX="150.0" layoutY="130.0" majorTickUnit="1.0" minorTickCount="0" prefHeight="20.0" prefWidth="500.0" snapToTicks="true" value="100.0">
+      <Slider fx:id="musicSlider" layoutX="150.0" layoutY="130.0" majorTickUnit="0.01" minorTickCount="0" prefHeight="20.0" prefWidth="500.0" snapToTicks="true" max = "1.0" value="1.0">
          <effect>
             <Shadow blurType="ONE_PASS_BOX" height="0.0" radius="0.0" width="0.0">
                <color>
@@ -64,7 +64,7 @@
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
       </Slider>
-      <Slider fx:id="fxSlider" layoutX="150.0" layoutY="210.0" majorTickUnit="1.0" minorTickCount="0" prefHeight="20.0" prefWidth="500.0" snapToTicks="true" value="100.0">
+      <Slider fx:id="fxSlider" layoutX="150.0" layoutY="210.0" majorTickUnit="0.01" minorTickCount="0" prefHeight="20.0" prefWidth="500.0" snapToTicks="true" max = "1.0" value="1.0">
          <effect>
             <Shadow blurType="ONE_PASS_BOX" height="1.0" radius="0.0" width="0.0">
                <color>

@@ -20,7 +20,7 @@ public class GameScene extends SceneController {
         int cellCount = 20;
         int cellSize = 40;
         int gridSize = cellCount * cellSize;
-        Game game = new Game(cellCount, cellCount); // Fix difficulty later as local file
+        Game game = new Game(cellCount, cellCount);
         Canvas canvas = new Canvas(gridSize, gridSize);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         StackPane root = new StackPane();
@@ -31,7 +31,7 @@ public class GameScene extends SceneController {
 
         new AnimationTimer() {
             private long frameDelay = FileHandler.readGameDifficulty().getGameTimerSpeed();
-            private long lastPress;
+            private long lastUpdated;
 
             public void handle(long arg0) {
                 stage.setTitle("Snake Game - Map: " + game.getLayout() + " - Difficulty: " + game.getDifficulty()
@@ -44,6 +44,8 @@ public class GameScene extends SceneController {
                         GameObject currentGameObject = game.getState()[i][j];
                         gc.setFill(currentGameObject.getColor());
                         gc.fillRect(cellSize * j, cellSize * i, cellSize, cellSize);
+                        // Goes through the entire grid and fills in the color dependent on which
+                        // GameObject that is located for that row/column.
                     }
                 }
 
@@ -71,9 +73,11 @@ public class GameScene extends SceneController {
                     }
                 });
 
-                if (System.nanoTime() - lastPress > frameDelay) {
+                if (System.nanoTime() - lastUpdated > frameDelay) {
                     updateGame();
                 }
+                // Timer that updates the game whenever it was more than frameDelay in
+                // nanoseconds since last update.
             }
 
             public void updateMovement(Direction newDirection) {
@@ -83,21 +87,21 @@ public class GameScene extends SceneController {
                 }
                 if (currentDirection != newDirection
                         && currentDirection != newDirection.getOppositeDirection()) {
-                    // prevents the user from going in the opposite direction and essentially
-                    // "skipping" a turn
+                    // prevents the snake from moving invalidly, i.e same direction or opposite.
                     game.getSnake().setNewDirection(newDirection);
-                    if (System.nanoTime() - lastPress > (frameDelay / 10)) { // used to allow for faster turn
+                    if (System.nanoTime() - lastUpdated > (frameDelay / 10)) {
                         updateGame();
                     }
+                    // Allows for faster turns, which makes moving the snake way smoother.
+                    // Limitation of only being able to do it every frameDelay / 10 nanoseconds.
                 }
             }
 
             public void updateGame() {
-                lastPress = System.nanoTime();
+                lastUpdated = System.nanoTime();
                 game.getSnake().updateDirection();
                 if (!game.update()) {
                     Audio.DeathSound();
-
                     stop();
                     try {
                         new GameOverScene().show(stage);
