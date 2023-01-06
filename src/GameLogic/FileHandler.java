@@ -166,7 +166,9 @@ public abstract class FileHandler {
             file.write(jsonObject.toString());
             file.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+            initializeFile();
+            // If it cant read a certain value, re-initialize the files.
+            // Incase there is any issues with.
         }
     }
 }
