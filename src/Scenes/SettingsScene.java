@@ -76,7 +76,6 @@ public class SettingsScene extends SceneController {
             public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
                 FileHandler.updateMusicVolume(musicSlider.getValue());
                 Audio.updateMusicVolume();
-                System.out.println(FileHandler.readMusicVolume());
             }
 
         });
@@ -86,7 +85,6 @@ public class SettingsScene extends SceneController {
             @Override
             public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
                 FileHandler.updateFXVolume(fxSlider.getValue());
-                System.out.println(FileHandler.readFXVolume());
             }
 
         });
