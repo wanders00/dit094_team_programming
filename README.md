@@ -8,4 +8,6 @@ Given that the course was the second programming course of the program, the proj
 
 However, the main focus of the project was not the game itself, but the development process. The project was developed following agile methodologies. Along with the project, there is a project management report, which was the main deliverable of the course. The report contains the documentation of the development process, including the planning, the development, the testing, and the final delivery of the project.
 
-Furthermore, the project was developed using the Git version control system, and the project was hosted on Chalmers GitLab, therefore the repository might be missing features such as the issues and the merge requests, which are not available in GitHub.
+Furthermore, the project was developed using the Git version control system, and the project was hosted on Chalmers GitLab, therefore the repository might be missing features such as the issues and the merge requests, which are not available in GitHub. 
+
+Particularly to note as well, any tags using '@name' are incorrect, as they reference the GitLab IDs as well.
